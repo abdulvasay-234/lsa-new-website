@@ -13,6 +13,57 @@ function MediaPlaceholder({ label }: { label: string }) {
   return <div className="media-placeholder" role="img" aria-label={`${label} media slot`}>{label}</div>
 }
 
+function SmoothHeroVideo() {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const videoRefs = useRef<Array<HTMLVideoElement | null>>([null, null])
+  const activeRef = useRef(0)
+  const isTransitioning = useRef(false)
+  const source = `${import.meta.env.BASE_URL}media/My Movie 3.mp4`
+
+  const handleTimeUpdate = (index: number) => {
+    const video = videoRefs.current[index]
+    if (!video || index !== activeRef.current || isTransitioning.current || !Number.isFinite(video.duration)) return
+    if (video.duration - video.currentTime > 0.8) return
+
+    const nextIndex = index === 0 ? 1 : 0
+    const nextVideo = videoRefs.current[nextIndex]
+    if (!nextVideo) return
+
+    isTransitioning.current = true
+    nextVideo.currentTime = 0
+    void nextVideo.play()
+    activeRef.current = nextIndex
+    setActiveIndex(nextIndex)
+    window.setTimeout(() => {
+      video.pause()
+      video.currentTime = 0
+      isTransitioning.current = false
+    }, 800)
+  }
+
+  return (
+    <>
+      {[0, 1].map((index) => (
+        <video
+          className={`hero-video ${activeIndex === index ? 'is-active' : ''}`}
+          key={index}
+          ref={(element) => { videoRefs.current[index] = element }}
+          autoPlay={index === 0}
+          loop
+          muted
+          playsInline
+          preload="auto"
+          aria-hidden={index === 1}
+          aria-label={index === 0 ? 'Lords Skill Academy learning in action' : undefined}
+          onTimeUpdate={() => handleTimeUpdate(index)}
+        >
+          <source src={source} type="video/mp4" />
+        </video>
+      ))}
+    </>
+  )
+}
+
 function AnimatedStat({ value, label }: { value: number; label: string }) {
   const [displayValue, setDisplayValue] = useState(value)
   const statRef = useRef<HTMLDivElement>(null)
@@ -216,6 +267,7 @@ export function HomePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema()) }} />
       <Section className="home-hero">
+        <SmoothHeroVideo />
         <Container className="hero-layout">
           <div className="hero-copy">
             <p className="eyebrow">{homepageContent.hero.eyebrow}</p>
@@ -226,25 +278,35 @@ export function HomePage() {
               <ButtonLink href={getRouteHref('/', '/learning')} variant="outline">Explore learning</ButtonLink>
             </div>
           </div>
-          <div className="hero-media">
-            <MediaPlaceholder label="Real LSA hero media" />
-          </div>
         </Container>
       </Section>
 
       <Section className="identity-strip" aria-label="LSA identity">
         <Container>
-          <ul className="identity-list">
-            {homepageContent.identitySignals.map((signal) => <li key={signal}>{signal}</li>)}
-          </ul>
+          <div className="identity-marquee">
+            <div className="identity-track">
+              <ul className="identity-list">
+                {homepageContent.identitySignals.map((signal) => <li key={signal}>{signal}</li>)}
+              </ul>
+              <ul className="identity-list" aria-hidden="true">
+                {homepageContent.identitySignals.map((signal) => <li key={signal}>{signal}</li>)}
+              </ul>
+            </div>
+          </div>
         </Container>
       </Section>
 
       <Section className="institutional-section" aria-labelledby="institutional-heading">
         <Container className="institutional-layout">
           <p className="institutional-statement" id="institutional-heading">{siteInfo.institution.statement}</p>
-          <div className="institutional-logo-frame">
-            <img src={siteInfo.institution.logo.src} alt={siteInfo.institution.logo.alt} width={siteInfo.institution.logo.width} height={siteInfo.institution.logo.height} />
+          <div className="institutional-logo-frame" aria-label="LIET and LSA logos">
+            <div className="institutional-logo institutional-logo-liet">
+              <img src={siteInfo.logos.liet.src} alt={siteInfo.logos.liet.alt} width={siteInfo.logos.liet.width} height={siteInfo.logos.liet.height} />
+            </div>
+            <span className="institutional-logo-cross" aria-hidden="true">×</span>
+            <div className="institutional-logo institutional-logo-lsa">
+              <img src={siteInfo.logos.lsa.src} alt={siteInfo.logos.lsa.alt} width={siteInfo.logos.lsa.width} height={siteInfo.logos.lsa.height} />
+            </div>
           </div>
           <p className="institutional-support">Backed by an established Engineering Institution.</p>
         </Container>

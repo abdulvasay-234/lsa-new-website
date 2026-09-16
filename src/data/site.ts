@@ -3,7 +3,27 @@ export const siteInfo = {
   shortName: 'LSA',
   description: 'Official website of Lords Skill Academy.',
   url: import.meta.env.VITE_SITE_URL || '',
-  logoPath: '/favicon.svg',
+  logoPath: `${import.meta.env.BASE_URL}media/logos/LSA-Transperent- Black.png`,
+  logos: {
+    lsa: {
+      src: `${import.meta.env.BASE_URL}media/logos/LSA-Transperent- Black.png`,
+      alt: 'Lords Skill Academy logo',
+      width: 1080,
+      height: 1080,
+    },
+    lsaWhite: {
+      src: `${import.meta.env.BASE_URL}media/logos/LSA-Transperent- WHite.png`,
+      alt: 'Lords Skill Academy logo',
+      width: 1080,
+      height: 1080,
+    },
+    liet: {
+      src: `${import.meta.env.BASE_URL}media/logos/LIET.png`,
+      alt: 'Lords Institute of Engineering & Technology logo',
+      width: 6250,
+      height: 6250,
+    },
+  },
   socialLinks: [
     { label: 'LinkedIn', url: 'https://www.linkedin.com/company/lords-skill-academy' },
     { label: 'YouTube', url: 'https://www.youtube.com/channel/UCp3pmw6u5xZsL5W6ViF_zvg' },
@@ -15,7 +35,7 @@ export const siteInfo = {
     relationship: 'An Initiative of',
     statement: 'Lords Skill Academy (LSA) is an Initiative of Lords Institute of Engineering & Technology.',
     logo: {
-      src: `${import.meta.env.BASE_URL}media/liet-logo.png`,
+      src: `${import.meta.env.BASE_URL}media/logos/LIET.png`,
       alt: 'Lords Institute of Engineering & Technology logo',
       width: 3293,
       height: 1408,

@@ -9,7 +9,9 @@ export function Footer({ route }: { route: SiteRoute }) {
       <Container className="footer-layout">
         <div className="footer-links">
           <div className="footer-identity">
-            <a className="brand" href={getRouteHref(route.path, '/')} aria-label="Lords Skill Academy home">{siteInfo.shortName}</a>
+            <a className="brand" href={getRouteHref(route.path, '/')} aria-label="Lords Skill Academy home">
+              <img src={siteInfo.logos.lsa.src} alt={siteInfo.logos.lsa.alt} width={siteInfo.logos.lsa.width} height={siteInfo.logos.lsa.height} />
+            </a>
             <p>{siteInfo.description}</p>
             <p className="institutional-note">{siteInfo.institution.relationship} {siteInfo.institution.name}.</p>
           </div>
