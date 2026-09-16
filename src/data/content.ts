@@ -120,7 +120,47 @@ export const testimonials: Testimonial[] = [
     verified: true,
   },
 ]
-export const youtubeVideos: YouTubeVideo[] = []
+export const youtubeVideos: YouTubeVideo[] = [
+  {
+    id: 'k48pOIzXSsk',
+    title: 'LSA in Dubai',
+    description: 'Explore LSA learning, experiences, and opportunities in Dubai.',
+    category: 'LSA in motion',
+    url: 'https://youtu.be/k48pOIzXSsk',
+    thumbnail: {
+      src: '/media/youtube-thumbnails/dubai.png',
+      alt: 'LSA Dubai video thumbnail',
+      width: 1280,
+      height: 720,
+    },
+  },
+  {
+    id: 'FsYTit41U_s',
+    title: 'Python Bootcamp',
+    description: 'A look inside the practical Python bootcamp experience at LSA.',
+    category: 'Bootcamp',
+    url: 'https://youtu.be/FsYTit41U_s',
+    thumbnail: {
+      src: '/media/youtube-thumbnails/py-bootcamp.png',
+      alt: 'Python bootcamp video thumbnail',
+      width: 1280,
+      height: 720,
+    },
+  },
+  {
+    id: 'JKyG3XLlvfk',
+    title: 'LSA Webinar',
+    description: 'Watch an LSA webinar with practical insights for learners.',
+    category: 'Webinar',
+    url: 'https://youtu.be/JKyG3XLlvfk',
+    thumbnail: {
+      src: '/media/youtube-thumbnails/webinar.png',
+      alt: 'LSA webinar video thumbnail',
+      width: 1280,
+      height: 720,
+    },
+  },
+]
 
 export const contentNotes = [
   'Add only verified LSA programs, courses, articles, media, and testimonials here.',

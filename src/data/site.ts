@@ -28,7 +28,7 @@ export const siteInfo = {
     { label: 'LinkedIn', url: 'https://www.linkedin.com/company/lords-skill-academy' },
     { label: 'YouTube', url: 'https://www.youtube.com/channel/UCp3pmw6u5xZsL5W6ViF_zvg' },
   ] as Array<{ label: string; url: string }>,
-  youtubeChannelUrl: 'https://www.youtube.com/channel/UCp3pmw6u5xZsL5W6ViF_zvg',
+  youtubeChannelUrl: 'https://www.youtube.com/@LordsSkillAcademy',
   legalLinks: [] as Array<{ label: string; url: string }>,
   institution: {
     name: 'Lords Institute of Engineering & Technology',

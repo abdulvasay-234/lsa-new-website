@@ -52,8 +52,17 @@ export const homepageContent = {
   campus: {
     eyebrow: 'LSA in campuses',
     title: 'From classrooms to campuses.',
-    body: 'LSA works with educational institutions through workshops, bootcamps, technology programs, internships, campus initiatives, and industry-oriented learning experiences.',
-    media: [] as MediaAsset[],
+    body: 'LSA works with educational institutions to bring practical technology learning closer to students. Through workshops, bootcamps, technology programs, internships, and campus initiatives, we create opportunities to learn beyond the traditional classroom.',
+    supportingBody: 'Students learn by doing — exploring modern technologies, building projects, solving practical problems, and gaining exposure to real-world technology environments.',
+    editorialItems: ['PROGRAMS', 'WORKSHOPS', 'BOOTCAMPS', 'PROJECTS', 'INTERNSHIPS', 'HACKATHONS'],
+    media: [
+      {
+        src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00621%20(1).jpg`,
+        alt: 'Students engaging with practical learning in an LSA classroom setting',
+        width: 1600,
+        height: 900,
+      },
+    ] as MediaAsset[],
   },
   videos: [] as string[],
   testimonials: {

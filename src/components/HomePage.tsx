@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type FormEvent } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { homepageContent } from '../data/homepage'
 import { programs, testimonials, youtubeVideos } from '../data/content'
 import { getRouteHref } from '../data/routes'
@@ -8,6 +8,16 @@ import { ButtonLink } from './Button'
 import { Card } from './Card'
 import { ResponsiveImage, YouTubeFacade } from './Media'
 import { Container, Grid, Section } from './Layout'
+
+const homepageSocialLinks = [
+  { label: 'YouTube', icon: 'youtube', url: siteInfo.youtubeChannelUrl },
+  { label: 'Threads', icon: 'threads', url: 'https://www.threads.net/' },
+  { label: 'X', icon: 'x', url: 'https://x.com/' },
+  { label: 'GitHub', icon: 'github', url: 'https://github.com/' },
+  { label: 'Instagram', icon: 'instagram', url: 'https://www.instagram.com/' },
+  { label: 'LinkedIn', icon: 'linkedin', url: 'https://www.linkedin.com/company/lords-skill-academy' },
+  { label: 'Slack', icon: 'slack', url: 'https://slack.com/' },
+]
 
 function MediaPlaceholder({ label }: { label: string }) {
   return <div className="media-placeholder" role="img" aria-label={`${label} media slot`}>{label}</div>
@@ -64,45 +74,6 @@ function SmoothHeroVideo() {
   )
 }
 
-function AnimatedStat({ value, label }: { value: number; label: string }) {
-  const [displayValue, setDisplayValue] = useState(value)
-  const statRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const element = statRef.current
-    if (!element) return
-    const finish = () => setDisplayValue(value)
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReducedMotion) {
-      finish()
-      return
-    }
-
-    let frame = 0
-    let hasStarted = false
-    const observer = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting || hasStarted) return
-      hasStarted = true
-      const startTime = performance.now()
-      setDisplayValue(0)
-      const animate = (currentTime: number) => {
-        const progress = Math.min((currentTime - startTime) / 900, 1)
-        setDisplayValue(Math.round(value * (1 - Math.pow(1 - progress, 3))))
-        if (progress < 1) frame = requestAnimationFrame(animate)
-      }
-      frame = requestAnimationFrame(animate)
-      observer.disconnect()
-    }, { threshold: 0.35 })
-    observer.observe(element)
-    return () => {
-      observer.disconnect()
-      cancelAnimationFrame(frame)
-    }
-  }, [value])
-
-  return <div className="number-item" ref={statRef}><strong>{displayValue}+</strong><span>{label}</span></div>
-}
-
 function VideoEvidence() {
   const videos = youtubeVideos
   if (videos.length === 0) {
@@ -137,6 +108,30 @@ function VideoEvidence() {
         </article>
       ))}
     </div>
+  )
+}
+
+function PhilosophyJourney() {
+  const stages = homepageContent.philosophy.stages
+
+  return (
+    <Container>
+      <div className="section-heading philosophy-heading">
+        <p className="section-marker section-marker-yellow">02 — HOW LSA LEARNS</p>
+        <h2>{homepageContent.philosophy.title}</h2>
+      </div>
+      <ol className="philosophy-path">
+        {stages.map((stage, index) => (
+          <li key={stage.name}>
+            <span className="philosophy-index">0{index + 1}</span>
+            <div>
+              <h3>{stage.name}</h3>
+              <p>{stage.description}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </Container>
   )
 }
 
@@ -179,86 +174,6 @@ function TestimonialEvidence() {
         <div><button type="button" className="carousel-control" aria-label="Previous reviews" disabled={activeIndex === 0} onClick={() => moveCarousel(-1)}>←</button><button type="button" className="carousel-control" aria-label="Next reviews" disabled={!canGoNext} onClick={() => moveCarousel(1)}>→</button></div>
       </div>
     </div>
-  )
-}
-
-type InquiryValues = {
-  fullName: string
-  email: string
-  phone: string
-  interest: string
-  program: string
-  message: string
-}
-
-const initialInquiry: InquiryValues = {
-  fullName: '', email: '', phone: '', interest: '', program: '', message: '',
-}
-
-function InquiryForm() {
-  const [values, setValues] = useState(initialInquiry)
-  const [errors, setErrors] = useState<Partial<Record<keyof InquiryValues, string>>>({})
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'error' | 'success'>('idle')
-  const endpoint = import.meta.env.VITE_INQUIRY_ENDPOINT
-
-  const updateValue = (field: keyof InquiryValues, value: string) => {
-    setValues((current) => ({ ...current, [field]: value }))
-    setErrors((current) => ({ ...current, [field]: undefined }))
-    if (status !== 'idle') setStatus('idle')
-  }
-
-  const validate = () => {
-    const nextErrors: Partial<Record<keyof InquiryValues, string>> = {}
-    if (!values.fullName.trim()) nextErrors.fullName = 'Enter your full name.'
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) nextErrors.email = 'Enter a valid email address.'
-    if (!/^[+\d][\d\s().-]{7,}$/.test(values.phone)) nextErrors.phone = 'Enter a valid phone or WhatsApp number.'
-    if (!values.interest) nextErrors.interest = 'Choose what you are interested in.'
-    if (!values.message.trim()) nextErrors.message = 'Tell us what you are looking for.'
-    setErrors(nextErrors)
-    return Object.keys(nextErrors).length === 0
-  }
-
-  const submit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    if (!validate()) return
-    setStatus('submitting')
-    if (!endpoint) {
-      setStatus('error')
-      return
-    }
-    try {
-      const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(values) })
-      if (!response.ok) throw new Error('Inquiry submission failed')
-      setStatus('success')
-      setValues(initialInquiry)
-    } catch {
-      setStatus('error')
-    }
-  }
-
-  const field = (name: keyof InquiryValues, label: string, type = 'text', required = false) => (
-    <label className="inquiry-field" htmlFor={`inquiry-${name}`}>
-      <span>{label}{required && ' *'}</span>
-      <input id={`inquiry-${name}`} name={name} type={type} required={required} value={values[name]} aria-invalid={Boolean(errors[name])} aria-describedby={errors[name] ? `inquiry-${name}-error` : undefined} onChange={(event) => updateValue(name, event.target.value)} />
-      {errors[name] && <small id={`inquiry-${name}-error`} className="field-error">{errors[name]}</small>}
-    </label>
-  )
-
-  return (
-    <form className="inquiry-form" onSubmit={submit} noValidate>
-      <div className="inquiry-form-heading"><h3>Start a conversation</h3><p>Tell us what you're looking for and our team will get back to you.</p></div>
-      <div className="inquiry-fields">
-        {field('fullName', 'Full Name', 'text', true)}
-        {field('email', 'Email Address', 'email', true)}
-        {field('phone', 'Phone Number / WhatsApp', 'tel', true)}
-        <label className="inquiry-field" htmlFor="inquiry-interest"><span>I am interested in *</span><select id="inquiry-interest" value={values.interest} aria-invalid={Boolean(errors.interest)} onChange={(event) => updateValue('interest', event.target.value)}><option value="">Select an option</option><option>Learning a program</option><option>Internship</option><option>Campus training</option><option>Workshop</option><option>College / institutional collaboration</option><option>Corporate training</option><option>Other</option></select>{errors.interest && <small className="field-error">{errors.interest}</small>}</label>
-        <label className="inquiry-field" htmlFor="inquiry-program"><span>Program / Area of Interest</span><select id="inquiry-program" value={values.program} onChange={(event) => updateValue('program', event.target.value)}><option value="">Select an option</option><option>Data Science</option><option>Digital Marketing</option><option>Cyber Security</option><option>DevOps</option><option>Programming / Development</option><option>Other</option></select></label>
-        <label className="inquiry-field inquiry-field-wide" htmlFor="inquiry-message"><span>Message / Requirement *</span><textarea id="inquiry-message" name="message" required value={values.message} aria-invalid={Boolean(errors.message)} aria-describedby={errors.message ? 'inquiry-message-error' : undefined} onChange={(event) => updateValue('message', event.target.value)} />{errors.message && <small id="inquiry-message-error" className="field-error">{errors.message}</small>}</label>
-      </div>
-      {status === 'error' && <p className="inquiry-status inquiry-status-error" role="alert">Your details were not sent. The inquiry form is not connected to a submission service yet.</p>}
-      {status === 'success' && <p className="inquiry-status inquiry-status-success" role="status">Your inquiry was sent successfully.</p>}
-      <button className="inquiry-submit" type="submit" disabled={status === 'submitting'}>{status === 'submitting' ? 'SENDING INQUIRY…' : 'SEND INQUIRY'}</button>
-    </form>
   )
 }
 
@@ -314,33 +229,26 @@ export function HomePage() {
 
       <Section className="editorial-section">
         <Container className="editorial-layout">
-          <div className="section-heading">
+          <div className="section-heading editorial-heading">
             <p className="section-marker">01 — WHAT IS LSA?</p>
             <h2>{homepageContent.about.title}</h2>
+            <div className="editorial-copy">
+              <p>{homepageContent.about.body}</p>
+              <p>{homepageContent.about.supportingBody}</p>
+            </div>
           </div>
-          <div className="editorial-copy">
-            <p>{homepageContent.about.body}</p>
-            <p>{homepageContent.about.supportingBody}</p>
+          <div className="editorial-media">
+            {homepageContent.campus.media.length > 0 && (
+              <div className="editorial-media-card editorial-media-card-main">
+                <ResponsiveImage asset={homepageContent.campus.media[0]} loading="eager" />
+              </div>
+            )}
           </div>
-          <MediaPlaceholder label="Real LSA learning photography" />
         </Container>
       </Section>
 
       <Section className="philosophy-section">
-        <Container>
-          <div className="section-heading philosophy-heading">
-            <p className="section-marker section-marker-yellow">02 — HOW LSA LEARNS</p>
-            <h2>{homepageContent.philosophy.title}</h2>
-          </div>
-          <ol className="philosophy-path">
-            {homepageContent.philosophy.stages.map((stage, index) => (
-              <li key={stage.name}>
-                <span className="philosophy-index">0{index + 1}</span>
-                <div><h3>{stage.name}</h3><p>{stage.description}</p></div>
-              </li>
-            ))}
-          </ol>
-        </Container>
+        <PhilosophyJourney />
       </Section>
 
       <Section className="programs-section">
@@ -353,7 +261,7 @@ export function HomePage() {
           <Grid className="program-list">
             {programs.map((program, index) => (
               <Card className="program-card" key={program.slug}>
-                <div className="program-card-top"><p className="card-kicker">Program</p><span className="program-index">0{index + 1}</span></div>
+                <div className="program-card-top"><span className="program-index">0{index + 1}</span></div>
                 <h3>{program.title}</h3>
                 <p>{program.description}</p>
                 {program.keywords && <ul className="program-keywords">{program.keywords.map((keyword) => <li key={keyword}>{keyword}</li>)}</ul>}
@@ -361,7 +269,7 @@ export function HomePage() {
               </Card>
             ))}
           </Grid>
-          <ButtonLink href={getRouteHref('/', '/programs')} variant="secondary">Explore all programs</ButtonLink>
+          <ButtonLink className="programs-all-button" href={getRouteHref('/', '/programs')} variant="secondary">Explore all programs</ButtonLink>
         </Container>
       </Section>
 
@@ -371,6 +279,10 @@ export function HomePage() {
             <p className="section-marker">04 — CAMPUS</p>
             <h2>{homepageContent.campus.title}</h2>
             <p>{homepageContent.campus.body}</p>
+            <p>{homepageContent.campus.supportingBody}</p>
+            <div className="campus-editorial-line" aria-label="Campus learning activities">
+              {homepageContent.campus.editorialItems.map((item) => <span key={item}>{item}</span>)}
+            </div>
             <ButtonLink href={getRouteHref('/', '/campus')} variant="outline">Explore campus work</ButtonLink>
           </div>
           <div className="campus-gallery">
@@ -400,41 +312,93 @@ export function HomePage() {
 
       <Section className="learning-section">
         <Container>
-          <div className="section-heading section-heading-wide">
+          <div className="learning-ecosystem-head">
             <p className="section-marker">07 — LEARNING ECOSYSTEM</p>
-            <h2>{homepageContent.learning.title}</h2>
+            <h2>We see a world where money moves freely and opportunity follows.</h2>
           </div>
-          <div className="destination-list">
-            {homepageContent.learning.destinations.map((destination) => (
-              <a className="destination" href={getRouteHref('/', destination.path)} key={destination.path}>
-                <span><span className="card-kicker">Learning destination</span><strong>{destination.label}</strong></span>
-                <span>{destination.description}</span>
-                <span aria-hidden="true">→</span>
-              </a>
-            ))}
+
+          <div className="learning-ecosystem-grid">
+            <a className="learning-ecosystem-card learning-ecosystem-card--mint" href={getRouteHref('/', '/learning/lms')}>
+              <div>
+                <h3>LMS</h3>
+                <p>Your learning environment.</p>
+              </div>
+              <small>Access your courses, learning materials, and academic experience.</small>
+              <span className="card-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a className="learning-ecosystem-card learning-ecosystem-card--peach" href={getRouteHref('/', '/learning/blog')}>
+              <div>
+                <h3>Blog</h3>
+                <p>Ideas, insights, and technology.</p>
+              </div>
+              <small>Explore articles, perspectives, and practical knowledge from the LSA ecosystem.</small>
+              <span className="card-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a className="learning-ecosystem-card learning-ecosystem-card--lavender" href={getRouteHref('/', '/learning/resources')}>
+              <div>
+                <h3>Resources</h3>
+                <p>Keep building.</p>
+              </div>
+              <small>Explore useful resources to support your learning, projects, and continued practice.</small>
+              <span className="card-arrow" aria-hidden="true">↗</span>
+            </a>
           </div>
         </Container>
       </Section>
 
       <Section className="numbers-section" aria-labelledby="numbers-heading">
-        <Container>
-          <div className="numbers-heading-row">
-            <p className="section-marker">08 — LSA IN NUMBERS</p>
-            <h2 id="numbers-heading">Learning that goes beyond the classroom.</h2>
-          </div>
-          <div className="numbers-grid">
-            <AnimatedStat value={800} label="LEARNERS" />
-            <AnimatedStat value={300} label="INTERNSHIP & TRAINING PARTICIPANTS" />
-            <AnimatedStat value={10} label="INDUSTRY TRAINERS" />
-            <AnimatedStat value={10} label="TECHNOLOGY PROGRAMS" />
+        <Container className="numbers-container">
+          <div className="numbers-layout">
+            <div className="numbers-intro">
+              <p className="section-marker">08 — LSA IN NUMBERS</p>
+              <h2 id="numbers-heading">Learning that goes beyond the classroom.</h2>
+              <div className="numbers-note">
+                <p>From early experiments to real-world systems,<br />this is what progress looks like in practice.</p>
+              </div>
+            </div>
+
+            <div className="numbers-metrics" aria-label="LSA numbers overview">
+              <div className="numbers-stat">
+                <strong>800+</strong>
+                <span>LEARNERS</span>
+              </div>
+              <div className="numbers-stat">
+                <strong>300+</strong>
+                <span>INTERNSHIP &amp; TRAINING PARTICIPANTS</span>
+              </div>
+              <div className="numbers-stat">
+                <strong>10+</strong>
+                <span>INDUSTRY TRAINERS</span>
+              </div>
+              <div className="numbers-stat">
+                <strong>10+</strong>
+                <span>TECHNOLOGY PROGRAMS</span>
+              </div>
+            </div>
           </div>
         </Container>
       </Section>
 
-      <Section className="contact-section">
-        <Container className="contact-lead-layout">
-          <div className="contact-lead-copy"><p className="section-marker section-marker-yellow">09 — LET&apos;S CONNECT</p><h2>Ready to build your next skill?</h2></div>
-          <InquiryForm />
+      <Section className="home-contact-strip">
+        <Container className="home-contact-grid">
+          <div className="home-contact-block">
+            <h2>Stay up to date</h2>
+            <p>Sign up for our newsletter and keep up to date with our news and events</p>
+            <a className="home-contact-primary" href={`mailto:${siteInfo.contact.email}?subject=LSA newsletter subscription`}>Subscribe <span aria-hidden="true">→</span></a>
+          </div>
+          <div className="home-contact-block">
+            <h2>Contact us</h2>
+            <p>Have a question? We have answers. Send us a message, and we will get back to you.</p>
+            <ButtonLink href={getRouteHref('/', '/contact')} variant="outline">Contact us</ButtonLink>
+          </div>
+          <div className="home-contact-block home-contact-social">
+            <h2>Social Links</h2>
+            <ul>
+              {homepageSocialLinks.map((socialLink) => <li key={socialLink.label}><a href={socialLink.url} target="_blank" rel="noreferrer" aria-label={socialLink.label}><span className={`social-logo social-logo--${socialLink.icon}`} aria-hidden="true" /></a></li>)}
+            </ul>
+          </div>
         </Container>
       </Section>
 
