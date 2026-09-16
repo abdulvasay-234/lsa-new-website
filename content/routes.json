@@ -1,0 +1,191 @@
+[
+  {
+    "path": "/",
+    "label": "Home",
+    "section": "primary",
+    "title": "Lords Skill Academy | Practical Technology Education",
+    "description": "Lords Skill Academy helps students build practical technology skills through hands-on learning, real-world exposure, and industry-oriented experiences."
+  },
+  {
+    "path": "/programs",
+    "label": "Programs",
+    "section": "primary",
+    "title": "Programs | Lords Skill Academy",
+    "description": "Explore verified Lords Skill Academy programs."
+  },
+  {
+    "path": "/learning",
+    "label": "Learning",
+    "section": "primary",
+    "title": "Learning | Lords Skill Academy",
+    "description": "Explore learning resources from Lords Skill Academy."
+  },
+  {
+    "path": "/campus",
+    "label": "Campus",
+    "section": "primary",
+    "title": "Campus | Lords Skill Academy",
+    "description": "Discover verified campus information from Lords Skill Academy."
+  },
+  {
+    "path": "/for-colleges",
+    "label": "For Colleges",
+    "section": "primary",
+    "title": "For Colleges | Lords Skill Academy",
+    "description": "Information for colleges considering Lords Skill Academy."
+  },
+  {
+    "path": "/about",
+    "label": "About",
+    "section": "secondary",
+    "title": "About | Lords Skill Academy",
+    "description": "Learn about Lords Skill Academy."
+  },
+  {
+    "path": "/contact",
+    "label": "Contact",
+    "section": "secondary",
+    "title": "Contact | Lords Skill Academy",
+    "description": "Contact Lords Skill Academy."
+  },
+  {
+    "path": "/programs/data-science",
+    "label": "Data Science",
+    "section": "secondary",
+    "title": "Data Science | Lords Skill Academy",
+    "description": "Data Science program information from Lords Skill Academy."
+  },
+  {
+    "path": "/programs/cyber-security",
+    "label": "Cyber Security",
+    "section": "secondary",
+    "title": "Cyber Security | Lords Skill Academy",
+    "description": "Cyber Security program information from Lords Skill Academy."
+  },
+  {
+    "path": "/programs/digital-marketing",
+    "label": "Digital Marketing",
+    "section": "secondary",
+    "title": "Digital Marketing | Lords Skill Academy",
+    "description": "Digital Marketing program information from Lords Skill Academy."
+  },
+  {
+    "path": "/programs/devops",
+    "label": "DevOps",
+    "section": "secondary",
+    "title": "DevOps | Lords Skill Academy",
+    "description": "DevOps program information from Lords Skill Academy."
+  },
+  {
+    "path": "/programs/python-programming",
+    "label": "Python Programming",
+    "section": "secondary",
+    "title": "Python Programming | Lords Skill Academy",
+    "description": "Python Programming program information from Lords Skill Academy."
+  },
+  {
+    "path": "/programs/full-stack-java",
+    "label": "Full Stack Java",
+    "section": "secondary",
+    "title": "Full Stack Java | Lords Skill Academy",
+    "description": "Full Stack Java program information from Lords Skill Academy."
+  },
+  {
+    "path": "/programs/power-bi",
+    "label": "Power BI",
+    "section": "secondary",
+    "title": "Power BI | Lords Skill Academy",
+    "description": "Power BI program information from Lords Skill Academy."
+  },
+  {
+    "path": "/programs/future-programs",
+    "label": "Future Programs",
+    "section": "secondary",
+    "title": "Future Programs | Lords Skill Academy",
+    "description": "Future program information from Lords Skill Academy."
+  },
+  {
+    "path": "/learning/lms",
+    "label": "LMS",
+    "section": "secondary",
+    "title": "LMS | Lords Skill Academy",
+    "description": "Structured learning resources from Lords Skill Academy."
+  },
+  {
+    "path": "/learning/lms/data-science",
+    "label": "LMS Data Science",
+    "section": "secondary",
+    "title": "LMS Data Science | Lords Skill Academy",
+    "description": "Data Science learning resources from Lords Skill Academy."
+  },
+  {
+    "path": "/learning/lms/cyber-security",
+    "label": "LMS Cyber Security",
+    "section": "secondary",
+    "title": "LMS Cyber Security | Lords Skill Academy",
+    "description": "Cyber Security learning resources from Lords Skill Academy."
+  },
+  {
+    "path": "/learning/lms/digital-marketing",
+    "label": "LMS Digital Marketing",
+    "section": "secondary",
+    "title": "LMS Digital Marketing | Lords Skill Academy",
+    "description": "Digital Marketing learning resources from Lords Skill Academy."
+  },
+  {
+    "path": "/learning/blog",
+    "label": "Blog",
+    "section": "secondary",
+    "title": "Blog | Lords Skill Academy",
+    "description": "Articles from Lords Skill Academy."
+  },
+  {
+    "path": "/learning/blog/why-practical-learning-matters",
+    "label": "Why practical learning matters",
+    "section": "secondary",
+    "title": "Why practical learning matters | Lords Skill Academy",
+    "description": "Learn why practical learning matters in technology education."
+  },
+  {
+    "path": "/learning/blog/from-workshop-to-project",
+    "label": "From workshop to project",
+    "section": "secondary",
+    "title": "From workshop to project | Lords Skill Academy",
+    "description": "How workshops become projects and build learner confidence."
+  },
+  {
+    "path": "/learning/blog/what-campus-learning-looks-like",
+    "label": "What campus learning looks like",
+    "section": "secondary",
+    "title": "What campus learning looks like | Lords Skill Academy",
+    "description": "Explore what campus learning looks like at Lords Skill Academy."
+  },
+  {
+    "path": "/learning/resources",
+    "label": "Resources",
+    "section": "secondary",
+    "title": "Resources | Lords Skill Academy",
+    "description": "Resources from Lords Skill Academy."
+  },
+  {
+    "path": "/campus/programs",
+    "label": "Campus Programs",
+    "section": "secondary",
+    "title": "Campus Programs | Lords Skill Academy",
+    "description": "Campus program information from Lords Skill Academy."
+  },
+  {
+    "path": "/campus/events",
+    "label": "Events",
+    "section": "secondary",
+    "title": "Events | Lords Skill Academy",
+    "description": "Verified events from Lords Skill Academy."
+  },
+  {
+    "path": "/campus/internships",
+    "label": "Internships",
+    "section": "secondary",
+    "title": "Internships | Lords Skill Academy",
+    "description": "Internship information from Lords Skill Academy."
+  }
+]

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>http://localhost:4173/</loc></url>
+  <url><loc>http://localhost:4173/programs</loc></url>
+  <url><loc>http://localhost:4173/learning</loc></url>
+  <url><loc>http://localhost:4173/campus</loc></url>
+  <url><loc>http://localhost:4173/for-colleges</loc></url>
+  <url><loc>http://localhost:4173/about</loc></url>
+  <url><loc>http://localhost:4173/contact</loc></url>
+  <url><loc>http://localhost:4173/programs/data-science</loc></url>
+  <url><loc>http://localhost:4173/programs/cyber-security</loc></url>
+  <url><loc>http://localhost:4173/programs/digital-marketing</loc></url>
+  <url><loc>http://localhost:4173/programs/devops</loc></url>
+  <url><loc>http://localhost:4173/programs/python-programming</loc></url>
+  <url><loc>http://localhost:4173/programs/full-stack-java</loc></url>
+  <url><loc>http://localhost:4173/programs/power-bi</loc></url>
+  <url><loc>http://localhost:4173/programs/future-programs</loc></url>
+  <url><loc>http://localhost:4173/learning/lms</loc></url>
+  <url><loc>http://localhost:4173/learning/lms/data-science</loc></url>
+  <url><loc>http://localhost:4173/learning/lms/cyber-security</loc></url>
+  <url><loc>http://localhost:4173/learning/lms/digital-marketing</loc></url>
+  <url><loc>http://localhost:4173/learning/blog</loc></url>
+  <url><loc>http://localhost:4173/learning/blog/why-practical-learning-matters</loc></url>
+  <url><loc>http://localhost:4173/learning/blog/from-workshop-to-project</loc></url>
+  <url><loc>http://localhost:4173/learning/blog/what-campus-learning-looks-like</loc></url>
+  <url><loc>http://localhost:4173/learning/resources</loc></url>
+  <url><loc>http://localhost:4173/campus/programs</loc></url>
+  <url><loc>http://localhost:4173/campus/events</loc></url>
+  <url><loc>http://localhost:4173/campus/internships</loc></url>
+  <url><loc>http://localhost:4173/learning/blog/why-practical-learning-matters</loc></url>
+  <url><loc>http://localhost:4173/learning/blog/from-workshop-to-project</loc></url>
+  <url><loc>http://localhost:4173/learning/blog/what-campus-learning-looks-like</loc></url>
+</urlset>

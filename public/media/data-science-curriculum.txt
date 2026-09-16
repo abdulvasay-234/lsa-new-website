@@ -1,0 +1,27 @@
+LSA DATA SCIENCE PROGRAM
+Curriculum outline
+
+This outline describes the technology areas and working practices used across the Data Science program.
+
+PROGRAMMING
+- Python
+
+DATA
+- SQL
+- Pandas
+- NumPy
+
+ANALYSIS AND VISUALISATION
+- Jupyter Notebook
+- Matplotlib
+- Seaborn
+
+MACHINE LEARNING
+- Scikit-learn
+- Model evaluation
+
+PLATFORMS AND WORKFLOW
+- GitHub
+- Jupyter Notebook
+
+Note: Program duration, schedule, projects, certification, and support details are confirmed separately by Lords Skill Academy.
