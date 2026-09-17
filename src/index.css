@@ -696,7 +696,7 @@ p { line-height: 1.6; }
 .learning-ecosystem-head .section-marker { margin: 0 0 var(--space-4); color: var(--color-yellow); font-size: 0.78rem; letter-spacing: 0.2em; }
 .learning-ecosystem-head h2 { max-width: 16.5ch; margin: 0; color: var(--color-navy); font-size: clamp(4rem, 5vw, 8.5rem); line-height: 0.88; letter-spacing: -0.08em; }
 .learning-ecosystem-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(var(--space-4), 2vw, var(--space-6)); }
-.learning-ecosystem-card { display: flex; flex-direction: column; justify-content: space-between; min-height: 31rem; padding: clamp(var(--space-5), 2vw, var(--space-8)); border-radius: 1.5rem; text-decoration: none; color: var(--color-navy); }
+.learning-ecosystem-card { display: flex; flex-direction: column; justify-content: space-between; min-height: 31rem; padding: clamp(var(--space-5), 2vw, var(--space-8)); border-radius: 1.5rem; text-decoration: none; color: var(--color-navy); will-change: transform, opacity; }
 .learning-ecosystem-card--mint { background: #dbe4f3; }
 .learning-ecosystem-card--peach { background: #f0b578; }
 .learning-ecosystem-card--lavender { background: #a7aee7; }

@@ -188,19 +188,21 @@ export function HomePage() {
     const heading = learningSectionRef.current
     const section = heading?.closest('.learning-section')
     if (!section) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     const animationContext = gsap.context(() => {
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: 'top top',
-          end: () => `+=${window.innerHeight * 3.2}`,
+          start: 'top 8%',
+          end: () => `+=${window.innerHeight * 2.4}`,
           pin: true,
-          scrub: 1,
+          scrub: 0.6,
           anticipatePin: 1,
+          invalidateOnRefresh: true,
         },
       })
-        .from('.learning-ecosystem-card', { opacity: 0, y: 120, duration: 0.65, ease: 'power3.out', stagger: 0.8 })
+        .from('.learning-ecosystem-card', { opacity: 0, y: 96, duration: 0.55, ease: 'power2.out', stagger: 0.55 })
 
       return () => timeline.kill()
     }, section)
