@@ -39,8 +39,10 @@ export function Footer({ route }: { route: SiteRoute }) {
         <div className="footer-map">
           <h2>LSA Office</h2>
           <div className="footer-contact-links">
+            <p className="footer-office-address">{siteInfo.contact.address}</p>
             <a href={`mailto:${siteInfo.contact.email}`}>{siteInfo.contact.email}</a>
             <a href={`tel:${siteInfo.contact.phone}`}>{siteInfo.contact.phone}</a>
+            <a href={`tel:${siteInfo.contact.alternatePhone}`}>{siteInfo.contact.alternatePhone}</a>
           </div>
           <iframe title="Lords Skill Academy location in Hyderabad" src={siteInfo.contact.mapEmbedUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
         </div>

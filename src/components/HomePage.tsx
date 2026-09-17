@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { homepageContent } from '../data/homepage'
 import { programs, testimonials, youtubeVideos } from '../data/content'
 import { getRouteHref } from '../data/routes'
@@ -18,6 +20,8 @@ const homepageSocialLinks = [
   { label: 'LinkedIn', icon: 'linkedin', url: 'https://www.linkedin.com/company/lords-skill-academy' },
   { label: 'Slack', icon: 'slack', url: 'https://slack.com/' },
 ]
+
+gsap.registerPlugin(ScrollTrigger)
 
 function MediaPlaceholder({ label }: { label: string }) {
   return <div className="media-placeholder" role="img" aria-label={`${label} media slot`}>{label}</div>
@@ -178,6 +182,32 @@ function TestimonialEvidence() {
 }
 
 export function HomePage() {
+  const learningSectionRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const heading = learningSectionRef.current
+    const section = heading?.closest('.learning-section')
+    if (!section) return
+
+    const animationContext = gsap.context(() => {
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: () => `+=${window.innerHeight * 3.2}`,
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1,
+        },
+      })
+        .from('.learning-ecosystem-card', { opacity: 0, y: 120, duration: 0.65, ease: 'power3.out', stagger: 0.8 })
+
+      return () => timeline.kill()
+    }, section)
+
+    return () => animationContext.revert()
+  }, [])
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema()) }} />
@@ -312,7 +342,7 @@ export function HomePage() {
 
       <Section className="learning-section">
         <Container>
-          <div className="learning-ecosystem-head">
+          <div className="learning-ecosystem-head" ref={learningSectionRef}>
             <p className="section-marker">07 — LEARNING ECOSYSTEM</p>
             <h2>We see a world where money moves freely and opportunity follows.</h2>
           </div>

@@ -162,7 +162,7 @@ p { line-height: 1.6; }
 .footer-links { min-width: 0; }
 .footer-nav-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-6); margin-top: var(--space-8); }
 .footer-identity p { max-width: 18rem; margin-top: var(--space-4); font-size: 0.9375rem; }
-.footer-identity .brand img { width: 4rem; height: 4rem; }
+.footer-identity .brand img { width: 10rem; height: 10rem; }
 .footer-column h2 { margin-bottom: var(--space-4); color: var(--color-foreground); font-size: 0.875rem; letter-spacing: 0.04em; text-transform: uppercase; }
 .footer-column li + li { margin-top: var(--space-2); }
 .footer-column a { font-size: 0.9375rem; }
@@ -181,6 +181,7 @@ p { line-height: 1.6; }
 .footer-map { min-width: 0; }
 .footer-map h2 { margin-bottom: var(--space-5); color: var(--color-navy); font-size: 1.5rem; }
 .footer-contact-links { display: grid; gap: var(--space-2); margin-bottom: var(--space-5); }
+.footer-office-address { margin: 0; color: var(--color-foreground); font-size: 1rem; font-weight: 700; }
 .footer-contact-links a { color: var(--color-foreground); font-size: 1rem; font-weight: 700; text-decoration: none; }
 .footer-contact-links a:hover { color: var(--color-red-dark); }
 .footer-map iframe { display: block; width: 100%; aspect-ratio: 16 / 9; min-height: 0; border: 1px solid var(--color-border); border-radius: var(--radius-md); }
