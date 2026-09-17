@@ -3,11 +3,11 @@ import { ButtonLink } from './Button'
 import { Container, Section } from './Layout'
 
 const campusImages = [
-  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00752.jpg`, alt: 'Students learning technology together in an LSA classroom', label: 'WORKSHOPS' },
-  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00621%20(1).jpg`, alt: 'Students collaborating during a practical LSA learning session', label: 'BUILD SESSIONS' },
-  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00712.jpg`, alt: 'Learners taking part in hands-on technology training at LSA', label: 'TECHNOLOGY PROGRAMS' },
-  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00664.jpg`, alt: 'Students discussing and applying ideas in an LSA classroom', label: 'STUDENT PROJECTS' },
-  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00590%20(1).jpg`, alt: 'LSA students working together in a classroom environment', label: 'COMMUNITY EVENTS' },
+  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/optimized/2SP00752.jpg`, alt: 'Students learning technology together in an LSA classroom', label: 'WORKSHOPS' },
+  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/optimized/2SP00621%20(1).jpg`, alt: 'Students collaborating during a practical LSA learning session', label: 'BUILD SESSIONS' },
+  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/optimized/2SP00712.jpg`, alt: 'Learners taking part in hands-on technology training at LSA', label: 'TECHNOLOGY PROGRAMS' },
+  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/optimized/2SP00664.jpg`, alt: 'Students discussing and applying ideas in an LSA classroom', label: 'STUDENT PROJECTS' },
+  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/optimized/2SP00590%20(1).jpg`, alt: 'LSA students working together in a classroom environment', label: 'COMMUNITY EVENTS' },
 ] as const
 
 const campusOffers = [

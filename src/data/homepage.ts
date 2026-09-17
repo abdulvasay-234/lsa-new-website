@@ -57,7 +57,7 @@ export const homepageContent = {
     editorialItems: ['PROGRAMS', 'WORKSHOPS', 'BOOTCAMPS', 'PROJECTS', 'INTERNSHIPS', 'HACKATHONS'],
     media: [
       {
-        src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00621%20(1).jpg`,
+        src: `${import.meta.env.BASE_URL}media/classroom-imgs/optimized/2SP00621%20(1).jpg`,
         alt: 'Students engaging with practical learning in an LSA classroom setting',
         width: 1600,
         height: 900,
