@@ -80,16 +80,16 @@ p { line-height: 1.6; }
 .skip-link:focus { top: var(--space-4); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
-.lsa-intro { position: fixed; inset: 0; z-index: 2000; display: grid; place-items: center; overflow: hidden; background: linear-gradient(135deg, var(--color-navy-deep) 0%, var(--color-navy) 42%, #450c3f 100%); transition: opacity 500ms ease, transform 500ms ease; }
+.lsa-intro { position: fixed; inset: 0; z-index: 2000; display: grid; place-items: center; overflow: hidden; background: linear-gradient(135deg, var(--color-navy-deep) 0%, var(--color-navy) 42%, #450c3f 100%); transition: opacity 350ms ease, transform 350ms ease; }
 .lsa-intro::before { position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(255,255,255,0.06), transparent 52%); content: ''; }
 .lsa-intro.is-exiting { opacity: 0; transform: scale(1.02); }
 .lsa-intro-stage { position: absolute; inset: 0; display: grid; place-items: center; width: 100%; height: 100%; }
 .lsa-logo-shell { position: relative; display: grid; place-items: center; width: min(34rem, 60vw); height: min(34rem, 60vw); margin-inline: auto; }
-.lsa-logo-burst { position: absolute; inset: 50% auto auto 50%; width: 1rem; height: 1rem; border-radius: 50%; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.3) 22%, rgba(255,255,255,0.08) 45%, transparent 75%); opacity: 0; animation: logo-burst 1.5s ease-out 0.5s forwards; }
+.lsa-logo-burst { position: absolute; inset: 50% auto auto 50%; width: 1rem; height: 1rem; border-radius: 50%; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.3) 22%, rgba(255,255,255,0.08) 45%, transparent 75%); opacity: 0; animation: logo-burst 0.9s ease-out 0.2s forwards; }
 .lsa-logo-burst::before, .lsa-logo-burst::after { position: absolute; inset: 50% auto auto 50%; content: ''; border-radius: 50%; transform: translate(-50%, -50%); }
-.lsa-logo-burst::before { width: 12rem; height: 12rem; border: 1px solid rgba(255,255,255,0.7); box-shadow: 0 0 18px rgba(255,255,255,0.45); animation: ring-pulse 1.2s ease-out 0.55s forwards; }
-.lsa-logo-burst::after { width: 20rem; height: 20rem; border: 1px solid rgba(255,255,255,0.38); animation: ring-pulse 1.2s ease-out 0.7s forwards; }
-.lsa-logo-reveal { position: relative; z-index: 2; display: block; width: min(29rem, 60vw); height: auto; margin: 0 auto; opacity: 0; transform: scale(0.45) translateY(1.2rem); filter: blur(8px); animation: logo-appear 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.16s forwards, logo-shock 0.7s ease-in-out 1.05s forwards; }
+.lsa-logo-burst::before { width: 12rem; height: 12rem; border: 1px solid rgba(255,255,255,0.7); box-shadow: 0 0 18px rgba(255,255,255,0.45); animation: ring-pulse 0.8s ease-out 0.25s forwards; }
+.lsa-logo-burst::after { width: 20rem; height: 20rem; border: 1px solid rgba(255,255,255,0.38); animation: ring-pulse 0.8s ease-out 0.35s forwards; }
+.lsa-logo-reveal { position: relative; z-index: 2; display: block; width: min(29rem, 60vw); height: auto; margin: 0 auto; opacity: 0; transform: scale(0.45) translateY(1.2rem); filter: blur(8px); animation: logo-appear 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) 0.05s forwards, logo-shock 0.4s ease-in-out 0.72s forwards; }
 .lsa-logo-reveal::after { position: absolute; inset: 0; background: linear-gradient(120deg, transparent 10%, rgba(255,255,255,0.42) 42%, rgba(255,255,255,0.18) 48%, transparent 62%); transform: translateX(-120%); animation: logo-sheen 1.8s ease-in-out 0.45s forwards; content: ''; }
 .lsa-intro-skip { position: absolute; right: clamp(1rem, 3vw, 2rem); top: clamp(1rem, 3vw, 2rem); z-index: 3; padding: 0.8rem 1.2rem; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 999px; background: rgba(255, 255, 255, 0.02); color: rgba(255, 255, 255, 0.7); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0; visibility: hidden; transition: opacity 180ms ease, visibility 180ms ease, border-color 180ms ease; }
 .lsa-intro-skip:hover, .lsa-intro-skip:focus-visible { border-color: rgba(255, 255, 255, 0.28); color: var(--color-white); }

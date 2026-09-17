@@ -37,7 +37,7 @@ function LsaIntroOverlay() {
         const master = audioContext.createGain()
         master.gain.setValueAtTime(0.0001, now)
         master.gain.exponentialRampToValueAtTime(0.35, now + 0.18)
-        master.gain.exponentialRampToValueAtTime(0.0001, now + 2.7)
+        master.gain.exponentialRampToValueAtTime(0.0001, now + 1.6)
         master.connect(audioContext.destination)
 
         ;[261.63, 329.63, 392, 523.25].forEach((frequency, index) => {
@@ -47,11 +47,11 @@ function LsaIntroOverlay() {
           oscillator.frequency.value = frequency
           tone.gain.setValueAtTime(0.0001, now + index * 0.18)
           tone.gain.exponentialRampToValueAtTime(0.45, now + index * 0.18 + 0.08)
-          tone.gain.exponentialRampToValueAtTime(0.0001, now + index * 0.18 + 1.8)
+          tone.gain.exponentialRampToValueAtTime(0.0001, now + index * 0.18 + 1.2)
           oscillator.connect(tone)
           tone.connect(master)
           oscillator.start(now + index * 0.18)
-          oscillator.stop(now + 2.2)
+          oscillator.stop(now + 1.5)
         })
       }
 
@@ -78,8 +78,8 @@ function LsaIntroOverlay() {
       }
 
       setIsExiting(true)
-      window.setTimeout(() => setIsVisible(false), 550)
-    }, reducedMotion ? 1400 : 3200)
+      window.setTimeout(() => setIsVisible(false), 350)
+    }, reducedMotion ? 800 : 1800)
 
     return () => {
       window.clearTimeout(exitTimer)
