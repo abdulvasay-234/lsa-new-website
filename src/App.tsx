@@ -36,7 +36,7 @@ function LsaIntroOverlay() {
         const now = audioContext.currentTime
         const master = audioContext.createGain()
         master.gain.setValueAtTime(0.0001, now)
-        master.gain.exponentialRampToValueAtTime(0.055, now + 0.18)
+        master.gain.exponentialRampToValueAtTime(0.35, now + 0.18)
         master.gain.exponentialRampToValueAtTime(0.0001, now + 2.7)
         master.connect(audioContext.destination)
 
