@@ -18,7 +18,7 @@ const fields: Record<string, TextPlacement> = {
 
 const courseTemplateConfig: Record<string, CourseTemplate> = {}
 for (const course of ['Full Stack Java', 'Data Science', 'Cyber Security', 'Digital Marketing', 'DevOps', 'Python Programming', 'Power BI']) {
-  courseTemplateConfig[course] = { template: course === 'Full Stack Java' ? '/certificates/templates/java.png' : '/certificates/templates/full-stack-java.svg', fields }
+  courseTemplateConfig[course] = { template: '/certificates/templates/java.png', fields }
 }
 
 const records = certificateRecords as CertificateRecord[]
