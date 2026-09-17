@@ -22,6 +22,55 @@ function LsaIntroOverlay() {
 
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    let audioContext: AudioContext | undefined
+    let hasScheduled = false
+
+    const playIntroSound = () => {
+      if (reducedMotion || hasScheduled) return
+      const AudioContextConstructor = window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
+      if (!AudioContextConstructor) return
+      if (!audioContext) audioContext = new AudioContextConstructor()
+      const scheduleSound = () => {
+        if (!audioContext || hasScheduled) return
+        hasScheduled = true
+        const now = audioContext.currentTime
+        const master = audioContext.createGain()
+        master.gain.setValueAtTime(0.0001, now)
+        master.gain.exponentialRampToValueAtTime(0.055, now + 0.18)
+        master.gain.exponentialRampToValueAtTime(0.0001, now + 2.7)
+        master.connect(audioContext.destination)
+
+        ;[261.63, 329.63, 392, 523.25].forEach((frequency, index) => {
+          const oscillator = audioContext!.createOscillator()
+          const tone = audioContext!.createGain()
+          oscillator.type = 'sine'
+          oscillator.frequency.value = frequency
+          tone.gain.setValueAtTime(0.0001, now + index * 0.18)
+          tone.gain.exponentialRampToValueAtTime(0.45, now + index * 0.18 + 0.08)
+          tone.gain.exponentialRampToValueAtTime(0.0001, now + index * 0.18 + 1.8)
+          oscillator.connect(tone)
+          tone.connect(master)
+          oscillator.start(now + index * 0.18)
+          oscillator.stop(now + 2.2)
+        })
+      }
+
+      if (audioContext.state === 'suspended') {
+        void audioContext.resume().then(scheduleSound).catch(() => undefined)
+      } else {
+        scheduleSound()
+      }
+    }
+
+    const unlockSound = () => {
+      playIntroSound()
+      window.removeEventListener('pointerdown', unlockSound)
+      window.removeEventListener('keydown', unlockSound)
+    }
+
+    playIntroSound()
+    window.addEventListener('pointerdown', unlockSound, { once: true })
+    window.addEventListener('keydown', unlockSound, { once: true })
     const exitTimer = window.setTimeout(() => {
       if (reducedMotion) {
         setIsVisible(false)
@@ -34,6 +83,9 @@ function LsaIntroOverlay() {
 
     return () => {
       window.clearTimeout(exitTimer)
+      window.removeEventListener('pointerdown', unlockSound)
+      window.removeEventListener('keydown', unlockSound)
+      void audioContext?.close()
     }
   }, [])
 
