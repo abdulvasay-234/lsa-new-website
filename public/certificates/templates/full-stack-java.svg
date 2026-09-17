@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title description">
+  <title id="title">LSA sample certificate template</title>
+  <desc id="description">A navy, white, red, and yellow Lords Skill Academy sample certificate template.</desc>
+  <rect width="1600" height="1000" fill="#f7f7f2"/>
+  <rect x="28" y="28" width="1544" height="944" fill="none" stroke="#021a54" stroke-width="12"/>
+  <rect x="54" y="54" width="1492" height="892" fill="none" stroke="#ad5c71" stroke-width="3"/>
+  <path d="M54 190H360M1240 190H1546M54 810H360M1240 810H1546" fill="none" stroke="#ad5c71" stroke-width="3"/>
+  <path d="M132 120L172 80L212 120L172 160Z M1388 120L1428 80L1468 120L1428 160Z M132 880L172 840L212 880L172 920Z M1388 880L1428 840L1468 880L1428 920Z" fill="#800020"/>
+  <text x="800" y="150" fill="#021a54" font-family="Georgia, serif" font-size="42" font-weight="700" text-anchor="middle" letter-spacing="8">LORDS SKILL ACADEMY</text>
+  <text x="800" y="250" fill="#800020" font-family="Georgia, serif" font-size="54" font-weight="700" text-anchor="middle">CERTIFICATE OF COMPLETION</text>
+  <text x="800" y="335" fill="#586273" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" letter-spacing="3">THIS CERTIFICATE IS PRESENTED TO</text>
+  <line x1="390" y1="530" x2="1210" y2="530" stroke="#ad5c71" stroke-width="2"/>
+  <text x="800" y="610" fill="#586273" font-family="Arial, sans-serif" font-size="22" text-anchor="middle">FOR SUCCESSFUL COMPLETION OF</text>
+  <text x="800" y="690" fill="#586273" font-family="Arial, sans-serif" font-size="22" text-anchor="middle">BATCH</text>
+  <line x1="610" y1="755" x2="990" y2="755" stroke="#d7dce5" stroke-width="2"/>
+  <text x="800" y="875" fill="#586273" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" letter-spacing="2">CERTIFICATE ID</text>
+</svg>

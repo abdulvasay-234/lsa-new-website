@@ -1,229 +1,81 @@
-import { useEffect, useState } from 'react'
 import { getRouteHref } from '../data/routes'
 import { ButtonLink } from './Button'
 import { Container, Section } from './Layout'
 
-type CampusVisual = {
-  src?: string
-  alt: string
-  category: string
-  caption: string
-}
+const campusImages = [
+  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00752.jpg`, alt: 'Students learning technology together in an LSA classroom', label: 'WORKSHOPS' },
+  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00621%20(1).jpg`, alt: 'Students collaborating during a practical LSA learning session', label: 'BUILD SESSIONS' },
+  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00712.jpg`, alt: 'Learners taking part in hands-on technology training at LSA', label: 'TECHNOLOGY PROGRAMS' },
+  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00664.jpg`, alt: 'Students discussing and applying ideas in an LSA classroom', label: 'STUDENT PROJECTS' },
+  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00590%20(1).jpg`, alt: 'LSA students working together in a classroom environment', label: 'COMMUNITY EVENTS' },
+] as const
 
-const campusGallery: CampusVisual[] = [
-  {
-    alt: 'Students learning in a practical technology environment at Lords Skill Academy',
-    category: 'WORKSHOPS',
-    caption: 'Hands-on sessions around practical technology skills.',
-  },
-  {
-    alt: 'Programming focused learning setup and training screens at Lords Skill Academy',
-    category: 'SESSIONS',
-    caption: 'Learning directly with trainers and practitioners.',
-  },
-  {
-    alt: 'LSA learning environment with focused student practice and technology education',
-    category: 'PROJECTS',
-    caption: 'Turning concepts into working outcomes.',
-  },
-  {
-    alt: 'Technology education and project work in a studio-style learning environment',
-    category: 'BUILDING',
-    caption: 'Developing practical capability in a real learning environment.',
-  },
-]
+const campusOffers = [
+  ['TECHNOLOGY PROGRAMS', 'Structured learning experiences focused on practical technology skills.'],
+  ['WORKSHOPS & BOOTCAMPS', 'Focused sessions that introduce students to technologies, tools, workflows, and real-world applications.'],
+  ['PROJECT-BASED LEARNING', 'Students apply concepts by working on practical projects and meaningful technical challenges.'],
+  ['HACKATHONS & BUILDATHONS', 'Collaborative build experiences where students explore ideas, solve problems, and create working solutions.'],
+  ['INTERNSHIP TRAINING', 'Practical exposure that helps students understand how technology skills translate into real work environments.'],
+  ['COMMUNITY & CAMPUS INITIATIVES', 'Developer activities, technology communities, events, and initiatives that extend learning beyond regular academic sessions.'],
+] as const
 
-const spaceLabels = ['CLASSROOMS', 'LABS', 'LEARNING SPACES', 'WORKSPACES']
-const motionSteps = ['LEARN', 'BUILD', 'EXPERIENCE', 'SHOWCASE']
+const beyondPrinciples = [
+  ['LEARN', 'Understand the foundations.'],
+  ['BUILD', 'Turn ideas into working projects.'],
+  ['COLLABORATE', 'Work with peers and mentors.'],
+  ['SOLVE', 'Approach practical problems.'],
+  ['PRESENT', 'Explain and demonstrate the work.'],
+] as const
+
+const institutionOffers = [
+  ['PROGRAM DESIGN', 'Create learning experiences around relevant technology skills.'],
+  ['CAMPUS DELIVERY', 'Bring workshops, bootcamps, programs, and build experiences directly to students.'],
+  ['PRACTICAL EXPOSURE', 'Give students opportunities to work with tools, projects, and real-world problem-solving.'],
+  ['STUDENT ENGAGEMENT', 'Create communities, events, challenges, and experiences that encourage students to keep building.'],
+] as const
 
 export function CampusPage() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null)
-
-  useEffect(() => {
-    if (activeIndex === null) return
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setActiveIndex(null)
-      }
-
-      if (event.key === 'ArrowRight') {
-        setActiveIndex((current) => (current === null ? null : (current + 1) % campusGallery.length))
-      }
-
-      if (event.key === 'ArrowLeft') {
-        setActiveIndex((current) => (current === null ? null : (current - 1 + campusGallery.length) % campusGallery.length))
-      }
-    }
-
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [activeIndex])
-
-  const activeVisual = activeIndex === null ? null : campusGallery[activeIndex]
-
   return (
     <>
       <Section className="campus-page-hero">
-        <Container className="campus-page-hero-layout">
-          <div className="campus-page-header">
-            <p className="section-marker section-marker-yellow">01 — CAMPUS</p>
-            <h1>Where learning<br />happens in motion.</h1>
-            <p className="campus-page-intro">Explore the spaces, sessions, workshops and experiences that make up the LSA learning environment.</p>
-            <div className="button-row">
-              <ButtonLink href="#campus-space" variant="primary">Explore LSA →</ButtonLink>
-            </div>
+        <Container className="campus-editorial-hero">
+          <div className="campus-hero-copy">
+            <p className="section-marker section-marker-yellow">04 — CAMPUS</p>
+            <h1>Where academic learning meets practical technology.</h1>
+            <p>LSA works with educational institutions to create practical technology experiences that complement academic learning. Through workshops, bootcamps, technology programs, internships, hackathons, and hands-on projects, students get opportunities to learn, build, and apply their skills beyond the traditional classroom.</p>
+            <div className="button-row"><ButtonLink href="#campus-offerings">Explore campus work →</ButtonLink><ButtonLink href={getRouteHref('/campus', '/contact')} variant="outline">Work with LSA →</ButtonLink></div>
           </div>
-
-          <div className="campus-page-hero-visual campus-image-placeholder" aria-label="LSA learning environment" role="img">
-            <span>LSA campus image placeholder</span>
-          </div>
+          <figure className="campus-hero-image"><img src={campusImages[0].src} alt={campusImages[0].alt} width="5146" height="3217" loading="eager" decoding="async" /></figure>
         </Container>
       </Section>
 
-      <Section className="campus-page-space" id="campus-space">
-        <Container className="campus-page-space-layout">
-          <div className="campus-page-heading">
-            <p className="section-marker">02 — THE SPACE</p>
-            <h2>A place to learn,<br />practice and build.</h2>
-          </div>
-
-          <div className="campus-space-gallery">
-            <button className="campus-image campus-image-tall campus-image-placeholder" type="button" aria-label="Open campus learning environment image" onClick={() => setActiveIndex(0)}>
-              <span>Campus image placeholder</span>
-            </button>
-            <div className="campus-space-stack">
-              <button className="campus-image campus-image-placeholder" type="button" aria-label="Open workshop image" onClick={() => setActiveIndex(1)}>
-                <span>Workshop placeholder</span>
-              </button>
-              <button className="campus-image campus-image-placeholder" type="button" aria-label="Open learning labs image" onClick={() => setActiveIndex(2)}>
-                <span>Learning space placeholder</span>
-              </button>
-            </div>
-          </div>
-        </Container>
-
+      <Section className="campus-page-offerings" id="campus-offerings">
         <Container>
-          <ul className="campus-space-labels" aria-label="Campus learning spaces">
-            {spaceLabels.map((label) => (
-              <li key={label}>{label}</li>
-            ))}
-          </ul>
+          <div className="campus-section-intro"><div><p className="section-marker">02 — WHAT WE BRING TO CAMPUS</p><h2>More than a workshop.</h2></div><p>Campus learning can take different forms. LSA works with institutions to create experiences that give students more opportunities to practise, build, collaborate, and apply technology.</p></div>
+          <ol className="campus-editorial-list">{campusOffers.map(([title, description], index) => <li key={title}><span>{`0${index + 1}`}</span><h3>{title}</h3><p>{description}</p></li>)}</ol>
         </Container>
       </Section>
 
       <Section className="campus-page-motion">
         <Container>
-          <div className="campus-page-heading">
-            <p className="section-marker">03 — LEARNING IN MOTION</p>
-            <h2>Learning doesn&apos;t stay<br />inside the classroom.</h2>
-          </div>
-          <div className="campus-motion-grid">
-            {campusGallery.slice(0, 3).map((item, index) => (
-              <button key={`${item.category}-${index}`} className="campus-motion-card campus-image-placeholder" type="button" onClick={() => setActiveIndex(index)}>
-                <span>{item.category}</span>
-                <div className="campus-motion-copy">
-                  <strong>{item.category}</strong>
-                  <p>{item.caption}</p>
-                </div>
-              </button>
-            ))}
-          </div>
-        </Container>
-      </Section>
-
-      <Section className="campus-page-community">
-        <Container>
-          <div className="campus-page-heading">
-            <p className="section-marker">04 — EVENTS &amp; COMMUNITY</p>
-            <h2>Learning also happens<br />together.</h2>
-          </div>
-          <div className="campus-community-layout">
-            <button className="campus-community-feature campus-image-placeholder" type="button" onClick={() => setActiveIndex(0)}>
-              <span>WORKSHOPS</span>
-            </button>
-            <div className="campus-community-stack">
-              <button className="campus-community-tile campus-image-placeholder" type="button" onClick={() => setActiveIndex(1)}>
-                <span>SESSIONS</span>
-              </button>
-              <button className="campus-community-tile campus-image-placeholder" type="button" onClick={() => setActiveIndex(2)}>
-                <span>PROJECTS</span>
-              </button>
-            </div>
-          </div>
+          <div className="campus-section-intro"><div><p className="section-marker">04 — LEARNING IN MOTION</p><h2>Learning moves through different environments.</h2></div><p>Use the classroom, the workshop, the project, and the shared experience as places to keep learning active.</p></div>
+          <div className="campus-motion-gallery">{campusImages.slice(1, 4).map((image, index) => <figure className={index === 1 ? 'campus-motion-feature' : ''} key={image.src}><img src={image.src} alt={image.alt} width="5146" height="3217" loading="lazy" /><figcaption>{image.label}</figcaption></figure>)}</div>
         </Container>
       </Section>
 
       <Section className="campus-page-beyond">
-        <Container className="campus-page-beyond-layout">
-          <div className="campus-page-heading">
-            <p className="section-marker">05 — BEYOND THE CLASSROOM</p>
-            <h2>Build experience,<br />not just attendance.</h2>
-          </div>
-          <div className="campus-beyond-copy">
-            <p>Programs at LSA can extend beyond classroom sessions through projects, workshops, events, internships and other practical experiences.</p>
-            <div className="campus-beyond-sequence" aria-label="Learning progression sequence">
-              {motionSteps.map((step, index) => (
-                <span key={step}>
-                  {step}
-                  {index < motionSteps.length - 1 && <i aria-hidden="true">→</i>}
-                </span>
-              ))}
-            </div>
-          </div>
-        </Container>
+        <Container className="campus-beyond-editorial"><div><p className="section-marker">05 — BEYOND THE CLASSROOM</p><h2>Learning becomes different when students get to use it.</h2></div><div><p className="campus-beyond-lead">Technology is easier to understand when students can experiment with it, build with it, work through problems, and learn alongside others. LSA&apos;s campus initiatives create opportunities to move from classroom concepts into practical experiences.</p><ol className="campus-principles-list">{beyondPrinciples.map(([title, description]) => <li key={title}><strong>{title}</strong><span>{description}</span></li>)}</ol></div></Container>
       </Section>
 
-      <Section className="campus-page-collage">
-        <Container>
-          <div className="campus-page-heading">
-            <p className="section-marker">06 — LSA IN MOTION</p>
-          </div>
-          <div className="campus-collage-grid" aria-label="LSA editorial image collage">
-            <button className="campus-collage-large campus-image-placeholder" type="button" onClick={() => setActiveIndex(0)}>
-              <span>LSA in motion</span>
-            </button>
-            <button className="campus-collage-small campus-image-placeholder" type="button" onClick={() => setActiveIndex(1)}>
-              <span>Workshop</span>
-            </button>
-            <button className="campus-collage-small campus-image-placeholder" type="button" onClick={() => setActiveIndex(2)}>
-              <span>Practical learning</span>
-            </button>
-            <button className="campus-collage-large campus-image-placeholder" type="button" onClick={() => setActiveIndex(3)}>
-              <span>Student activity</span>
-            </button>
-          </div>
-        </Container>
+      <Section className="campus-page-experiences">
+        <Container><div className="campus-section-intro"><div><p className="section-marker">06 — CAMPUS EXPERIENCES</p><h2>Real learning moments, close to the work.</h2></div><p>LSA&apos;s campus experience can include workshops, build sessions, technology programs, student projects, and community events. The images below show the real learning environments available in the current LSA asset library.</p></div><div className="campus-experience-gallery">{campusImages.map((image) => <figure key={image.src}><img src={image.src} alt={image.alt} width="5146" height="3217" loading="lazy" /><figcaption>{image.label}</figcaption></figure>)}</div></Container>
       </Section>
 
-      <Section className="campus-page-final">
-        <Container className="campus-page-final-layout">
-          <p className="section-marker section-marker-yellow">07 — START LEARNING</p>
-          <h2>Ready to experience LSA?</h2>
-          <p>Explore the programs, find your path and start building.</p>
-          <div className="button-row">
-            <ButtonLink href={getRouteHref('/campus', '/programs')}>Explore programs →</ButtonLink>
-            <ButtonLink href={getRouteHref('/campus', '/contact')} variant="outline">Contact LSA →</ButtonLink>
-          </div>
-        </Container>
+      <Section className="campus-page-institutions">
+        <Container className="campus-institution-layout"><div><p className="section-marker section-marker-yellow">07 — FOR INSTITUTIONS</p><h2>Build a stronger bridge between academics and industry.</h2><p>LSA works with colleges and educational institutions to create practical technology experiences that complement academic learning and give students more opportunities to apply what they learn.</p></div><ol className="campus-institution-list">{institutionOffers.map(([title, description], index) => <li key={title}><span>{`0${index + 1}`}</span><div><strong>{title}</strong><p>{description}</p></div></li>)}</ol></Container>
       </Section>
 
-      {activeVisual && (
-        <div className="campus-lightbox" role="dialog" aria-modal="true" aria-label="Campus gallery image viewer" onClick={() => setActiveIndex(null)}>
-          <div className="campus-lightbox-panel" onClick={(event) => event.stopPropagation()}>
-            <button className="campus-lightbox-close" type="button" aria-label="Close image viewer" onClick={() => setActiveIndex(null)}>Close</button>
-            <div className="campus-image-placeholder campus-lightbox-placeholder" aria-label={activeVisual.alt}><span>{activeVisual.category}</span></div>
-            <div className="campus-lightbox-meta">
-              <strong>{activeVisual.category}</strong>
-              <p>{activeVisual.caption}</p>
-            </div>
-            <div className="campus-lightbox-controls">
-              <button type="button" aria-label="Previous image" onClick={() => setActiveIndex((current) => (current === null ? null : (current - 1 + campusGallery.length) % campusGallery.length))}>←</button>
-              <button type="button" aria-label="Next image" onClick={() => setActiveIndex((current) => (current === null ? null : (current + 1) % campusGallery.length))}>→</button>
-            </div>
-          </div>
-        </div>
-      )}
+      <Section className="campus-page-final"><Container className="campus-final-layout"><div><p className="section-marker section-marker-yellow">08 — WORK WITH LSA</p><h2>Bring practical technology learning to your campus.</h2><p>Whether you are planning a workshop, technology program, internship initiative, hackathon, or larger campus engagement, start a conversation with LSA.</p></div><div className="button-row"><ButtonLink href={getRouteHref('/campus', '/contact')}>Work with LSA →</ButtonLink><ButtonLink href={getRouteHref('/campus', '/contact')} variant="outline">Contact LSA →</ButtonLink></div></Container></Section>
     </>
   )
 }

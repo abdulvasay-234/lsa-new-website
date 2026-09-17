@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { getRouteHref } from '../data/routes'
-import type { ProgramDetail, ProgramToolCategory } from '../data/types'
+import type { ProgramDetail, ProgramGalleryItem, ProgramToolCategory } from '../data/types'
 import { ButtonLink } from './Button'
 import { Container, Section } from './Layout'
 
@@ -57,9 +57,10 @@ function HiringSection({ hiring }: { hiring?: ProgramDetail['hiring'] }) {
 }
 
 function ClassroomGallery({ gallery }: { gallery?: ProgramDetail['classroomGallery'] }) {
-  if (!gallery?.length) return null
+  const imageGallery = gallery?.filter((item): item is ProgramGalleryItem & { src: string } => Boolean(item.src))
+  if (!imageGallery?.length) return null
 
-  return <Section className="program-detail-section program-detail-gallery"><Container><div className="program-detail-heading"><p className="section-marker">12 — CLASSROOM GALLERY</p><h2>Classroom and learning moments.</h2></div><div className="program-gallery-grid">{gallery.map((item, index) => <figure key={`${item.caption}-${index}`}>{item.src ? <img src={item.src} alt={item.alt} loading="lazy" /> : <div className="program-gallery-placeholder"><span>{`0${index + 1}`}</span><Placeholder>Classroom image to be added</Placeholder></div>}<figcaption>{item.caption}</figcaption></figure>)}</div></Container></Section>
+  return <Section className="program-detail-section program-detail-gallery"><Container><div className="program-detail-heading"><p className="section-marker">12 — CLASSROOM GALLERY</p><h2>Classroom and learning moments.</h2></div><div className="program-gallery-grid">{imageGallery.map((item, index) => <figure key={`${item.caption}-${index}`}><img src={item.src} alt={item.alt} loading="lazy" /><figcaption>{item.caption}</figcaption></figure>)}</div></Container></Section>
 }
 
 function ToolsAndDisciplines({ categories, curriculumDownload }: { categories: ProgramToolCategory[]; curriculumDownload?: string }) {
@@ -97,7 +98,7 @@ export function ProgramDetailPage({ program, routePath }: { program: ProgramDeta
 
   return (
     <>
-      <Section className="program-detail-hero"><Container className="program-detail-hero-layout"><div className="program-detail-hero-copy-column"><p className="section-marker section-marker-yellow">01 — {program.eyebrow}</p><h1>{program.title} Course</h1><p className="program-detail-hero-copy">{program.heroDescription}</p><p className="program-detail-batch"><span>Batch starting date</span><strong>{program.batchStartDate || 'To be announced'}</strong></p><div className="button-row"><ButtonLink href={program.curriculumDownload ? `${import.meta.env.BASE_URL}${program.curriculumDownload}` : enquiryHref} download={Boolean(program.curriculumDownload)}>{program.curriculumDownload ? 'Download curriculum' : 'Enquire about program'} →</ButtonLink><ButtonLink href={advisorHref} variant="outline">Talk to a career advisor</ButtonLink></div></div><div className="program-detail-hero-side"><div className="program-detail-hero-image-placeholder" aria-label={`${program.title} program image placeholder`} role="img"><span>Program image placeholder</span></div>{heroHighlights.length > 0 && <div className="program-detail-hero-metrics">{heroHighlights.map((highlight) => <div key={highlight.label}><span>{highlight.label}</span><strong>{highlight.value}</strong></div>)}</div>}<ul className="program-detail-hero-notes"><li>Industry-aligned learning with guided practice</li><li>Portfolio-focused projects for practical evidence</li><li>Career support with mentoring and interview preparation</li></ul></div></Container></Section>
+      <Section className="program-detail-hero"><Container className="program-detail-hero-layout"><div className="program-detail-hero-copy-column"><p className="section-marker section-marker-yellow">01 — {program.eyebrow}</p><h1>{program.title} Course</h1><p className="program-detail-hero-copy">{program.heroDescription}</p><p className="program-detail-batch"><span>Batch starting date</span><strong>{program.batchStartDate || 'To be announced'}</strong></p><div className="button-row"><ButtonLink href={program.curriculumDownload ? `${import.meta.env.BASE_URL}${program.curriculumDownload}` : enquiryHref} download={Boolean(program.curriculumDownload)}>{program.curriculumDownload ? 'Download curriculum' : 'Enquire about program'} →</ButtonLink><ButtonLink href={advisorHref} variant="outline">Talk to a career advisor</ButtonLink></div></div><div className="program-detail-hero-side"><div className="program-detail-hero-image-placeholder" aria-label={`${program.title} program image`} role="img">{program.heroMedia ? <img src={program.heroMedia.src} alt={program.heroMedia.alt} width={program.heroMedia.width} height={program.heroMedia.height} loading="eager" decoding="async" /> : <span>Program image placeholder</span>}</div>{heroHighlights.length > 0 && <div className="program-detail-hero-metrics">{heroHighlights.map((highlight) => <div key={highlight.label}><span>{highlight.label}</span><strong>{highlight.value}</strong></div>)}</div>}<ul className="program-detail-hero-notes"><li>Industry-aligned learning with guided practice</li><li>Portfolio-focused projects for practical evidence</li><li>Career support with mentoring and interview preparation</li></ul></div></Container></Section>
 
       <QuickHighlights highlights={program.highlights} />
 

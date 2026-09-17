@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { SiteRoute } from '../data/types'
 import { getRouteHref, routes } from '../data/routes'
 import { siteNavigation } from '../data/site'
@@ -8,6 +8,17 @@ export function Navigation({ route }: { route: SiteRoute }) {
   const [isOpen, setIsOpen] = useState(false)
   const primaryRoutes = routes.filter((item) => item.section === 'primary')
 
+  useEffect(() => {
+    if (!isOpen) return
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsOpen(false)
+    }
+
+    window.addEventListener('keydown', closeOnEscape)
+    return () => window.removeEventListener('keydown', closeOnEscape)
+  }, [isOpen])
+
   return (
     <>
       <button
@@ -15,10 +26,14 @@ export function Navigation({ route }: { route: SiteRoute }) {
         type="button"
         aria-controls="site-navigation"
         aria-expanded={isOpen}
+        aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
         onClick={() => setIsOpen((open) => !open)}
       >
-        <span className="menu-toggle-label">Menu</span>
-        <span aria-hidden="true" className="menu-toggle-icon">{isOpen ? 'Close' : 'Open'}</span>
+        <span aria-hidden="true" className={`menu-toggle-icon${isOpen ? ' is-open' : ''}`}>
+          <span />
+          <span />
+          <span />
+        </span>
       </button>
       <nav id="site-navigation" className={`site-navigation ${isOpen ? 'is-open' : ''}`} aria-label="Primary navigation">
         <ul className="site-nav-list">

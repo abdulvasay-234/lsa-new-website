@@ -1,0 +1,12 @@
+[
+  { "certificateId": "LSA-FSJ-001", "name": "A.Chandana", "course": "Full Stack Java", "duration": "May 2025 - Oct 2025", "issueDate": "05-11-2025" },
+  { "certificateId": "LSA-FSJ-002", "name": "Rahul Kumar", "course": "Full Stack Java", "duration": "May 2025 - Oct 2025", "issueDate": "05-11-2025" },
+  { "certificateId": "LSA-DS-001", "name": "Mira Patel", "course": "Data Science", "duration": "May 2025 - Oct 2025", "issueDate": "05-11-2025" },
+  { "certificateId": "LSA-DS-002", "name": "Arjun Reddy", "course": "Data Science", "duration": "May 2025 - Oct 2025", "issueDate": "05-11-2025" },
+  { "certificateId": "LSA-CS-001", "name": "Sara Ahmed", "course": "Cyber Security", "duration": "May 2025 - Oct 2025", "issueDate": "05-11-2025" },
+  { "certificateId": "LSA-DM-001", "name": "Nikhil Sharma", "course": "Digital Marketing", "duration": "May 2025 - Oct 2025", "issueDate": "05-11-2025" },
+  { "certificateId": "LSA-DEV-001", "name": "Ishaan Rao", "course": "DevOps", "duration": "May 2025 - Oct 2025", "issueDate": "05-11-2025" },
+  { "certificateId": "LSA-PY-001", "name": "Priya Menon", "course": "Python Programming", "duration": "May 2025 - Oct 2025", "issueDate": "05-11-2025" },
+  { "certificateId": "LSA-PBI-001", "name": "Karthik Nair", "course": "Power BI", "duration": "May 2025 - Oct 2025", "issueDate": "05-11-2025" },
+  { "certificateId": "LSA-PY-002", "name": "Ayesha Khan", "course": "Python Programming", "duration": "May 2025 - Oct 2025", "issueDate": "05-11-2025" }
+]

@@ -24,15 +24,15 @@
     "path": "/campus",
     "label": "Campus",
     "section": "primary",
-    "title": "Campus | Lords Skill Academy",
-    "description": "Discover verified campus information from Lords Skill Academy."
+    "title": "Campus Programs & Institutional Learning | Lords Skill Academy",
+    "description": "See how Lords Skill Academy works with colleges to bring practical technology learning, projects, workshops, and real-world experience to students."
   },
   {
-    "path": "/for-colleges",
-    "label": "For Colleges",
+    "path": "/certificates",
+    "label": "Certificates",
     "section": "primary",
-    "title": "For Colleges | Lords Skill Academy",
-    "description": "Information for colleges considering Lords Skill Academy."
+    "title": "LSA Certificates | Lords Skill Academy",
+    "description": "Verify and download your Lords Skill Academy certificate using your Roll Number or Certificate ID."
   },
   {
     "path": "/about",

@@ -106,7 +106,7 @@ export const footerNavigation = [
   {
     label: 'Institutional',
     links: [
-      { label: 'For Colleges', path: '/for-colleges' },
+      { label: 'Certificates', path: '/certificates' },
       { label: 'About', path: '/about' },
       { label: 'Contact', path: '/contact' },
     ],

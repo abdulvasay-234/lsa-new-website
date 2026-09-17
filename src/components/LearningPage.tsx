@@ -33,7 +33,7 @@ export function LearningPage() {
 
       <Section className="career-guidance-section">
         <Container className="career-guidance-layout">
-          <div><p className="section-marker section-marker-yellow">03 — CAREER GUIDANCE</p><h2>Know where you&apos;re going before you start building.</h2><p>Get practical career direction, understand your skill gaps, and build a learning path around the roles and opportunities you&apos;re working toward.</p><a className="career-guidance-cta" href="https://lordsskillacademy.com/career-guidance/" target="_blank" rel="noreferrer">Book Career Guidance <span aria-hidden="true">→</span></a></div>
+          <div><p className="section-marker section-marker-yellow">03 — CAREER GUIDANCE</p><h2>Know where you&apos;re going before you start building.</h2><p>Get practical career direction, understand your skill gaps, and build a learning path around the roles and opportunities you&apos;re working toward.</p><a className="career-guidance-cta" href={getRouteHref('/learning', '/contact?interest=career-guidance')}>Book Career Guidance <span aria-hidden="true">→</span></a></div>
           <ol className="career-guidance-list"><li><span>01</span><div><strong>CAREER CLARITY</strong><p>Understand career paths, roles, and possible directions.</p></div></li><li><span>02</span><div><strong>SKILL-GAP ANALYSIS</strong><p>Identify the skills you need to develop for your chosen direction.</p></div></li><li><span>03</span><div><strong>LEARNING ROADMAP</strong><p>Map the learning journey and understand what to focus on next.</p></div></li><li><span>04</span><div><strong>MENTORSHIP</strong><p>Get guidance and follow-up support as you move forward.</p></div></li></ol>
         </Container>
       </Section>
