@@ -71,6 +71,7 @@ export type ProgramCareerSupport = {
 export type ProgramCertification = {
   previewTitle: string
   previewDescription: string
+  previewImage?: { src: string; alt: string; width: number; height: number }
   points: Array<{ title: string; description: string }>
 }
 

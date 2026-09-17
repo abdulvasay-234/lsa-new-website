@@ -112,6 +112,7 @@ const sharedCareerSupport: NonNullable<ProgramDetail['careerSupport']> = {
 const sharedCertification: NonNullable<ProgramDetail['certification']> = {
   previewTitle: 'Certificate Preview',
   previewDescription: 'Add your sample certificate here so learners can see how the final credential looks.',
+  previewImage: { src: `${import.meta.env.BASE_URL}certificates/templates/java.png`, alt: 'LSA sample certificate preview', width: 4419, height: 6250 },
   points: [
     { title: 'Official LSA Completion Certificate', description: 'Completion recognition details will be confirmed by LSA.' },
     { title: 'Assessment-Backed Validation', description: 'Assessment and checkpoint details will be added when verified.' },

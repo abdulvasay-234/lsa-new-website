@@ -40,8 +40,9 @@ function CareerDirection({ support }: { support?: ProgramDetail['careerSupport']
 
 function CertificationSection({ certification }: { certification?: ProgramDetail['certification'] }) {
   if (!certification) return null
+  const previewImage = certification.previewImage || { src: `${import.meta.env.BASE_URL}certificates/templates/java.png`, alt: 'LSA sample certificate preview', width: 4419, height: 6250 }
 
-  return <Section className="program-detail-section program-detail-certification"><Container><div className="program-detail-heading"><p className="section-marker">07 — CERTIFICATION</p><h2>Recognition that supports your career.</h2></div><div className="certification-layout"><div className="certification-preview"><h3>{certification.previewTitle}</h3><p>{certification.previewDescription}</p><div className="certification-placeholder">Certificate preview will be added here.</div></div><ol className="certification-points">{certification.points.map((point, index) => <li key={point.title}><span>{`0${index + 1}`}</span><div><h3>{point.title}</h3><p>{point.description}</p></div></li>)}</ol></div></Container></Section>
+  return <Section className="program-detail-section program-detail-certification"><Container><div className="program-detail-heading"><p className="section-marker">07 — CERTIFICATION</p><h2>Recognition that supports your career.</h2></div><div className="certification-layout"><div className="certification-preview"><h3>{certification.previewTitle}</h3><p>{certification.previewDescription}</p><div className="certification-placeholder"><img src={previewImage.src} alt={previewImage.alt} width={previewImage.width} height={previewImage.height} loading="lazy" decoding="async" /></div></div><ol className="certification-points">{certification.points.map((point, index) => <li key={point.title}><span>{`0${index + 1}`}</span><div><h3>{point.title}</h3><p>{point.description}</p></div></li>)}</ol></div></Container></Section>
 }
 
 function TrainerSection({ trainer }: { trainer?: ProgramDetail['trainer'] }) {
