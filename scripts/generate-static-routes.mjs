@@ -34,7 +34,7 @@ const documentTemplate = (path) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="${escapeHtml(metadata.description)}" />
     <link rel="canonical" href="${canonicalUrl}" />
-    <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="%BASE_URL%media/favicon_io/favicon.ico" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Lords Skill Academy" />
     <meta property="og:title" content="${escapeHtml(metadata.title)}" />

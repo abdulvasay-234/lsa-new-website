@@ -128,7 +128,7 @@ export const youtubeVideos: YouTubeVideo[] = [
     category: 'LSA in motion',
     url: 'https://youtu.be/k48pOIzXSsk',
     thumbnail: {
-      src: '/media/youtube-thumbnails/dubai.png',
+      src: `${import.meta.env.BASE_URL}media/youtube-thumbnails/dubai.png`,
       alt: 'LSA Dubai video thumbnail',
       width: 1280,
       height: 720,
@@ -141,7 +141,7 @@ export const youtubeVideos: YouTubeVideo[] = [
     category: 'Bootcamp',
     url: 'https://youtu.be/FsYTit41U_s',
     thumbnail: {
-      src: '/media/youtube-thumbnails/py-bootcamp.png',
+      src: `${import.meta.env.BASE_URL}media/youtube-thumbnails/py-bootcamp.png`,
       alt: 'Python bootcamp video thumbnail',
       width: 1280,
       height: 720,
@@ -154,7 +154,7 @@ export const youtubeVideos: YouTubeVideo[] = [
     category: 'Webinar',
     url: 'https://youtu.be/JKyG3XLlvfk',
     thumbnail: {
-      src: '/media/youtube-thumbnails/webinar.png',
+      src: `${import.meta.env.BASE_URL}media/youtube-thumbnails/webinar.png`,
       alt: 'LSA webinar video thumbnail',
       width: 1280,
       height: 720,
