@@ -721,9 +721,6 @@ p { line-height: 1.6; }
 .numbers-note p { max-width: 29rem; margin: 0; color: var(--brand-navy-soft); font-size: clamp(1.05rem, 1.45vw, 1.35rem); line-height: 1.45; }
 .numbers-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(var(--space-8), 6vw, 7rem); row-gap: clamp(var(--space-8), 5vw, 5.5rem); align-items: start; padding-top: clamp(var(--space-5), 3vw, var(--space-7)); border-top: 1px solid rgba(13, 29, 53, 0.42); }
 .numbers-stat { display: flex; min-width: 0; flex-direction: column; align-items: flex-start; }
-.numbers-stat:nth-child(2) { padding-top: clamp(var(--space-4), 3vw, var(--space-8)); }
-.numbers-stat:nth-child(3) { padding-top: clamp(var(--space-5), 4vw, var(--space-10)); }
-.numbers-stat:nth-child(4) { padding-top: clamp(var(--space-8), 6vw, 6.5rem); }
 .numbers-stat strong { display: block; margin-bottom: var(--space-3); color: var(--brand-navy); font-size: clamp(3.25rem, 5.2vw, 6.25rem); font-weight: 800; letter-spacing: -0.07em; line-height: 0.88; }
 .numbers-stat span { display: block; max-width: 15rem; color: var(--brand-navy-soft); font-size: clamp(0.7rem, 0.9vw, 0.82rem); font-weight: 800; letter-spacing: 0.12em; line-height: 1.35; }
 .home-contact-strip { padding-block: 0; background: var(--color-secondary); }
@@ -1322,9 +1319,6 @@ p { line-height: 1.6; }
   .numbers-note p { font-size: 1rem; }
   .numbers-metrics { column-gap: var(--space-5); row-gap: var(--space-7); padding-top: var(--space-5); }
   .numbers-stat { padding-inline: var(--space-2); }
-  .numbers-stat:nth-child(2) { padding-top: var(--space-3); }
-  .numbers-stat:nth-child(3) { padding-top: var(--space-5); }
-  .numbers-stat:nth-child(4) { padding-top: var(--space-8); }
   .numbers-stat strong { font-size: clamp(2.75rem, 6vw, 4.5rem); }
   .institutional-logo-frame { min-height: 11rem; gap: var(--space-3); padding: var(--space-4); }
   .institutional-logo { width: 9rem; height: 9rem; }
