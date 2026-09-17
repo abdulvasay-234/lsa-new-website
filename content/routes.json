@@ -35,6 +35,13 @@
     "description": "Verify and download your Lords Skill Academy certificate using your Roll Number or Certificate ID."
   },
   {
+    "path": "/trainers",
+    "label": "Trainers",
+    "section": "primary",
+    "title": "Trainers | Lords Skill Academy",
+    "description": "Meet the trainers and mentors at Lords Skill Academy who bring practical technology learning, guidance, and industry-focused experience to students."
+  },
+  {
     "path": "/about",
     "label": "About",
     "section": "secondary",

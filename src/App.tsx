@@ -9,6 +9,7 @@ import { ContactPage } from './components/ContactPage'
 import { AboutPage } from './components/AboutPage'
 import { CampusPage } from './components/CampusPage'
 import { CertificatesPage } from './components/CertificatesPage'
+import { TrainersPage } from './components/TrainersPage'
 import { BlogPage, BlogPostDetailPage } from './components/BlogPage'
 import { getRoute } from './data/routes'
 import { blogPosts, programs } from './data/content'
@@ -82,6 +83,10 @@ export function App({ pathname = window.location.pathname }: { pathname?: string
 
     if (route.path === '/certificates') {
       return <SiteShell route={route}><CertificatesPage /></SiteShell>
+    }
+
+    if (route.path === '/trainers') {
+      return <SiteShell route={route}><TrainersPage /></SiteShell>
     }
 
     if (route.path === '/learning/blog') {

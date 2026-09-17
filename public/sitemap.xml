@@ -5,6 +5,7 @@
   <url><loc>http://localhost:4173/learning</loc></url>
   <url><loc>http://localhost:4173/campus</loc></url>
   <url><loc>http://localhost:4173/certificates</loc></url>
+  <url><loc>http://localhost:4173/trainers</loc></url>
   <url><loc>http://localhost:4173/about</loc></url>
   <url><loc>http://localhost:4173/contact</loc></url>
   <url><loc>http://localhost:4173/programs/data-science</loc></url>

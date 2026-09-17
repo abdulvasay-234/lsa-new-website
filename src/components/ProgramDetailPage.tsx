@@ -45,10 +45,10 @@ function CertificationSection({ certification }: { certification?: ProgramDetail
   return <Section className="program-detail-section program-detail-certification"><Container><div className="program-detail-heading"><p className="section-marker">07 — CERTIFICATION</p><h2>Recognition that supports your career.</h2></div><div className="certification-layout"><div className="certification-preview"><h3>{certification.previewTitle}</h3><p>{certification.previewDescription}</p><div className="certification-placeholder"><img src={previewImage.src} alt={previewImage.alt} width={previewImage.width} height={previewImage.height} loading="lazy" decoding="async" /></div></div><ol className="certification-points">{certification.points.map((point, index) => <li key={point.title}><span>{`0${index + 1}`}</span><div><h3>{point.title}</h3><p>{point.description}</p></div></li>)}</ol></div></Container></Section>
 }
 
-function TrainerSection({ trainer }: { trainer?: ProgramDetail['trainer'] }) {
+function TrainerSection({ trainer, routePath }: { trainer?: ProgramDetail['trainer']; routePath: string }) {
   if (!trainer) return null
 
-  return <Section className="program-detail-section program-detail-trainer"><Container><div className="program-detail-heading"><p className="section-marker">08 — TRAINERS</p><h2>Guidance that keeps learning practical.</h2></div><div className="program-trainer-layout"><div><p className="program-trainer-name">{trainer.name || <Placeholder>Trainer profile to be confirmed</Placeholder>}</p><p className="program-trainer-role">{trainer.role || 'LSA faculty information'}</p></div><p>{trainer.description}</p></div></Container></Section>
+  return <Section className="program-detail-section program-detail-trainer"><Container><div className="program-detail-heading"><p className="section-marker">08 — TRAINERS</p><h2>Guidance that keeps learning practical.</h2></div><div className="program-trainer-layout"><div><p className="program-trainer-name">{trainer.name || <Placeholder>Trainer profile to be confirmed</Placeholder>}</p><p className="program-trainer-role">{trainer.role || 'LSA faculty information'}</p></div><div><p>{trainer.description}</p><ButtonLink href={getRouteHref(routePath, '/trainers')} variant="link">See trainers →</ButtonLink></div></div></Container></Section>
 }
 
 function HiringSection({ hiring }: { hiring?: ProgramDetail['hiring'] }) {
@@ -113,7 +113,7 @@ export function ProgramDetailPage({ program, routePath }: { program: ProgramDeta
 
       <CertificationSection certification={program.certification} />
 
-      <TrainerSection trainer={program.trainer} />
+      <TrainerSection trainer={program.trainer} routePath={routePath} />
 
       <HiringSection hiring={program.hiring} />
 
