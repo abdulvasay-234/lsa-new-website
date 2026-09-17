@@ -99,7 +99,7 @@ p { line-height: 1.6; }
 @keyframes logo-burst { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); } 20% { opacity: 1; } 70% { opacity: 0.8; transform: translate(-50%, -50%) scale(3.2); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(5); } }
 @keyframes ring-pulse { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); } 18% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -50%) scale(2.3); } }
 @keyframes logo-sheen { 0% { transform: translateX(-140%); opacity: 0; } 22% { opacity: 1; } 100% { transform: translateX(140%); opacity: 0; } }
-@media (max-width: 720px) { .lsa-intro-stage { width: min(30rem, 84vw); height: min(20rem, 54vw); } .lsa-logo-shell { width: min(22rem, 64vw); height: min(22rem, 64vw); } .lsa-logo-reveal { width: min(20rem, 60vw); } }
+@media (max-width: 720px) { .lsa-intro-stage { inset: 0; width: 100%; height: 100%; } .lsa-logo-shell { width: min(82vw, 22rem); height: min(82vw, 22rem); } .lsa-logo-reveal { width: min(76vw, 20rem); max-width: 100%; } }
 @media (prefers-reduced-motion: reduce) { .lsa-logo-reveal, .lsa-logo-burst, .lsa-logo-burst::before, .lsa-logo-burst::after { animation-duration: 0.01ms; animation-iteration-count: 1; } .lsa-intro { transition: none; } }
 
 .site-header { position: sticky; top: 0; z-index: 150; border-bottom: 1px solid var(--color-border); background: rgba(247, 247, 242, 0.92); color: var(--color-navy-deep); transition: background-color 220ms ease, border-color 220ms ease, backdrop-filter 220ms ease, box-shadow 220ms ease; }
