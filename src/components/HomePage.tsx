@@ -127,6 +127,7 @@ function PhilosophyJourney() {
       <ol className="philosophy-path">
         {stages.map((stage, index) => (
           <li key={stage.name}>
+            <span className="philosophy-node" aria-hidden="true"><i /></span>
             <span className="philosophy-index">0{index + 1}</span>
             <div>
               <h3>{stage.name}</h3>
@@ -185,6 +186,74 @@ export function HomePage() {
   const learningSectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    const hero = document.querySelector<HTMLElement>('.home-hero')
+    const landing = document.querySelector<HTMLElement>('.hero-morph-landing')
+    if (!hero || !landing || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const animationContext = gsap.context(() => {
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: hero,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 0.65,
+          invalidateOnRefresh: true,
+        },
+      })
+
+      timeline
+        .to('.hero-morph-network', { yPercent: -18, opacity: 1, ease: 'none' }, 0)
+        .to('.hero-copy', { y: -72, opacity: 0, ease: 'power1.in' }, 0.12)
+        .to('.hero-video', { opacity: 0.28, ease: 'none' }, 0.18)
+
+      gsap.fromTo(
+        '.hero-morph-orb',
+        { scale: 0.08 },
+        {
+          scale: 5.4,
+          ease: 'power2.inOut',
+          scrollTrigger: {
+            trigger: hero,
+            endTrigger: landing,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 0.7,
+            invalidateOnRefresh: true,
+            onLeave: () => gsap.set('.hero-morph-orb', { visibility: 'hidden' }),
+            onEnterBack: () => gsap.set('.hero-morph-orb', { visibility: 'visible' }),
+          },
+        },
+      )
+    }, hero)
+
+    return () => animationContext.revert()
+  }, [])
+
+  useEffect(() => {
+    const landing = document.querySelector<HTMLElement>('.hero-morph-landing')
+    if (!landing || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const animationContext = gsap.context(() => {
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: landing,
+          start: 'top 92%',
+          end: 'top 18%',
+          scrub: 0.7,
+          invalidateOnRefresh: true,
+        },
+      })
+
+      timeline
+        .to('.hero-morph-placeholder-copy h2', { color: '#ffffff', ease: 'none' }, 0.35)
+        .to('.hero-morph-placeholder-copy > p', { color: 'rgba(255, 255, 255, 0.82)', ease: 'none' }, 0.35)
+        .to('.hero-morph-placeholder-copy .section-marker', { color: 'rgba(255, 255, 255, 0.68)', ease: 'none' }, 0.35)
+    }, landing)
+
+    return () => animationContext.revert()
+  }, [])
+
+  useEffect(() => {
     const heading = learningSectionRef.current
     const section = heading?.closest('.learning-section')
     if (!section) return
@@ -213,20 +282,49 @@ export function HomePage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema()) }} />
-      <Section className="home-hero">
-        <SmoothHeroVideo />
-        <Container className="hero-layout">
-          <div className="hero-copy">
-            <p className="eyebrow">{homepageContent.hero.eyebrow}</p>
-            <h1>{homepageContent.hero.title}</h1>
-            <p className="hero-body">{homepageContent.hero.body}</p>
-            <div className="button-row">
-              <ButtonLink href={getRouteHref('/', '/programs')}>Explore programs</ButtonLink>
-              <ButtonLink href={getRouteHref('/', '/learning')} variant="outline">Explore learning</ButtonLink>
+      <div className="hero-morph-stage">
+        <Section className="home-hero">
+          <SmoothHeroVideo />
+          <Container className="hero-layout">
+            <div className="hero-copy">
+              <p className="eyebrow">{homepageContent.hero.eyebrow}</p>
+              <h1>{homepageContent.hero.title}</h1>
+              <p className="hero-body">{homepageContent.hero.body}</p>
+              <div className="button-row">
+                <ButtonLink href={getRouteHref('/', '/programs')}>Explore programs</ButtonLink>
+                <ButtonLink href={getRouteHref('/', '/learning')} variant="outline">Explore learning</ButtonLink>
+              </div>
             </div>
+          </Container>
+          <div className="hero-morph" aria-hidden="true">
+            <svg className="hero-morph-network" viewBox="0 0 1440 520" preserveAspectRatio="none">
+              <path d="M-80 430 C260 165 515 515 815 270 S1240 95 1530 330" />
+              <path d="M-60 510 C260 310 440 170 735 385 S1180 570 1510 205" />
+              <path d="M120 560 C390 245 655 190 930 455 S1280 420 1510 510" />
+              <circle cx="255" cy="342" r="13" />
+              <circle cx="815" cy="270" r="11" />
+              <circle cx="1204" cy="182" r="9" />
+            </svg>
+            <span className="hero-morph-orb" />
           </div>
-        </Container>
-      </Section>
+        </Section>
+
+        <Section className="hero-morph-landing" aria-labelledby="hero-morph-placeholder-title">
+          <Container className="hero-morph-landing-layout">
+            <div className="hero-morph-placeholder-copy">
+              <p className="section-marker">01 — SECTION LABEL</p>
+              <h2 id="hero-morph-placeholder-title">Your section headline goes here.</h2>
+              <p>Add your main paragraph here. Use this space to explain the idea, program, or story that should follow the hero.</p>
+              <p>Add a second supporting paragraph here if you need more detail.</p>
+            </div>
+            <div className="hero-morph-media-placeholder" role="img" aria-label="Video or image placeholder">
+              <span className="hero-morph-play" aria-hidden="true" />
+              <strong>VIDEO OR IMAGE PLACEHOLDER</strong>
+              <small>Replace this with your media later</small>
+            </div>
+          </Container>
+        </Section>
+      </div>
 
       <Section className="identity-strip" aria-label="LSA identity">
         <Container>

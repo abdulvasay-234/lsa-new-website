@@ -1,11 +1,47 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { programs } from '../data/content'
 import { getRouteHref } from '../data/routes'
 import { ButtonLink } from './Button'
 import { Container, Section } from './Layout'
 
+gsap.registerPlugin(ScrollTrigger)
+
 export function ProgramsPage() {
   const [expandedProgram, setExpandedProgram] = useState<string | null>(null)
+  const outcomesHeadingRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const heading = outcomesHeadingRef.current
+    const section = heading?.closest('.programs-outcomes-section')
+    if (!section || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const animationContext = gsap.context(() => {
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 8%',
+          end: () => `+=${window.innerHeight * 2.4}`,
+          pin: true,
+          scrub: 0.6,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      })
+        .from('.programs-outcome-card', {
+          opacity: 0,
+          y: 96,
+          duration: 0.55,
+          ease: 'power2.out',
+          stagger: 0.55,
+        })
+
+      return () => timeline.kill()
+    }, section)
+
+    return () => animationContext.revert()
+  }, [])
 
   return (
     <>
@@ -43,7 +79,7 @@ export function ProgramsPage() {
 
       <Section className="programs-outcomes-section">
         <Container>
-          <div className="programs-outcomes-heading">
+          <div className="programs-outcomes-heading" ref={outcomesHeadingRef}>
             <div className="programs-page-heading">
               <p className="section-marker section-marker-yellow">03 — WHAT YOU TAKE WITH YOU</p>
               <h2>Build skills you can put to work.</h2>

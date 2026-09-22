@@ -1,6 +1,11 @@
+import { useEffect, useState } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { getRouteHref } from '../data/routes'
 import { ButtonLink } from './Button'
 import { Container, Section } from './Layout'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const campusImages = [
   { src: `${import.meta.env.BASE_URL}media/classroom-imgs/optimized/2SP00752.jpg`, alt: 'Students learning technology together in an LSA classroom', label: 'WORKSHOPS' },
@@ -35,6 +40,46 @@ const institutionOffers = [
 ] as const
 
 export function CampusPage() {
+  const [activeSlide, setActiveSlide] = useState(0)
+  const [isSlideshowPaused, setIsSlideshowPaused] = useState(false)
+
+  useEffect(() => {
+    if (isSlideshowPaused) return
+    const timer = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % campusImages.length)
+    }, 5000)
+    return () => window.clearInterval(timer)
+  }, [isSlideshowPaused])
+
+  useEffect(() => {
+    const section = document.querySelector<HTMLElement>('.campus-page-motion')
+    if (!section || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const animationContext = gsap.context(() => {
+      gsap.fromTo(
+        '.campus-motion-background img',
+        { scale: 1 },
+        {
+          scale: 1.14,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.2,
+            invalidateOnRefresh: true,
+          },
+        },
+      )
+    }, section)
+
+    return () => animationContext.revert()
+  }, [])
+
+  const moveSlide = (direction: -1 | 1) => {
+    setActiveSlide((current) => (current + direction + campusImages.length) % campusImages.length)
+  }
+
   return (
     <>
       <Section className="campus-page-hero">
@@ -57,9 +102,11 @@ export function CampusPage() {
       </Section>
 
       <Section className="campus-page-motion">
-        <Container>
+        <div className="campus-motion-background" aria-hidden="true">
+          {campusImages.slice(1, 4).map((image) => <img src={image.src} alt="" width="5146" height="3217" loading="lazy" key={image.src} />)}
+        </div>
+        <Container className="campus-motion-content">
           <div className="campus-section-intro"><div><p className="section-marker">04 — LEARNING IN MOTION</p><h2>Learning moves through different environments.</h2></div><p>Use the classroom, the workshop, the project, and the shared experience as places to keep learning active.</p></div>
-          <div className="campus-motion-gallery">{campusImages.slice(1, 4).map((image, index) => <figure className={index === 1 ? 'campus-motion-feature' : ''} key={image.src}><img src={image.src} alt={image.alt} width="5146" height="3217" loading="lazy" /><figcaption>{image.label}</figcaption></figure>)}</div>
         </Container>
       </Section>
 
@@ -68,7 +115,28 @@ export function CampusPage() {
       </Section>
 
       <Section className="campus-page-experiences">
-        <Container><div className="campus-section-intro"><div><p className="section-marker">06 — CAMPUS EXPERIENCES</p><h2>Real learning moments, close to the work.</h2></div><p>LSA&apos;s campus experience can include workshops, build sessions, technology programs, student projects, and community events. The images below show the real learning environments available in the current LSA asset library.</p></div><div className="campus-experience-gallery">{campusImages.map((image) => <figure key={image.src}><img src={image.src} alt={image.alt} width="5146" height="3217" loading="lazy" /><figcaption>{image.label}</figcaption></figure>)}</div></Container>
+        <Container>
+          <div className="campus-section-intro"><div><p className="section-marker">06 — CAMPUS EXPERIENCES</p><h2>Real learning moments, close to the work.</h2></div><p>LSA&apos;s campus experience can include workshops, build sessions, technology programs, student projects, and community events. The images below show the real learning environments available in the current LSA asset library.</p></div>
+          <div className="campus-slideshow" onMouseEnter={() => setIsSlideshowPaused(true)} onMouseLeave={() => setIsSlideshowPaused(false)} onFocus={() => setIsSlideshowPaused(true)} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setIsSlideshowPaused(false) }}>
+            <div className="campus-slideshow-viewport" aria-live="polite">
+              <figure key={campusImages[activeSlide].src}>
+                <img src={campusImages[activeSlide].src} alt={campusImages[activeSlide].alt} width="5146" height="3217" />
+                <figcaption><span>{String(activeSlide + 1).padStart(2, '0')} / {String(campusImages.length).padStart(2, '0')}</span><strong>{campusImages[activeSlide].label}</strong></figcaption>
+              </figure>
+              <div className="campus-slideshow-controls">
+                <button type="button" aria-label="Previous campus image" onClick={() => moveSlide(-1)}>←</button>
+                <button type="button" aria-label="Next campus image" onClick={() => moveSlide(1)}>→</button>
+              </div>
+            </div>
+            <div className="campus-slideshow-dots" aria-label="Choose a campus image">
+              {campusImages.map((image, index) => (
+                <button className={index === activeSlide ? 'is-active' : ''} type="button" key={image.src} aria-label={`Show ${image.label.toLowerCase()}`} aria-current={index === activeSlide ? 'true' : undefined} onClick={() => setActiveSlide(index)}>
+                  <span className="sr-only">{image.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </Container>
       </Section>
 
       <Section className="campus-page-institutions">
