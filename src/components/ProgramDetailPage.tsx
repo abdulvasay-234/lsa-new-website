@@ -11,7 +11,8 @@ function Placeholder({ children = 'Details to be confirmed' }: { children?: stri
 }
 
 function ToolPanel({ category, index }: { category: ProgramToolCategory; index: number }) {
-  return <div className="program-tools-panel"><div className="program-tools-panel-content"><div className="program-tools-panel-heading"><span>{`0${index + 1}`}</span><div><h3>{category.category}</h3><p>{category.description}</p></div></div>{category.items.length ? <div className="program-tools-grid">{category.items.map((tool, toolIndex) => <div className="program-tool" key={`${tool.name}-${toolIndex}`}><span className="program-tool-icon" aria-hidden="true">{tool.icon || '—'}</span><div><strong>{tool.name || <Placeholder>Tool name to be confirmed</Placeholder>}</strong>{tool.description && <p>{tool.description}</p>}</div></div>)}</div> : <div className="program-tools-empty"><strong>Verified tools to be confirmed.</strong><p>Specific technologies for this category will be added when the LSA curriculum is published.</p></div>}</div></div>
+  const isPlacementSupport = category.category === 'PLACEMENT SUPPORT'
+  return <div className="program-tools-panel"><div className="program-tools-panel-content"><div className="program-tools-panel-heading"><span>{`0${index + 1}`}</span><div><h3>{category.category}</h3><p>{category.description}</p></div></div>{category.items.length ? <div className={`program-tools-grid${isPlacementSupport ? ' program-tools-placement-grid' : ''}`}>{category.items.map((tool, toolIndex) => <div className="program-tool" key={`${tool.name}-${toolIndex}`}><span className="program-tool-icon" aria-hidden="true">{tool.icon || '—'}</span><div><strong>{tool.name || <Placeholder>Tool name to be confirmed</Placeholder>}</strong>{tool.description && <p>{tool.description}</p>}</div></div>)}</div> : <div className="program-tools-empty"><strong>Verified tools to be confirmed.</strong><p>Specific technologies for this category will be added when the LSA curriculum is published.</p></div>}</div></div>
 }
 
 function QuickHighlights({ highlights }: { highlights: ProgramDetail['highlights'] }) {
@@ -67,13 +68,15 @@ function ClassroomGallery({ gallery }: { gallery?: ProgramDetail['classroomGalle
 function ToolsAndDisciplines({ categories, curriculumDownload }: { categories: ProgramToolCategory[]; curriculumDownload?: string }) {
   const [selectedCategory, setSelectedCategory] = useState(0)
   const activeCategory = categories[selectedCategory]
+  const isDataScienceStack = categories.some((category) => category.category === 'DEEP LEARNING & GENERATIVE AI')
+  const hasPlacementSupport = categories.some((category) => category.category === 'PLACEMENT SUPPORT')
 
   if (!categories.length) return null
 
   return (
-    <Section className="program-detail-section program-detail-tools">
+    <Section className={`program-detail-section program-detail-tools${isDataScienceStack || hasPlacementSupport ? ' program-detail-tools-stack' : ''}`}>
       <Container>
-        <div className="program-detail-heading"><p className="section-marker">03 — TOOLS &amp; DISCIPLINES</p><h2>Learn the tools. Understand the stack.</h2><p>Work with the technologies, platforms, and disciplines used throughout the learning journey.</p></div>
+        <div className="program-detail-heading"><p className="section-marker">{isDataScienceStack ? '03 — TECHNOLOGY STACK' : '03 — TOOLS & DISCIPLINES'}</p><h2>{isDataScienceStack ? "What you'll work with" : 'Learn the tools. Understand the stack.'}</h2><p>{isDataScienceStack ? 'Explore the programming languages, libraries, databases, frameworks, and AI technologies used in the Data Science program.' : 'Work with the technologies, platforms, and disciplines used throughout the learning journey.'}</p></div>
         <div className="program-tools-explorer">
           <div className="program-tools-categories-wrap">
             <div className="program-tools-categories" role="tablist" aria-label="Tools and disciplines categories">

@@ -19,17 +19,18 @@ export function SiteShell({ children, route }: PropsWithChildren<{ route: SiteRo
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const header = document.querySelector<HTMLElement>('.site-header')
+    const hero = document.querySelector<HTMLElement>('#main-content .home-hero, #main-content .programs-page-hero, #main-content .learning-page-hero, #main-content .campus-page-hero, #main-content .certificates-page-hero, #main-content .trainers-page-hero, #main-content .about-page-hero, #main-content .contact-page-hero, #main-content .blog-page-hero, #main-content .blog-post-hero, #main-content .program-detail-hero')
     const darkSections = Array.from(document.querySelectorAll<HTMLElement>(darkHeaderSections))
     let frame = 0
 
     const handleScroll = () => {
-      const threshold = window.scrollY > 24
+      const headerBottom = header?.getBoundingClientRect().bottom ?? 80
+      const threshold = hero ? hero.getBoundingClientRect().bottom <= headerBottom : window.scrollY > 24
       setIsScrolled((current) => (current === threshold ? current : threshold))
 
       if (frame) return
       frame = window.requestAnimationFrame(() => {
         frame = 0
-        const headerBottom = header?.getBoundingClientRect().bottom ?? 80
         const activeDarkSection = darkSections.some((section) => {
           const bounds = section.getBoundingClientRect()
           return bounds.top <= headerBottom + 12 && bounds.bottom > headerBottom + 12

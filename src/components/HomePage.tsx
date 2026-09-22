@@ -237,16 +237,15 @@ export function HomePage() {
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: landing,
-          start: 'top 92%',
-          end: 'top 18%',
+          start: 'top 68%',
+          end: 'top 22%',
           scrub: 0.7,
           invalidateOnRefresh: true,
         },
       })
 
       timeline
-        .to('.hero-morph-placeholder-copy h2', { color: '#ffffff', ease: 'none' }, 0.35)
-        .to('.hero-morph-placeholder-copy > p', { color: 'rgba(255, 255, 255, 0.82)', ease: 'none' }, 0.35)
+        .to('.hero-morph-placeholder-copy h2, .hero-morph-placeholder-copy > p', { color: '#ffffff', ease: 'none' }, 0.2)
         .to('.hero-morph-placeholder-copy .section-marker', { color: 'rgba(255, 255, 255, 0.68)', ease: 'none' }, 0.35)
     }, landing)
 
@@ -312,15 +311,13 @@ export function HomePage() {
         <Section className="hero-morph-landing" aria-labelledby="hero-morph-placeholder-title">
           <Container className="hero-morph-landing-layout">
             <div className="hero-morph-placeholder-copy">
-              <p className="section-marker">01 — SECTION LABEL</p>
-              <h2 id="hero-morph-placeholder-title">Your section headline goes here.</h2>
-              <p>Add your main paragraph here. Use this space to explain the idea, program, or story that should follow the hero.</p>
-              <p>Add a second supporting paragraph here if you need more detail.</p>
-            </div>
-            <div className="hero-morph-media-placeholder" role="img" aria-label="Video or image placeholder">
-              <span className="hero-morph-play" aria-hidden="true" />
-              <strong>VIDEO OR IMAGE PLACEHOLDER</strong>
-              <small>Replace this with your media later</small>
+              <h2 id="hero-morph-placeholder-title">{siteInfo.institution.statement}</h2>
+              <div className="hero-morph-institution-logos" aria-label="Lords Institute of Engineering and Technology and Lords Skill Academy logos">
+                <img src={siteInfo.logos.liet.src} alt={siteInfo.logos.liet.alt} width={siteInfo.logos.liet.width} height={siteInfo.logos.liet.height} />
+                <span aria-hidden="true">×</span>
+                <img src={siteInfo.logos.lsa.src} alt={siteInfo.logos.lsa.alt} width={siteInfo.logos.lsa.width} height={siteInfo.logos.lsa.height} />
+              </div>
+              <p>Backed by an established &amp; leading Engineering Institution.</p>
             </div>
           </Container>
         </Section>
@@ -338,22 +335,6 @@ export function HomePage() {
               </ul>
             </div>
           </div>
-        </Container>
-      </Section>
-
-      <Section className="institutional-section" aria-labelledby="institutional-heading">
-        <Container className="institutional-layout">
-          <p className="institutional-statement" id="institutional-heading">{siteInfo.institution.statement}</p>
-          <div className="institutional-logo-frame" aria-label="LIET and LSA logos">
-            <div className="institutional-logo institutional-logo-liet">
-              <img src={siteInfo.logos.liet.src} alt={siteInfo.logos.liet.alt} width={siteInfo.logos.liet.width} height={siteInfo.logos.liet.height} />
-            </div>
-            <span className="institutional-logo-cross" aria-hidden="true">×</span>
-            <div className="institutional-logo institutional-logo-lsa">
-              <img src={siteInfo.logos.lsa.src} alt={siteInfo.logos.lsa.alt} width={siteInfo.logos.lsa.width} height={siteInfo.logos.lsa.height} />
-            </div>
-          </div>
-          <p className="institutional-support">Backed by an established Engineering Institution.</p>
         </Container>
       </Section>
 
