@@ -82,11 +82,11 @@ function ContactForm() {
 
 const helpItems = [
   ['LEARNING PROGRAMS', 'Explore practical technology programs and find the right fit.'],
-  ['CAREER GUIDANCE', 'Get clarity on career direction, skill gaps and learning paths.'],
-  ['INTERNSHIPS', 'Ask about available internship opportunities and related programs.'],
-  ['CAMPUS TRAINING', 'Training and learning experiences for student communities.'],
-  ['COLLEGE COLLABORATION', 'Workshops, programs, events and institutional partnerships.'],
-  ['CORPORATE TRAINING', 'Technology learning and upskilling requirements for organizations.'],
+  ['CAREER GUIDANCE', 'Get clarity on career paths, skills, and learning options.'],
+  ['INTERNSHIPS', 'Ask about internship opportunities and available programs.'],
+  ['CAMPUS TRAINING', 'Bring practical technology learning to your student community.'],
+  ['COLLEGE COLLABORATION', 'Partner with LSA for workshops, programs, and campus initiatives.'],
+  ['CORPORATE TRAINING', 'Build technology skills through focused organizational training.'],
 ] as const
 
 export function ContactPage() {
