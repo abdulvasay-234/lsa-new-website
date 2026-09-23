@@ -51,7 +51,7 @@ export function ProgramsPage() {
             <p className="section-marker section-marker-yellow">01 — PROGRAMS</p>
             <h1>Build skills that become capability.</h1>
           </div>
-          <p className="programs-page-intro">Practical technology programs designed to help learners understand, build, and apply what they learn.</p>
+          <p className="programs-page-intro">Practical technology programs designed to help learners understand concepts, work with modern tools, build real projects, and apply their skills with confidence.</p>
         </Container>
       </Section>
 
@@ -65,10 +65,10 @@ export function ProgramsPage() {
             {programs.map((program, index) => (
               <article className={`program-editorial-item ${expandedProgram === program.slug ? 'is-expanded' : ''}`} key={program.slug} tabIndex={0} role="button" aria-expanded={expandedProgram === program.slug} onClick={() => setExpandedProgram(expandedProgram === program.slug ? null : program.slug)} onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); setExpandedProgram(expandedProgram === program.slug ? null : program.slug) } }}>
                 <span className="program-editorial-index">0{index + 1}</span>
-                <div className="program-editorial-name"><p className="card-kicker">Program</p><h3>{program.title}</h3></div>
+                <div className="program-editorial-name"><p className="card-kicker">Technology program</p><h3>{program.title}</h3></div>
                 <p className="program-editorial-description">{program.description}</p>
                 <div className="program-editorial-actions">
-                  <ButtonLink href={getRouteHref('/programs', `/programs/${program.slug}`)} variant="link" onClick={(event) => event.stopPropagation()}>Explore program</ButtonLink>
+                  <ButtonLink href={getRouteHref('/programs', `/programs/${program.slug}`)} variant="link" onClick={(event) => event.stopPropagation()}>View program</ButtonLink>
                 </div>
                 <div className="program-editorial-reveal" aria-hidden={expandedProgram !== program.slug}><span>Program status</span><strong>{program.status}</strong></div>
               </article>
@@ -111,10 +111,10 @@ export function ProgramsPage() {
 
       <Section className="programs-beyond-section">
         <Container className="programs-beyond-layout">
-          <div className="programs-beyond-header"><p className="section-marker">04 — BEYOND THE SYLLABUS</p><h2>Programs move from learning to practical capability.</h2></div>
+          <div className="programs-beyond-header"><p className="section-marker">04 — BEYOND THE SYLLABUS</p><h2>Learning should lead to doing.</h2><p>At LSA, learning is not limited to completing a syllabus. Our programs are designed to help learners <strong>understand concepts, practise with real tools, build projects, solve problems, and apply what they know.</strong></p></div>
           <div className="programs-beyond-panels">
-            <div className="programs-beyond-statement"><p className="card-kicker">LSA learning philosophy</p><h3>Learning should prepare you to use what you know.</h3></div>
-            <ol className="programs-beyond-list"><li><span>PRACTICE</span><strong>Work with concepts through practical exercises.</strong></li><li><span>BUILD</span><strong>Turn what you learn into working projects.</strong></li><li><span>PROBLEM-SOLVE</span><strong>Apply knowledge to meaningful real-world problems.</strong></li><li><span>SHOWCASE</span><strong>Make your work visible through projects and outcomes.</strong></li></ol>
+            <div className="programs-beyond-statement"><p className="card-kicker">LSA LEARNING PHILOSOPHY</p><h3>Learn it. Practise it. Build with it.</h3></div>
+            <ol className="programs-beyond-list"><li><span>PRACTICE</span><strong>Turn concepts into skills through hands-on exercises and guided practice.</strong></li><li><span>BUILD</span><strong>Apply what you learn by creating practical projects and working with modern tools.</strong></li><li><span>PROBLEM-SOLVE</span><strong>Use your knowledge to approach practical challenges and find meaningful solutions.</strong></li><li><span>SHOWCASE</span><strong>Document and present your work so your skills can be seen, shared, and experienced.</strong></li></ol>
           </div>
         </Container>
       </Section>
@@ -124,7 +124,7 @@ export function ProgramsPage() {
           <div className="programs-page-heading">
             <p className="section-marker">05 — HIRING ECOSYSTEM</p>
             <h2>Connecting skills with opportunity.</h2>
-            <p>LSA&apos;s practical learning ecosystem is designed to help learners move closer to real-world opportunities.</p>
+            <p>LSA helps bridge the gap between learning and the workplace, connecting learners with industry exposure, internships, career support, and opportunities to put their skills into practice.</p>
           </div>
           <div className="hiring-image-frame">
             <img src={`${import.meta.env.BASE_URL}media/hiring-partners.png`} alt="LSA hiring partners" width="1150" height="720" loading="lazy" decoding="async" />

@@ -4,43 +4,43 @@ export const programs: Program[] = [
   {
     title: 'Data Science',
     slug: 'data-science',
-    description: 'Work with data, analysis, and practical problem-solving workflows.',
+    description: 'Work with data, analytics, machine learning, and practical problem-solving.',
     status: 'active',
   },
   {
     title: 'Cyber Security',
     slug: 'cyber-security',
-    description: 'Explore security thinking, digital systems, and responsible practice.',
+    description: 'Build practical security skills across systems, threats, analysis, and digital protection.',
     status: 'active',
   },
   {
     title: 'Digital Marketing',
     slug: 'digital-marketing',
-    description: 'Learn how digital channels, content, and measurement connect.',
+    description: 'Learn how digital channels, content, campaigns, and analytics work together.',
     status: 'active',
   },
   {
     title: 'DevOps',
     slug: 'devops',
-    description: 'Program details will be added here.',
+    description: 'Learn modern development workflows, automation, cloud infrastructure, and deployment practices.',
     status: 'active',
   },
   {
     title: 'Python Programming',
     slug: 'python-programming',
-    description: 'Program details will be added here.',
+    description: 'Build a strong programming foundation through Python, problem-solving, and hands-on practice.',
     status: 'active',
   },
   {
     title: 'Full Stack Java',
     slug: 'full-stack-java',
-    description: 'Program details will be added here.',
+    description: 'Learn to build web applications across frontend, backend, databases, and APIs.',
     status: 'active',
   },
   {
     title: 'Power BI',
     slug: 'power-bi',
-    description: 'Program details will be added here.',
+    description: 'Turn data into clear insights through dashboards, visualisation, and business reporting.',
     status: 'active',
   },
 ]
@@ -123,9 +123,8 @@ export const testimonials: Testimonial[] = [
 export const youtubeVideos: YouTubeVideo[] = [
   {
     id: 'k48pOIzXSsk',
-    title: 'LSA in Dubai',
-    description: 'Explore LSA learning, experiences, and opportunities in Dubai.',
-    category: 'LSA in motion',
+    title: "Explore LSA's global learning experiences and opportunities beyond the classroom.",
+    category: 'LSA IN DUBAI',
     url: 'https://youtu.be/k48pOIzXSsk',
     thumbnail: {
       src: `${import.meta.env.BASE_URL}media/youtube-thumbnails/dubai.png`,
@@ -136,9 +135,8 @@ export const youtubeVideos: YouTubeVideo[] = [
   },
   {
     id: 'FsYTit41U_s',
-    title: 'Python Bootcamp',
-    description: 'A look inside the practical Python bootcamp experience at LSA.',
-    category: 'Bootcamp',
+    title: 'See how hands-on Python learning comes to life through the LSA Bootcamp.',
+    category: 'BOOTCAMP',
     url: 'https://youtu.be/FsYTit41U_s',
     thumbnail: {
       src: `${import.meta.env.BASE_URL}media/youtube-thumbnails/py-bootcamp.png`,
@@ -149,9 +147,8 @@ export const youtubeVideos: YouTubeVideo[] = [
   },
   {
     id: 'JKyG3XLlvfk',
-    title: 'LSA Webinar',
-    description: 'Watch an LSA webinar with practical insights for learners.',
-    category: 'Webinar',
+    title: 'Explore practical insights from industry experts on technology and careers.',
+    category: 'WEBINAR',
     url: 'https://youtu.be/JKyG3XLlvfk',
     thumbnail: {
       src: `${import.meta.env.BASE_URL}media/youtube-thumbnails/webinar.png`,

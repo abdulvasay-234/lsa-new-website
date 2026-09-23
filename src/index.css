@@ -861,6 +861,8 @@ p { line-height: 1.6; }
 .learning-ecosystem-card small { display: block; max-width: 20rem; color: rgba(16, 35, 63, 0.82); font-size: clamp(0.95rem, 1.1vw, 1.2rem); line-height: 1.5; }
 .card-arrow { display: grid; place-items: center; align-self: flex-end; width: 3rem; height: 3rem; border: 1.5px solid rgba(16, 35, 63, 0.8); border-radius: 50%; font-size: 1.5rem; line-height: 1; transition: transform 220ms ease, border-color 220ms ease, background-color 220ms ease; transform-origin: center; }
 .learning-ecosystem-card:hover .card-arrow, .learning-ecosystem-card:focus-visible .card-arrow { transform: rotate(45deg); border-color: rgba(16, 35, 63, 1); background: rgba(255, 255, 255, 0.12); }
+.learning-ecosystem-card .card-arrow { width: auto; height: auto; border: 0; border-radius: 0; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.learning-ecosystem-card:hover .card-arrow, .learning-ecosystem-card:focus-visible .card-arrow { transform: translateX(0.25rem); background: transparent; }
 :root {
   --brand-navy: #021a54;
   --brand-navy-soft: #021a54;
@@ -1168,6 +1170,7 @@ p { line-height: 1.6; }
 .program-gains-list li > span { color: var(--color-red-dark); font-size: 0.8rem; font-weight: 900; }
 .program-gains-list h3 { margin: 0 0 var(--space-2); color: var(--color-navy); font-size: 1.15rem; }
 .program-gains-list p { max-width: 30rem; margin: 0; color: var(--color-muted-foreground); }
+.program-gain-practice-label { display: block; margin-top: var(--space-4); margin-bottom: var(--space-2); color: var(--color-red-dark); font-size: 0.7rem; letter-spacing: 0.12em; }
 .program-detail-topics { border-top: var(--lsa-rule); }
 .program-detail-topics > div { display: grid; grid-template-columns: minmax(8rem, 0.55fr) 1fr; gap: var(--space-6); padding: var(--space-5) 0; border-bottom: var(--lsa-rule); }
 .program-detail-topics strong { color: var(--color-red-dark); font-size: 0.75rem; letter-spacing: 0.1em; }

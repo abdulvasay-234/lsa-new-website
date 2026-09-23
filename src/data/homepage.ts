@@ -29,9 +29,9 @@ export const homepageContent = {
   ],
   about: {
     eyebrow: 'What is LSA?',
-    title: "Education shouldn't stop at the classroom.",
-    body: 'LSA is a practical technology education organization built around the capabilities students need to keep learning, solving problems, and working with modern tools.',
-    supportingBody: 'The focus is simple: connect knowledge to action, and give students meaningful opportunities to build, test, experience, and showcase what they can do.',
+    title: 'Learning should go beyond the classroom.',
+    body: 'Lords Skill Academy (LSA) is a modern technology learning platform designed to help students move from learning concepts to applying them in the real world.',
+    supportingBody: "We combine structured learning with hands-on practice, industry-relevant tools, projects, mentorship, and career-focused experiences — so students don't just learn what technology is, but understand how to use it.\n\nLearn. Build. Experience. Grow. Because today's technology careers demand more than knowledge — they demand the ability to turn knowledge into something real.",
   },
   philosophy: {
     eyebrow: 'How LSA learns',
@@ -51,9 +51,9 @@ export const homepageContent = {
   },
   campus: {
     eyebrow: 'LSA in campuses',
-    title: 'From classrooms to campuses.',
-    body: 'LSA works with educational institutions to bring practical technology learning closer to students. Through workshops, bootcamps, technology programs, internships, and campus initiatives, we create opportunities to learn beyond the traditional classroom.',
-    supportingBody: 'Students learn by doing — exploring modern technologies, building projects, solving practical problems, and gaining exposure to real-world technology environments.',
+    title: 'Where campus learning meets the real world.',
+    body: 'LSA works with educational institutions to bring practical, industry-relevant technology learning directly to campus.',
+    supportingBody: "Through technology programs, workshops, bootcamps, internships, projects, and hackathons, we create hands-on learning experiences that complement academic education and help students explore how technology is actually built and used. Students don't just attend sessions. They experiment with tools, build projects, solve real problems, collaborate with peers, and gain experience working with modern technologies.",
     editorialItems: ['PROGRAMS', 'WORKSHOPS', 'BOOTCAMPS', 'PROJECTS', 'INTERNSHIPS', 'HACKATHONS'],
     media: [
       {
@@ -65,10 +65,15 @@ export const homepageContent = {
     ] as MediaAsset[],
   },
   videos: [] as string[],
+  motion: {
+    title: "Learning doesn't just happen in a classroom.",
+    body: 'Get a glimpse of how LSA turns learning into real experiences, from hands-on bootcamps and campus programs to industry conversations, internships, workshops, and student journeys.',
+    activities: ['BOOTCAMPS', 'CAMPUS PROGRAMS', 'WEBINARS', 'WORKSHOPS', 'INTERNSHIPS', 'STUDENT STORIES'],
+  },
   testimonials: {
     eyebrow: 'Student experiences',
-    title: 'What Our Students Say',
-    supportingLine: 'Real feedback from Google reviews.',
+    title: 'Learning, in their own words.',
+    supportingLine: 'Real experiences from learners who have learned, built, and grown with LSA.',
     ratingSummary: 'Rated 4.9 stars from 89 Google reviews.',
   },
   learning: {

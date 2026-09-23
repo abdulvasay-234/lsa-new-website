@@ -52,6 +52,7 @@ export type ProgramHighlight = {
 export type ProgramGain = {
   title: string
   description: string
+  practiceDescription?: string
 }
 
 export type ProgramAudience = {

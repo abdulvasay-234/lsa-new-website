@@ -394,7 +394,7 @@ export function HomePage() {
             <div className="campus-editorial-line" aria-label="Campus learning activities">
               {homepageContent.campus.editorialItems.map((item) => <span key={item}>{item}</span>)}
             </div>
-            <ButtonLink href={getRouteHref('/', '/campus')} variant="outline">Explore campus work</ButtonLink>
+            <ButtonLink href={getRouteHref('/', '/campus')} variant="outline">Explore our campus initiatives →</ButtonLink>
           </div>
           <div className="campus-gallery">
             {homepageContent.campus.media.length > 0 ? homepageContent.campus.media.map((asset) => <ResponsiveImage asset={asset} key={asset.src} />) : <MediaPlaceholder label="Real LSA campus photography" />}
@@ -406,8 +406,11 @@ export function HomePage() {
         <Container className="video-gallery-layout">
           <div className="section-heading section-heading-wide">
             <p className="section-marker">05 — LSA IN MOTION</p>
-            <h2>See learning in the real world.</h2>
-            <p>Workshops, campus activity, conversations, and practical learning experiences from LSA.</p>
+            <h2>{homepageContent.motion.title}</h2>
+            <p>{homepageContent.motion.body}</p>
+            <div className="campus-editorial-line" aria-label="LSA experiences">
+              {homepageContent.motion.activities.map((item) => <span key={item}>{item}</span>)}
+            </div>
           </div>
           <VideoEvidence />
           <a className="explore-youtube-link" href={siteInfo.youtubeChannelUrl} target="_blank" rel="noreferrer">Explore YouTube <span aria-hidden="true">→</span></a>
@@ -425,35 +428,36 @@ export function HomePage() {
         <Container>
           <div className="learning-ecosystem-head" ref={learningSectionRef}>
             <p className="section-marker">07 — LEARNING ECOSYSTEM</p>
-            <h2>We see a world where money moves freely and opportunity follows.</h2>
+            <h2>Learning doesn&apos;t stop at the classroom door.</h2>
+            <p>Access the knowledge, tools, and resources you need to keep learning, practising, and building beyond your classes.</p>
           </div>
 
           <div className="learning-ecosystem-grid">
             <a className="learning-ecosystem-card learning-ecosystem-card--mint" href={getRouteHref('/', '/learning/lms')}>
               <div>
                 <h3>LMS</h3>
-                <p>Your learning environment.</p>
+                <p>Your learning, all in one place.</p>
               </div>
-              <small>Access your courses, learning materials, and academic experience.</small>
-              <span className="card-arrow" aria-hidden="true">↗</span>
+              <small>Access course materials, learning resources, assignments, and everything you need to continue your learning journey.</small>
+              <span className="card-arrow" aria-hidden="true">Explore LMS →</span>
             </a>
 
             <a className="learning-ecosystem-card learning-ecosystem-card--peach" href={getRouteHref('/', '/learning/blog')}>
               <div>
                 <h3>Blog</h3>
-                <p>Ideas, insights, and technology.</p>
+                <p>Ideas for a changing tech world.</p>
               </div>
-              <small>Explore articles, perspectives, and practical knowledge from the LSA ecosystem.</small>
-              <span className="card-arrow" aria-hidden="true">↗</span>
+              <small>Explore practical articles, technology insights, career perspectives, and lessons from the LSA ecosystem.</small>
+              <span className="card-arrow" aria-hidden="true">Read the blog →</span>
             </a>
 
             <a className="learning-ecosystem-card learning-ecosystem-card--lavender" href={getRouteHref('/', '/learning/resources')}>
               <div>
                 <h3>Resources</h3>
-                <p>Keep building.</p>
+                <p>Keep learning. Keep building.</p>
               </div>
-              <small>Explore useful resources to support your learning, projects, and continued practice.</small>
-              <span className="card-arrow" aria-hidden="true">↗</span>
+              <small>Discover useful tools, guides, references, and learning resources to support your projects and continued practice.</small>
+              <span className="card-arrow" aria-hidden="true">Explore resources →</span>
             </a>
           </div>
         </Container>
@@ -464,9 +468,9 @@ export function HomePage() {
           <div className="numbers-layout">
             <div className="numbers-intro">
               <p className="section-marker">08 — LSA IN NUMBERS</p>
-              <h2 id="numbers-heading">Learning that goes beyond the classroom.</h2>
+              <h2 id="numbers-heading">The scale behind the learning.</h2>
               <div className="numbers-note">
-                <p>From early experiments to real-world systems,<br />this is what progress looks like in practice.</p>
+                <p>From technology programs and industry-led training to internships and hands-on experiences, these numbers reflect the growing LSA learning community.</p>
               </div>
             </div>
 

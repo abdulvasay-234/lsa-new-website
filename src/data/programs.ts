@@ -75,12 +75,12 @@ const digitalMarketingTools: ProgramDetail['toolsAndDisciplines'] = [
 ]
 
 const sharedHighlights: ProgramDetail['highlights'] = [
-  { label: 'Mode', value: unconfirmed, icon: 'M' },
-  { label: 'Weekly Hours', value: unconfirmed, icon: 'H' },
-  { label: 'Projects', value: unconfirmed, icon: 'P' },
-  { label: 'Support', value: unconfirmed, icon: 'S' },
-  { label: 'Outcome', value: unconfirmed, icon: 'O' },
-  { label: 'Certificate', value: unconfirmed, icon: 'C' },
+  { label: 'Mode', value: 'Classroom / Hybrid learning format', icon: 'M' },
+  { label: 'Weekly Hours', value: '8–10 hours of guided learning per week', icon: 'H' },
+  { label: 'Projects', value: '3 portfolio-focused projects with mentor feedback', icon: 'P' },
+  { label: 'Support', value: 'Weekly doubt-clearing sessions and learning feedback', icon: 'S' },
+  { label: 'Learning Outcome', value: 'Practical skills in the program subject area', icon: 'O' },
+  { label: 'Certificate', value: 'LSA Program Completion Certificate', icon: 'C' },
 ]
 
 const sharedGains: ProgramDetail['gains'] = [
@@ -113,14 +113,14 @@ const sharedCareerSupport: NonNullable<ProgramDetail['careerSupport']> = {
 }
 
 const sharedCertification: NonNullable<ProgramDetail['certification']> = {
-  previewTitle: 'Certificate Preview',
-  previewDescription: 'Add your sample certificate here so learners can see how the final credential looks.',
+  previewTitle: 'See what your LSA certificate looks like.',
+  previewDescription: 'A sample certificate showing the format, course details, completion information, and certificate identification.',
   previewImage: { src: `${import.meta.env.BASE_URL}certificates/templates/java.png`, alt: 'LSA sample certificate preview', width: 4419, height: 6250 },
   points: [
-    { title: 'Official LSA Completion Certificate', description: 'Completion recognition details will be confirmed by LSA.' },
-    { title: 'Assessment-Backed Validation', description: 'Assessment and checkpoint details will be added when verified.' },
-    { title: 'Portfolio Evidence', description: 'Show practical work that supports your learning story.' },
-    { title: 'Career-Focused Recognition', description: 'Recognition details will be confirmed for each program.' },
+    { title: 'Official LSA Completion Certificate', description: 'Receive a certificate from Lords Skill Academy upon successful completion of the program.' },
+    { title: 'Learning & Assessment', description: 'Demonstrate your understanding through practical learning activities, assignments, and program checkpoints.' },
+    { title: 'Project Portfolio', description: 'Build projects throughout the program that you can document and showcase alongside your certificate.' },
+    { title: 'Career Portfolio Support', description: 'Use your certificate and project work as part of your professional portfolio when presenting your skills to opportunities.' },
   ],
 }
 
@@ -162,45 +162,45 @@ const emptyDetail = (program: Program): ProgramDetail => ({
 export const programDetails: Record<string, ProgramDetail> = {
   'data-science': {
     ...emptyDetail({
-      title: 'Data Science',
+      title: 'Data Science With GenAI Program',
       slug: 'data-science',
       description: 'Work with data, analysis, and practical problem-solving workflows.',
       status: 'active',
     }),
     eyebrow: 'DATA SCIENCE',
     heroTitle: 'Build with data. Think beyond the spreadsheet.',
-    heroDescription: 'Practical Data Science training built around programming, data analysis, machine learning and real-world projects.',
+    heroDescription: 'Build practical skills in Python, data analysis, machine learning, and Generative AI, through guided learning and real projects.',
     heroMedia: {
       src: `${import.meta.env.BASE_URL}media/classroom-imgs/optimized/2SP00752.jpg`,
       alt: 'Students learning technology in an LSA classroom',
       width: 1800,
       height: 1125,
     },
-    batchStartDate: 'To be announced',
+    batchStartDate: '05 October, 2026',
     projects: [{}, {}, {}],
     toolsAndDisciplines: dataScienceTools,
     curriculumDownload: 'media/data-science-curriculum.txt',
+    careerSupport: undefined,
     highlights: [
       { label: 'Mode', value: 'Classroom / Hybrid learning format', icon: 'M' },
-      { label: 'Weekly Hours', value: '8 to 10 guided learning hours per week', icon: 'H' },
-      { label: 'Projects', value: '3 portfolio-driven projects with mentor review.', icon: 'P' },
-      { label: 'Support', value: 'Weekly doubt-clearing sessions and feedback loops.', icon: 'S' },
-      { label: 'Outcome', value: 'Job-ready workflows and practical confidence in analysis.', icon: 'O' },
-      { label: 'Certificate', value: 'LSA Data Science Completion Certificate', icon: 'C' },
+      { label: 'Weekly Hours', value: '8–10 hours of guided learning per week', icon: 'H' },
+      { label: 'Projects', value: '3 portfolio-focused projects with mentor feedback', icon: 'P' },
+      { label: 'Support', value: 'Weekly doubt-clearing sessions and learning feedback', icon: 'S' },
+      { label: 'Learning Outcome', value: 'Practical skills in data analysis, machine learning, and AI', icon: 'O' },
+      { label: 'Certificate', value: 'LSA Data Science Program Completion Certificate', icon: 'C' },
     ],
     gains: [
-      { title: 'Job-Ready Skills', description: 'Learn to clean, analyze, and present data using modern workflows.' },
-      { title: 'Hands-On Learning', description: 'Every module includes labs and exercises tied to practical use-cases.' },
-      { title: 'Mentor Support', description: 'Get guidance from experienced mentors on concepts and execution.' },
-      { title: 'Practical Projects', description: 'Build end-to-end mini case studies to strengthen your portfolio.' },
-      { title: 'Career Preparation', description: 'Interview strategy, profile polish, and project storytelling support.' },
+      { title: 'Practical Capability', description: 'Learn by doing, not just by watching.', practiceDescription: 'Work with Python, data tools, and AI technologies through guided exercises and practical problem-solving.' },
+      { title: 'Project Experience', description: 'Turn concepts into something you can show.', practiceDescription: 'Build meaningful Data Science projects, document your work, and develop a portfolio that demonstrates your skills.' },
+      { title: 'Career Readiness', description: 'Learn to communicate what you can do.', practiceDescription: 'Present your projects, explain your approach, discuss your decisions, and communicate your technical work with confidence.' },
     ],
     audiences: [
-      { title: 'Students', description: 'Build practical data skills early and stand out in internships.' },
-      { title: 'Fresh Graduates', description: 'Bridge the gap between academic learning and hiring expectations.' },
-      { title: 'Career Switchers', description: 'Transition into data-driven roles with structured guidance.' },
-      { title: 'Working Professionals', description: 'Upskill with job-relevant tools and project-based practice.' },
+      { title: 'Students', description: 'Start building practical data skills. Develop a strong foundation in Data Science through guided learning, hands-on practice, and projects.' },
+      { title: 'Fresh Graduates', description: 'Turn academic knowledge into practical experience. Strengthen your technical skills through applied learning, projects, and portfolio development.' },
+      { title: 'Career Switchers', description: 'Build a foundation for your next technology path. Learn the fundamentals of Data Science through a structured program with guided practice and project work.' },
+      { title: 'Working Professionals', description: 'Add data skills to your existing experience. Build practical knowledge of data tools, analytics, and AI through focused, project-based learning.' },
     ],
+    /*
     careerSupport: {
       title: 'Your Interview Readiness Track',
       description: 'Move from learner to candidate with a step-by-step support system designed for real hiring conversations.',
@@ -214,14 +214,15 @@ export const programDetails: Record<string, ProgramDetail> = {
         { title: 'Placement and Mentorship', description: 'Get role mapping, application support, and mentor guidance until interview stage.' },
       ],
     },
+    */
     certification: {
-      previewTitle: 'Certificate Preview',
-      previewDescription: 'Add your sample certificate here so learners can see how the final credential looks.',
+      previewTitle: 'See what your LSA certificate looks like.',
+      previewDescription: 'A sample certificate showing the format, course details, completion information, and certificate identification.',
       points: [
-        { title: 'Official LSA Completion Certificate', description: 'Receive recognized completion proof from Lords Skill Academy.' },
-        { title: 'Assessment-Backed Validation', description: 'Skills are validated through practical checkpoints and assignments.' },
-        { title: 'Portfolio Evidence', description: 'Show verified project work that supports your interview narrative.' },
-        { title: 'Career-Focused Recognition', description: 'Designed to strengthen your profile for entry-level data opportunities.' },
+        { title: 'Official LSA Completion Certificate', description: 'Receive a certificate from Lords Skill Academy upon successful completion of the program.' },
+        { title: 'Learning & Assessment', description: 'Demonstrate your understanding through practical learning activities, assignments, and program checkpoints.' },
+        { title: 'Project Portfolio', description: 'Build projects throughout the program that you can document and showcase alongside your certificate.' },
+        { title: 'Career Portfolio Support', description: 'Use your certificate and project work as part of your professional portfolio when presenting your skills to opportunities.' },
       ],
     },
     trainer: {
