@@ -567,6 +567,12 @@ const emptyDetail = (program: Program): ProgramDetail => ({
   heroTitle: `${program.title}. Build what comes next.`,
   heroDescription: program.description,
   batchStartDate: 'To be announced',
+  heroMedia: {
+    src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00752.jpg`,
+    alt: 'Students learning technology together in an LSA classroom',
+    width: 1800,
+    height: 1125,
+  },
   projects: [],
   curriculum: [],
   toolsAndDisciplines: [],
