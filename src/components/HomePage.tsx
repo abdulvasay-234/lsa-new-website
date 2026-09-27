@@ -21,10 +21,6 @@ const homepageSocialLinks = [
 
 gsap.registerPlugin(ScrollTrigger)
 
-function MediaPlaceholder({ label }: { label: string }) {
-  return <div className="media-placeholder" role="img" aria-label={`${label} media slot`}>{label}</div>
-}
-
 function SmoothHeroVideo() {
   const [activeIndex, setActiveIndex] = useState(0)
   const videoRefs = useRef<Array<HTMLVideoElement | null>>([null, null])
@@ -347,11 +343,7 @@ export function HomePage() {
             </div>
           </div>
           <div className="editorial-media">
-            {homepageContent.campus.media.length > 0 && (
-              <div className="editorial-media-card editorial-media-card-main">
-                <ResponsiveImage asset={homepageContent.campus.media[0]} loading="eager" />
-              </div>
-            )}
+            {homepageContent.about.media.map((asset) => <div className="editorial-media-card editorial-media-card-main" key={asset.src}><ResponsiveImage asset={asset} loading="eager" /></div>)}
           </div>
         </Container>
       </Section>
@@ -395,7 +387,7 @@ export function HomePage() {
             <ButtonLink href={getRouteHref('/', '/campus')} variant="outline">Explore our campus initiatives →</ButtonLink>
           </div>
           <div className="campus-gallery">
-            {homepageContent.campus.media.length > 0 ? homepageContent.campus.media.map((asset) => <ResponsiveImage asset={asset} key={asset.src} />) : <MediaPlaceholder label="Real LSA campus photography" />}
+            <ResponsiveImage asset={homepageContent.campus.campusSectionImage} />
           </div>
         </Container>
       </Section>

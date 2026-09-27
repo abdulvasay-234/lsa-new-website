@@ -578,11 +578,11 @@ const emptyDetail = (program: Program): ProgramDetail => ({
   trainer: { description: 'Trainer profile and teaching experience will be added when verified LSA faculty information is available.' },
   hiring: { description: 'Verified hiring partner information will be added when confirmed by LSA.', partners: [] },
   classroomGallery: [
-    { src: `${import.meta.env.BASE_URL}media/classroom-imgs/optimized/2SP00752.jpg`, alt: 'Students learning technology in an LSA classroom', caption: 'Classroom learning moment' },
-    { src: `${import.meta.env.BASE_URL}media/classroom-imgs/optimized/2SP00621%20(1).jpg`, alt: 'Students working together during an LSA learning session', caption: 'Students working together' },
-    { src: `${import.meta.env.BASE_URL}media/classroom-imgs/optimized/2SP00712.jpg`, alt: 'Learners taking part in practical technology training', caption: 'Practical learning session' },
-    { src: `${import.meta.env.BASE_URL}media/classroom-imgs/optimized/2SP00664.jpg`, alt: 'Learner discussion during an LSA classroom session', caption: 'Learner discussion' },
-    { src: `${import.meta.env.BASE_URL}media/classroom-imgs/optimized/2SP00590%20(1).jpg`, alt: 'LSA classroom group learning together', caption: 'LSA classroom group' },
+    { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00752.jpg`, alt: 'Students learning technology in an LSA classroom', caption: 'Classroom learning moment' },
+    { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00621%20(1).jpg`, alt: 'Students working together during an LSA learning session', caption: 'Students working together' },
+    { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00712.jpg`, alt: 'Learners taking part in practical technology training', caption: 'Practical learning session' },
+    { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00664.jpg`, alt: 'Learner discussion during an LSA classroom session', caption: 'Learner discussion' },
+    { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00590%20(1).jpg`, alt: 'LSA classroom group learning together', caption: 'LSA classroom group' },
   ],
   process: sharedProcess,
   details: [
@@ -608,7 +608,7 @@ export const programDetails: Record<string, ProgramDetail> = {
     heroTitle: 'Build with data. Think beyond the spreadsheet.',
     heroDescription: 'Build practical skills in Python, data analysis, machine learning, and Generative AI, through guided learning and real projects.',
     heroMedia: {
-      src: `${import.meta.env.BASE_URL}media/classroom-imgs/optimized/2SP00752.jpg`,
+      src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00752.jpg`,
       alt: 'Students learning technology in an LSA classroom',
       width: 1800,
       height: 1125,

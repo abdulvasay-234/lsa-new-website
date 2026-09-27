@@ -3,10 +3,10 @@ import { ButtonLink } from './Button'
 import { Container, Section } from './Layout'
 
 const eventImages = [
-  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/optimized/2SP00752.jpg`, alt: 'LSA learners taking part in a hands-on technology session', label: 'LEARN TOGETHER' },
-  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/optimized/2SP00621%20(1).jpg`, alt: 'LSA students collaborating on practical work', label: 'BUILD TOGETHER' },
-  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/optimized/2SP00664.jpg`, alt: 'LSA learners discussing ideas during a class activity', label: 'SHARE IDEAS' },
-  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/optimized/2SP00590%20(1).jpg`, alt: 'LSA students gathered for a shared learning experience', label: 'FIND YOUR PEOPLE' },
+  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00752.jpg`, alt: 'LSA learners taking part in a hands-on technology session', label: 'LEARN TOGETHER' },
+  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00621%20(1).jpg`, alt: 'LSA students collaborating on practical work', label: 'BUILD TOGETHER' },
+  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00664.jpg`, alt: 'LSA learners discussing ideas during a class activity', label: 'SHARE IDEAS' },
+  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00590%20(1).jpg`, alt: 'LSA students gathered for a shared learning experience', label: 'FIND YOUR PEOPLE' },
 ] as const
 
 const eventFormats = [

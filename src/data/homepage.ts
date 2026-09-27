@@ -31,6 +31,7 @@ export const homepageContent = {
     eyebrow: 'What is LSA?',
     title: 'Learning should go beyond the classroom.',
     body: 'Lords Skill Academy (LSA) is a modern technology learning platform designed to help students move from learning concepts to applying them in the real world.',
+    media: [{ src: `${import.meta.env.BASE_URL}media/industry-learning.png`, alt: 'LSA students collaborating around a computer during a practical learning session', width: 575, height: 360 }] as MediaAsset[],
     supportingBody: "We combine structured learning with hands-on practice, industry-relevant tools, projects, mentorship, and career-focused experiences — so students don't just learn what technology is, but understand how to use it.\n\nLearn. Build. Experience. Grow. Because today's technology careers demand more than knowledge — they demand the ability to turn knowledge into something real.",
   },
   philosophy: {
@@ -53,11 +54,17 @@ export const homepageContent = {
     eyebrow: 'LSA in campuses',
     title: 'Where campus learning meets the real world.',
     body: 'LSA works with educational institutions to bring practical, industry-relevant technology learning directly to campus.',
+    campusSectionImage: {
+      src: `${import.meta.env.BASE_URL}media/campus-learning.png`,
+      alt: 'Students learning technology at computers in an LSA classroom',
+      width: 575,
+      height: 360,
+    } as MediaAsset,
     supportingBody: "Through technology programs, workshops, bootcamps, internships, projects, and hackathons, we create hands-on learning experiences that complement academic education and help students explore how technology is actually built and used. Students don't just attend sessions. They experiment with tools, build projects, solve real problems, collaborate with peers, and gain experience working with modern technologies.",
     editorialItems: ['PROGRAMS', 'WORKSHOPS', 'BOOTCAMPS', 'PROJECTS', 'INTERNSHIPS', 'HACKATHONS'],
     media: [
       {
-        src: `${import.meta.env.BASE_URL}media/classroom-imgs/optimized/2SP00621%20(1).jpg`,
+        src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00621%20(1).jpg`,
         alt: 'Students engaging with practical learning in an LSA classroom setting',
         width: 1600,
         height: 900,
