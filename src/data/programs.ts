@@ -256,11 +256,78 @@ const pythonTools: ProgramDetail['toolsAndDisciplines'] = [
 ]
 
 const fullStackJavaTools: ProgramDetail['toolsAndDisciplines'] = [
-  tools('PROGRAMMING', [['Java', 'JV', 'Build applications with a structured language.'], ['OOP', 'OO', 'Model reusable application behaviour.']], 'Create a foundation for application development.'),
-  tools('BACKEND', [['Spring Boot', 'SB', 'Develop Java services and applications.'], ['REST APIs', 'API', 'Connect services through web interfaces.']], 'Build the systems behind the interface.'),
-  tools('FRONTEND', [['HTML', 'HT', 'Structure web experiences.'], ['CSS', 'CS', 'Shape layout and visual presentation.'], ['JavaScript', 'JS', 'Add behaviour to web interfaces.']], 'Turn application logic into usable experiences.'),
-  tools('DATABASE', [['SQL', 'SQL', 'Work with structured application data.'], ['Database design', 'DB', 'Plan how application data is organised.']], 'Make information reliable and accessible.'),
-  tools('DEVELOPMENT WORKFLOW', [['VS Code', 'VS', 'Work across application files and services.'], ['GitHub', 'GH', 'Share and manage project work.']], 'Keep full-stack work organised.'),
+  tools('JAVA PROGRAMMING', [
+    ['JAVA', 'fa-java', 'Primary language for application development.'],
+    ['JDK / JVM', 'fa-gears', 'Develop and run Java applications.'],
+    ['INTELLIJ IDEA', 'si-intellij-idea', 'Write and manage Java projects in IntelliJ IDEA.'],
+    ['VS CODE', 'vsc-vscode', 'Edit and manage project source code.'],
+    ['VARIABLES / DATA TYPES', 'fa-tags', 'Store and work with typed values.'],
+    ['CONTROL FLOW', 'fa-code-branch', 'Control execution with conditions and loops.'],
+    ['ARRAYS / STRINGS', 'fa-layer-group', 'Work with sequences and text.'],
+    ['METHODS / EXCEPTION HANDLING', 'fa-code', 'Organize reusable operations and handle exceptions.'],
+    ['COLLECTIONS / GENERICS', 'fa-boxes-stacked', 'Work with typed groups of objects.'],
+  ], 'Build a practical foundation in Java and its core programming tools.'),
+  tools('OBJECT-ORIENTED JAVA', [
+    ['OOP', 'fa-diagram-project', 'Structure programs around objects and behavior.'],
+    ['CLASSES / OBJECTS', 'fa-boxes-stacked', 'Define classes and create instances.'],
+    ['CONSTRUCTORS', 'fa-code', 'Initialize newly created objects.'],
+    ['ENCAPSULATION', 'fa-lock', 'Control access to object state.'],
+    ['INHERITANCE', 'fa-share-nodes', 'Reuse and extend class behavior.'],
+    ['POLYMORPHISM', 'fa-arrows-rotate', 'Use common interfaces with varied behavior.'],
+    ['ABSTRACTION / INTERFACES', 'fa-cubes', 'Define essential behavior through abstractions.'],
+    ['PACKAGES', 'fa-folder-open', 'Organize related Java classes.'],
+    ['METHOD OVERLOADING / OVERRIDING', 'fa-code-branch', 'Define methods with related signatures and behavior.'],
+  ], 'Structure Java programs using classes, objects, and core object-oriented principles.'),
+  tools('DATABASES & SQL', [
+    ['MYSQL', 'si-mysql', 'Relational database for application data.'],
+    ['SQL', 'fa-database', 'Query and manage relational data.'],
+    ['DATABASE DESIGN', 'fa-diagram-project', 'Plan tables and relationships.'],
+    ['CRUD', 'fa-arrows-rotate', 'Create, read, update, and delete records.'],
+    ['PRIMARY / FOREIGN KEYS', 'fa-link', 'Define unique records and table relationships.'],
+    ['JOINS / SUBQUERIES', 'fa-code-branch', 'Combine data and compose nested queries.'],
+    ['AGGREGATES / GROUP BY / HAVING', 'fa-chart-column', 'Summarize and filter grouped data.'],
+    ['NORMALIZATION', 'fa-layer-group', 'Organize relational data to reduce redundancy.'],
+    ['JDBC', 'fa-network', 'Connect Java applications to databases.'],
+  ], 'Work with MySQL, SQL queries, and relational database design.'),
+  tools('WEB DEVELOPMENT', [
+    ['HTML5', 'si-html5', 'Structure web pages and content.'],
+    ['CSS3', 'si-css', 'Style and lay out responsive interfaces.'],
+    ['JAVASCRIPT', 'si-javascript', 'Add behavior to browser interfaces.'],
+    ['DOM / FORMS', 'fa-code', 'Work with page structure and user input.'],
+    ['RESPONSIVE DESIGN', 'fa-computer', 'Adapt interfaces to different screens.'],
+    ['HTTP / HTTPS', 'fa-network', 'Understand web communication and secure transport.'],
+    ['JSON / REST', 'fa-code-branch', 'Exchange structured data through web APIs.'],
+  ], 'Build the browser-facing foundations of full-stack applications.'),
+  tools('SPRING & BACKEND', [
+    ['SPRING / SPRING BOOT', 'si-spring-boot', 'Build Java backend applications and services.'],
+    ['SPRING MVC', 'si-spring', 'Structure web requests and application responses.'],
+    ['REST APIs', 'fa-network', 'Connect application clients and backend services.'],
+    ['DEPENDENCY INJECTION', 'fa-diagram-project', 'Compose application components through managed dependencies.'],
+    ['CONTROLLERS / SERVICES / REPOSITORIES', 'fa-layer-group', 'Organize backend responsibilities into layers.'],
+    ['SPRING DATA JPA / HIBERNATE', 'si-hibernate', 'Persist Java objects with ORM tools.'],
+    ['ENTITY RELATIONSHIPS', 'fa-link', 'Model relationships between application entities.'],
+    ['VALIDATION / EXCEPTION HANDLING', 'fa-shield-halved', 'Validate input and handle backend errors.'],
+  ], 'Build Java backends with Spring, Spring Boot, APIs, and persistence.'),
+  tools('REACT & FRONTEND', [
+    ['REACT', 'si-react', 'Build interfaces from reusable components.'],
+    ['JAVASCRIPT ES6+', 'si-javascript', 'Use modern JavaScript syntax and features.'],
+    ['COMPONENTS / PROPS / STATE', 'fa-boxes-stacked', 'Compose UI and manage component data.'],
+    ['HOOKS', 'fa-arrows-rotate', 'Use React functions for state and component behavior.'],
+    ['FORMS / ROUTING', 'fa-code-branch', 'Handle user input and page navigation.'],
+    ['API INTEGRATION', 'fa-network', 'Connect the frontend with backend services.'],
+    ['RESPONSIVE UI', 'fa-computer', 'Build interfaces for different screen sizes.'],
+  ], 'Build the frontend with React and connect it to Java services.'),
+  tools('FULL-STACK & DEVELOPMENT', [
+    ['REACT + SPRING BOOT', 'si-react', 'Connect a React frontend to a Java backend.'],
+    ['REST API INTEGRATION', 'fa-network', 'Exchange data between frontend and backend.'],
+    ['AUTHENTICATION / AUTHORIZATION / JWT', 'fa-user-shield', 'Manage identity, access, and token-based sessions.'],
+    ['POSTMAN', 'si-postman', 'Send requests and test APIs.'],
+    ['GIT / GITHUB', 'si-github', 'Track and collaborate on application code.'],
+    ['MAVEN', 'si-apache-maven', 'Manage Java builds and dependencies.'],
+    ['ENVIRONMENT VARIABLES', 'fa-gear', 'Configure applications by environment.'],
+    ['DEBUGGING', 'fa-bug', 'Inspect and resolve application issues.'],
+    ['BUILD / PACKAGE / DEPLOYMENT', 'fa-box-archive', 'Package and deploy full-stack applications.'],
+  ], 'Bring the Java, React, database, and API layers together in full-stack applications.'),
 ]
 
 const devOpsTools: ProgramDetail['toolsAndDisciplines'] = [
@@ -333,11 +400,48 @@ const devOpsTools: ProgramDetail['toolsAndDisciplines'] = [
 ]
 
 const powerBiTools: ProgramDetail['toolsAndDisciplines'] = [
-  tools('DATA', [['SQL', 'SQL', 'Query the data behind reports.'], ['Excel', 'XL', 'Work with familiar tabular data.']], 'Start with clean, useful source data.'),
-  tools('MODELLING', [['Data modelling', 'DM', 'Structure data for analysis.'], ['Relationships', 'RL', 'Connect tables with meaning and control.']], 'Turn datasets into a dependable model.'),
-  tools('POWER BI', [['Power BI', 'BI', 'Create interactive reports and dashboards.'], ['Power Query', 'PQ', 'Prepare and transform data.'], ['DAX', 'DX', 'Write measures for analytical questions.']], 'Build reports that support decisions.'),
-  tools('VISUALISATION', [['Dashboard design', 'DB', 'Organise information for scanning.'], ['Data storytelling', 'DS', 'Give insights a clear narrative.']], 'Make the important signal visible.'),
-  tools('WORKFLOW', [['GitHub', 'GH', 'Share project documentation and work.'], ['Publishing workflow', 'PW', 'Move reports from work to audience.']], 'Keep reporting work clear and repeatable.'),
+  tools('POWER BI FUNDAMENTALS', [
+    ['POWER BI DESKTOP', 'fa-chart-column', 'Build reports and dashboards in Power BI Desktop.'],
+    ['POWER BI SERVICE', 'fa-cloud', 'Publish and use Power BI content online.'],
+    ['INTERFACE / WORKSPACES', 'fa-layer-group', 'Navigate the interface and organize content in workspaces.'],
+    ['REPORTS / DASHBOARDS', 'fa-chart-line', 'Present data through reports and dashboards.'],
+  ], 'Explore the Power BI environment, reports, and dashboards.'),
+  tools('DATA SOURCES & IMPORT', [
+    ['EXCEL', 'fa-file-excel', 'Connect to spreadsheet data.'],
+    ['CSV', 'fa-file-csv', 'Import comma-separated data.'],
+    ['DATA IMPORT / CONNECTIONS', 'fa-link', 'Connect Power BI to supported data sources.'],
+    ['POWER QUERY BASICS', 'fa-filter', 'Preview and prepare data during import.'],
+  ], 'Bring spreadsheet and CSV data into Power BI.'),
+  tools('POWER QUERY & DATA CLEANING', [
+    ['POWER QUERY', 'fa-filter', 'Transform data before loading it into a model.'],
+    ['DATA TRANSFORMATION', 'fa-arrows-rotate', 'Shape source data for reports.'],
+    ['FILTER / SORT / MERGE / APPEND', 'fa-list-check', 'Combine and organize query results.'],
+    ['MISSING DATA HANDLING', 'fa-table-cells', 'Identify and handle missing values.'],
+  ], 'Prepare and transform data using Power Query.'),
+  tools('DATA MODELING', [
+    ['TABLES / RELATIONSHIPS', 'fa-diagram-project', 'Connect tables within a data model.'],
+    ['PRIMARY / FOREIGN KEYS', 'fa-link', 'Relate records across tables.'],
+    ['STAR SCHEMA', 'fa-star', 'Organize models around facts and dimensions.'],
+    ['CALCULATED COLUMNS / HIERARCHIES', 'fa-layer-group', 'Add model calculations and drillable structures.'],
+  ], 'Organize tables, relationships, and model structures.'),
+  tools('DAX & CALCULATIONS', [
+    ['DAX', 'fa-chart-line', 'Create calculations for Power BI models.'],
+    ['MEASURES / CALCULATED COLUMNS', 'fa-calculator', 'Add model calculations and reusable measures.'],
+    ['SUM / COUNT / CALCULATE / FILTER', 'fa-calculator', 'Use core DAX functions for analysis.'],
+    ['BASIC TIME INTELLIGENCE', 'fa-clock', 'Compare values across time periods.'],
+  ], 'Write DAX calculations and measures for reports.'),
+  tools('VISUALIZATION & REPORTING', [
+    ['CHARTS / TABLES / CARDS', 'fa-chart-column', 'Present values and comparisons in reports.'],
+    ['SLICERS / FILTERS', 'fa-filter', 'Let report users explore selected data.'],
+    ['DRILL-THROUGH', 'fa-magnifying-glass-chart', 'Navigate from summaries to supporting detail.'],
+    ['INTERACTIVE DASHBOARDS / REPORT DESIGN', 'fa-chart-line', 'Design readable, interactive reports.'],
+  ], 'Present and explore insights through interactive reports.'),
+  tools('POWER BI SERVICE & SHARING', [
+    ['PUBLISHING REPORTS / DASHBOARDS', 'fa-cloud-arrow-up', 'Publish content to the Power BI Service.'],
+    ['WORKSPACES / SHARING', 'fa-people-group', 'Organize and share reports with collaborators.'],
+    ['COLLABORATION', 'fa-comments', 'Work with shared Power BI content.'],
+    ['SCHEDULED REFRESH BASICS', 'fa-arrows-rotate', 'Keep connected data up to date.'],
+  ], 'Publish, share, and maintain Power BI content.'),
 ]
 
 const digitalMarketingTools: ProgramDetail['toolsAndDisciplines'] = [

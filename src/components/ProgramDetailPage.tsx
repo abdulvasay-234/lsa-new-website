@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { FaArrowsRotate, FaArrowRight, FaAws, FaBookOpen, FaBoxArchive, FaBoxesStacked, FaBrain, FaBug, FaBullseye, FaCalendarDays, FaCertificate, FaChartArea, FaChartColumn, FaChartLine, FaChartSimple, FaCircleNodes, FaClock, FaCloud, FaCode, FaCodeBranch, FaComments, FaCompass, FaComputer, FaCubes, FaDatabase, FaDiagramProject, FaFileCode, FaFileCsv, FaFileLines, FaFileShield, FaFilter, FaFire, FaFingerprint, FaFlask, FaFolderOpen, FaGauge, FaGear, FaGavel, FaGlobe, FaLayerGroup, FaLaptopCode, FaLightbulb, FaLink, FaLinkedinIn, FaList, FaListCheck, FaLock, FaMagnifyingGlass, FaMagnifyingGlassChart, FaNetworkWired, FaPeopleGroup, FaPersonChalkboard, FaPuzzlePiece, FaRobot, FaRotate, FaScaleBalanced, FaServer, FaShareNodes, FaShield, FaShieldHalved, FaSitemap, FaTableCells, FaTags, FaTerminal, FaTree, FaTriangleExclamation, FaUserShield, FaWandMagicSparkles, FaWifi, FaWindows } from 'react-icons/fa6'
-import { SiAnaconda, SiArgo, SiBurpsuite, SiCrewai, SiDocker, SiFacebook, SiFlux, SiGit, SiGithubactions, SiGoogle, SiGoogleads, SiGoogleanalytics, SiGooglesearchconsole, SiGrafana, SiGooglecloud, SiInfracost, SiInstagram, SiJenkins, SiJupyter, SiKalilinux, SiKubernetes, SiLanggraph, SiLinux, SiMeta, SiMetasploit, SiMongodb, SiMysql, SiNumpy, SiOwasp, SiOpentelemetry, SiPandas, SiPostgresql, SiPulumi, SiPytorch, SiPython, SiScikitlearn, SiTensorflow, SiTerraform, SiTrivy, SiVault, SiVim, SiWhatsapp, SiWireshark, SiYoutube } from 'react-icons/si'
+import { FaArrowsRotate, FaArrowRight, FaAws, FaBookOpen, FaBoxArchive, FaBoxesStacked, FaBrain, FaBug, FaBullseye, FaCalculator, FaCalendarDays, FaCertificate, FaChartArea, FaChartColumn, FaChartLine, FaChartSimple, FaCircleNodes, FaClock, FaCloud, FaCloudArrowUp, FaCode, FaCodeBranch, FaComments, FaCompass, FaComputer, FaCss3, FaCubes, FaDatabase, FaDiagramProject, FaFileCode, FaFileCsv, FaFileExcel, FaFileLines, FaFileShield, FaFilter, FaFire, FaFingerprint, FaFlask, FaFolderOpen, FaGauge, FaGear, FaGears, FaGavel, FaGlobe, FaHtml5, FaJava, FaLayerGroup, FaLaptopCode, FaLightbulb, FaLink, FaLinkedinIn, FaList, FaListCheck, FaLock, FaMagnifyingGlass, FaMagnifyingGlassChart, FaNetworkWired, FaPeopleGroup, FaPersonChalkboard, FaPuzzlePiece, FaRobot, FaRotate, FaScaleBalanced, FaServer, FaShareNodes, FaShield, FaShieldHalved, FaSitemap, FaStar, FaTableCells, FaTags, FaTerminal, FaTree, FaTriangleExclamation, FaUserShield, FaWandMagicSparkles, FaWifi, FaWindows } from 'react-icons/fa6'
+import { SiAnaconda, SiApachemaven, SiArgo, SiBurpsuite, SiCrewai, SiCss, SiDocker, SiFacebook, SiFlux, SiGit, SiGithub, SiGithubactions, SiGoogle, SiGoogleads, SiGoogleanalytics, SiGooglesearchconsole, SiGrafana, SiGooglecloud, SiHibernate, SiHtml5, SiInfracost, SiInstagram, SiIntellijidea, SiJenkins, SiJupyter, SiJavascript, SiKalilinux, SiKubernetes, SiLanggraph, SiLinux, SiMeta, SiMetasploit, SiMongodb, SiMysql, SiNumpy, SiOwasp, SiOpentelemetry, SiPandas, SiPostgresql, SiPostman, SiPulumi, SiPytorch, SiPython, SiReact, SiScikitlearn, SiSpring, SiSpringboot, SiTensorflow, SiTerraform, SiTrivy, SiVault, SiVim, SiWhatsapp, SiWireshark, SiYoutube } from 'react-icons/si'
 import { VscVscode } from 'react-icons/vsc'
 import type { IconType } from 'react-icons'
 import { getRouteHref } from '../data/routes'
@@ -14,6 +14,8 @@ const programToolIcons: Record<string, IconType> = {
   'fa-arrows-rotate': FaArrowsRotate,
   'fa-arrow-right': FaArrowRight,
   'fa-aws': FaAws,
+  'fa-calculator': FaCalculator,
+  'fa-cloud-arrow-up': FaCloudArrowUp,
   'fa-brain': FaBrain,
   'fa-book-open': FaBookOpen,
   'fa-box-archive': FaBoxArchive,
@@ -39,15 +41,20 @@ const programToolIcons: Record<string, IconType> = {
   'fa-diagram-project': FaDiagramProject,
   'fa-file-code': FaFileCode,
   'fa-file-csv': FaFileCsv,
+  'fa-file-excel': FaFileExcel,
   'fa-file-lines': FaFileLines,
   'fa-file-shield': FaFileShield,
   'fa-filter': FaFilter,
+  'fa-java': FaJava,
+  'fa-html5': FaHtml5,
+  'fa-css3': FaCss3,
   'fa-fire': FaFire,
   'fa-fingerprint': FaFingerprint,
   'fa-flask': FaFlask,
   'fa-folder-open': FaFolderOpen,
   'fa-gauge': FaGauge,
   'fa-gear': FaGear,
+  'fa-gears': FaGears,
   'fa-gavel': FaGavel,
   'fa-globe': FaGlobe,
   'fa-layer-group': FaLayerGroup,
@@ -69,6 +76,7 @@ const programToolIcons: Record<string, IconType> = {
   'fa-scale-balanced': FaScaleBalanced,
   'fa-server': FaServer,
   'fa-share-nodes': FaShareNodes,
+  'fa-star': FaStar,
   'fa-shield': FaShield,
   'fa-shield-halved': FaShieldHalved,
   'fa-sitemap': FaSitemap,
@@ -83,12 +91,23 @@ const programToolIcons: Record<string, IconType> = {
   'fa-tree': FaTree,
   'si-argo': SiArgo,
   'si-anaconda': SiAnaconda,
+  'si-intellij-idea': SiIntellijidea,
+  'si-html5': SiHtml5,
+  'si-javascript': SiJavascript,
+  'si-spring': SiSpring,
+  'si-spring-boot': SiSpringboot,
+  'si-hibernate': SiHibernate,
+  'si-react': SiReact,
+  'si-github': SiGithub,
+  'si-postman': SiPostman,
+  'si-apache-maven': SiApachemaven,
   'si-burp-suite': SiBurpsuite,
   'si-crewai': SiCrewai,
   'si-docker': SiDocker,
   'si-flux': SiFlux,
   'si-facebook': SiFacebook,
   'si-git': SiGit,
+  'si-css': SiCss,
   'si-github-actions': SiGithubactions,
   'si-grafana': SiGrafana,
   'si-google': SiGoogle,
@@ -122,6 +141,7 @@ const programToolIcons: Record<string, IconType> = {
   'si-vault': SiVault,
   'si-vim': SiVim,
   'si-vscode': VscVscode,
+  'vsc-vscode': VscVscode,
   'si-whatsapp': SiWhatsapp,
   'si-wireshark': SiWireshark,
   'si-youtube': SiYoutube,
@@ -195,20 +215,22 @@ function ToolsAndDisciplines({ categories, curriculumDownload }: { categories: P
   const isDevOpsStack = categories.some((category) => category.category === 'LINUX & AUTOMATION')
   const isDigitalMarketingStack = categories.some((category) => category.category === 'SEO & SEARCH')
   const isPythonProgrammingStack = categories.some((category) => category.category === 'PYTHON FUNDAMENTALS')
+  const isFullStackJavaStack = categories.some((category) => category.category === 'JAVA PROGRAMMING')
+  const isPowerBiStack = categories.some((category) => category.category === 'POWER BI FUNDAMENTALS')
   const hasPlacementSupport = categories.some((category) => category.category === 'PLACEMENT SUPPORT')
 
   if (!categories.length) return null
 
   return (
-    <Section className={`program-detail-section program-detail-tools${isDataScienceStack || isCyberSecurityStack || hasPlacementSupport ? ' program-detail-tools-stack' : ''}${isDataScienceStack || isCyberSecurityStack ? ' program-detail-tools-compact' : ''}${isDevOpsStack ? ' program-detail-tools-devops' : ''}${isDigitalMarketingStack ? ' program-detail-tools-marketing' : ''}${isPythonProgrammingStack ? ' program-detail-tools-python' : ''}`}>
+    <Section className={`program-detail-section program-detail-tools${isDataScienceStack || isCyberSecurityStack || hasPlacementSupport ? ' program-detail-tools-stack' : ''}${isDataScienceStack || isCyberSecurityStack ? ' program-detail-tools-compact' : ''}${isDevOpsStack ? ' program-detail-tools-devops' : ''}${isDigitalMarketingStack ? ' program-detail-tools-marketing' : ''}${isPythonProgrammingStack ? ' program-detail-tools-python' : ''}${isFullStackJavaStack ? ' program-detail-tools-java' : ''}${isPowerBiStack ? ' program-detail-tools-powerbi' : ''}`}>
       <Container>
-        <div className="program-detail-heading"><p className="section-marker">{isDataScienceStack ? '03 — TECHNOLOGY STACK' : '03 — TOOLS & DISCIPLINES'}</p><h2>{isDataScienceStack ? "Tools you'll learn to work with." : isPythonProgrammingStack ? 'Learn Python. Build real programming foundations.' : 'Learn the tools. Understand the stack.'}</h2>{!isDevOpsStack && <p>{isDataScienceStack ? 'The Data Science program brings together the languages, libraries, platforms, and AI tools used to analyse data, build models, and solve practical problems.' : isCyberSecurityStack ? 'Work with the technologies, platforms, tools, and security disciplines used throughout the learning journey.' : isDigitalMarketingStack ? 'Work across search, social media, advertising, analytics, content, and digital growth.' : isPythonProgrammingStack ? 'Build a strong Python programming foundation through practical coding, problem-solving, development workflows, and object-oriented programming.' : 'Work with the technologies, platforms, and disciplines used throughout the learning journey.'}</p>}</div>
+        <div className="program-detail-heading"><p className="section-marker">{isDataScienceStack ? '03 — TECHNOLOGY STACK' : '03 — TOOLS & DISCIPLINES'}</p><h2>{isDataScienceStack ? "Tools you'll learn to work with." : isPythonProgrammingStack ? 'Learn Python. Build real programming foundations.' : isFullStackJavaStack ? 'Build the stack. Understand the system.' : 'Learn the tools. Understand the stack.'}</h2>{!isDevOpsStack && <p>{isDataScienceStack ? 'The Data Science program brings together the languages, libraries, platforms, and AI tools used to analyse data, build models, and solve practical problems.' : isCyberSecurityStack ? 'Work with the technologies, platforms, tools, and security disciplines used throughout the learning journey.' : isDigitalMarketingStack ? 'Work across search, social media, advertising, analytics, content, and digital growth.' : isPythonProgrammingStack ? 'Build a strong Python programming foundation through practical coding, problem-solving, development workflows, and object-oriented programming.' : isFullStackJavaStack ? 'Work across Java, databases, modern frontend development, Spring Boot, APIs, and full-stack application development.' : 'Work with the technologies, platforms, and disciplines used throughout the learning journey.'}</p>}</div>
         <div className="program-tools-explorer">
           <div className="program-tools-categories-wrap">
             <div className="program-tools-categories" role="tablist" aria-label="Tools and disciplines categories">
             {categories.map((category, index) => {
               const isSelected = index === selectedCategory
-              return <button className={`program-tools-category ${isSelected ? 'is-selected' : ''}`} type="button" role="tab" aria-selected={isSelected} aria-controls={`program-tools-panel-${index}`} id={`program-tools-tab-${index}`} key={category.category} onClick={() => setSelectedCategory(index)}><span aria-hidden="true">{isCyberSecurityStack || isDevOpsStack || isDigitalMarketingStack || isPythonProgrammingStack ? String(index + 1).padStart(2, '0') : isSelected ? '●' : '○'}</span>{category.category}</button>
+              return <button className={`program-tools-category ${isSelected ? 'is-selected' : ''}`} type="button" role="tab" aria-selected={isSelected} aria-controls={`program-tools-panel-${index}`} id={`program-tools-tab-${index}`} key={category.category} onClick={() => setSelectedCategory(index)}><span aria-hidden="true">{isCyberSecurityStack || isDevOpsStack || isDigitalMarketingStack || isPythonProgrammingStack || isFullStackJavaStack || isPowerBiStack ? String(index + 1).padStart(2, '0') : isSelected ? '●' : '○'}</span>{category.category}</button>
             })}
             </div>
             {curriculumDownload ? <a className="program-tools-category-note" href={`${import.meta.env.BASE_URL}${curriculumDownload}`} download>Download curriculum <span aria-hidden="true">↓</span></a> : <p className="program-tools-category-note">Curriculum download coming soon.</p>}
