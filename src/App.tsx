@@ -8,6 +8,7 @@ import { ProgramDetailPage } from './components/ProgramDetailPage'
 import { ContactPage } from './components/ContactPage'
 import { AboutPage } from './components/AboutPage'
 import { CampusPage } from './components/CampusPage'
+import { EventsCommunityPage } from './components/EventsCommunityPage'
 import { CertificatesPage } from './components/CertificatesPage'
 import { TrainersPage } from './components/TrainersPage'
 import { BlogPage, BlogPostDetailPage } from './components/BlogPage'
@@ -131,6 +132,10 @@ export function App({ pathname = window.location.pathname }: { pathname?: string
 
     if (route.path === '/campus') {
       return <SiteShell route={route}><CampusPage /></SiteShell>
+    }
+
+    if (route.path === '/campus/events') {
+      return <SiteShell route={route}><EventsCommunityPage /></SiteShell>
     }
 
     if (route.path === '/certificates') {

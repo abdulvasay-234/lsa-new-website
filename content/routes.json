@@ -187,12 +187,5 @@
     "section": "secondary",
     "title": "Events | Lords Skill Academy",
     "description": "Verified events from Lords Skill Academy."
-  },
-  {
-    "path": "/campus/internships",
-    "label": "Internships",
-    "section": "secondary",
-    "title": "Internships | Lords Skill Academy",
-    "description": "Internship information from Lords Skill Academy."
   }
 ]

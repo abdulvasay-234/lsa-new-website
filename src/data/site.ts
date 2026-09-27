@@ -74,7 +74,6 @@ export const siteNavigation = [
     children: [
       { label: 'Campus Programs', path: '/campus/programs' },
       { label: 'Events', path: '/campus/events' },
-      { label: 'Internships', path: '/campus/internships' },
     ],
   },
 ] as const
@@ -101,7 +100,6 @@ export const footerNavigation = [
     links: [
       { label: 'Campus Programs', path: '/campus/programs' },
       { label: 'Events', path: '/campus/events' },
-      { label: 'Internships', path: '/campus/internships' },
     ],
   },
   {
