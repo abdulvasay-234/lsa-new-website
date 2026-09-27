@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { FaArrowsRotate, FaBookOpen, FaBoxArchive, FaBoxesStacked, FaBrain, FaBug, FaBullseye, FaCertificate, FaChartArea, FaChartColumn, FaChartLine, FaChartSimple, FaCircleNodes, FaCloud, FaCode, FaCodeBranch, FaComments, FaCompass, FaComputer, FaDatabase, FaDiagramProject, FaFileCode, FaFileCsv, FaFileLines, FaFileShield, FaFilter, FaFire, FaFingerprint, FaFlask, FaFolderOpen, FaGauge, FaGavel, FaGlobe, FaLayerGroup, FaLaptopCode, FaLightbulb, FaLink, FaList, FaListCheck, FaLock, FaMagnifyingGlass, FaMagnifyingGlassChart, FaNetworkWired, FaPeopleGroup, FaPersonChalkboard, FaRotate, FaScaleBalanced, FaServer, FaShareNodes, FaShield, FaShieldHalved, FaSitemap, FaTableCells, FaTerminal, FaTree, FaTriangleExclamation, FaUserShield, FaWandMagicSparkles, FaWifi, FaWindows } from 'react-icons/fa6'
-import { SiBurpsuite, SiGit, SiKalilinux, SiLinux, SiMetasploit, SiMongodb, SiMysql, SiNumpy, SiOwasp, SiPandas, SiPostgresql, SiPytorch, SiPython, SiScikitlearn, SiTensorflow, SiWireshark } from 'react-icons/si'
+import { FaArrowsRotate, FaArrowRight, FaAws, FaBookOpen, FaBoxArchive, FaBoxesStacked, FaBrain, FaBug, FaBullseye, FaCalendarDays, FaCertificate, FaChartArea, FaChartColumn, FaChartLine, FaChartSimple, FaCircleNodes, FaClock, FaCloud, FaCode, FaCodeBranch, FaComments, FaCompass, FaComputer, FaCubes, FaDatabase, FaDiagramProject, FaFileCode, FaFileCsv, FaFileLines, FaFileShield, FaFilter, FaFire, FaFingerprint, FaFlask, FaFolderOpen, FaGauge, FaGear, FaGavel, FaGlobe, FaLayerGroup, FaLaptopCode, FaLightbulb, FaLink, FaLinkedinIn, FaList, FaListCheck, FaLock, FaMagnifyingGlass, FaMagnifyingGlassChart, FaNetworkWired, FaPeopleGroup, FaPersonChalkboard, FaPuzzlePiece, FaRobot, FaRotate, FaScaleBalanced, FaServer, FaShareNodes, FaShield, FaShieldHalved, FaSitemap, FaTableCells, FaTags, FaTerminal, FaTree, FaTriangleExclamation, FaUserShield, FaWandMagicSparkles, FaWifi, FaWindows } from 'react-icons/fa6'
+import { SiAnaconda, SiArgo, SiBurpsuite, SiCrewai, SiDocker, SiFacebook, SiFlux, SiGit, SiGithubactions, SiGoogle, SiGoogleads, SiGoogleanalytics, SiGooglesearchconsole, SiGrafana, SiGooglecloud, SiInfracost, SiInstagram, SiJenkins, SiJupyter, SiKalilinux, SiKubernetes, SiLanggraph, SiLinux, SiMeta, SiMetasploit, SiMongodb, SiMysql, SiNumpy, SiOwasp, SiOpentelemetry, SiPandas, SiPostgresql, SiPulumi, SiPytorch, SiPython, SiScikitlearn, SiTensorflow, SiTerraform, SiTrivy, SiVault, SiVim, SiWhatsapp, SiWireshark, SiYoutube } from 'react-icons/si'
+import { VscVscode } from 'react-icons/vsc'
 import type { IconType } from 'react-icons'
 import { getRouteHref } from '../data/routes'
 import type { ProgramDetail, ProgramGalleryItem, ProgramToolCategory } from '../data/types'
@@ -11,24 +12,29 @@ const careerGuidanceUrl = 'https://lordsskillacademy.com/career-guidance/'
 
 const programToolIcons: Record<string, IconType> = {
   'fa-arrows-rotate': FaArrowsRotate,
+  'fa-arrow-right': FaArrowRight,
+  'fa-aws': FaAws,
   'fa-brain': FaBrain,
   'fa-book-open': FaBookOpen,
   'fa-box-archive': FaBoxArchive,
   'fa-boxes-stacked': FaBoxesStacked,
   'fa-bug': FaBug,
   'fa-bullseye': FaBullseye,
+  'fa-calendar-days': FaCalendarDays,
   'fa-certificate': FaCertificate,
   'fa-chart-area': FaChartArea,
   'fa-chart-column': FaChartColumn,
   'fa-chart-line': FaChartLine,
   'fa-chart-simple': FaChartSimple,
   'fa-circle-nodes': FaCircleNodes,
+  'fa-clock': FaClock,
   'fa-cloud': FaCloud,
   'fa-code': FaCode,
   'fa-code-branch': FaCodeBranch,
   'fa-comments': FaComments,
   'fa-compass': FaCompass,
   'fa-computer': FaComputer,
+  'fa-cubes': FaCubes,
   'fa-database': FaDatabase,
   'fa-diagram-project': FaDiagramProject,
   'fa-file-code': FaFileCode,
@@ -41,6 +47,7 @@ const programToolIcons: Record<string, IconType> = {
   'fa-flask': FaFlask,
   'fa-folder-open': FaFolderOpen,
   'fa-gauge': FaGauge,
+  'fa-gear': FaGear,
   'fa-gavel': FaGavel,
   'fa-globe': FaGlobe,
   'fa-layer-group': FaLayerGroup,
@@ -53,9 +60,12 @@ const programToolIcons: Record<string, IconType> = {
   'fa-magnifying-glass-chart': FaMagnifyingGlassChart,
   'fa-network': FaNetworkWired,
   'fa-list-check': FaListCheck,
+  'fa-linkedin-in': FaLinkedinIn,
   'fa-people-group': FaPeopleGroup,
   'fa-person-chalkboard': FaPersonChalkboard,
+  'fa-puzzle-piece': FaPuzzlePiece,
   'fa-rotate': FaRotate,
+  'fa-robot': FaRobot,
   'fa-scale-balanced': FaScaleBalanced,
   'fa-server': FaServer,
   'fa-share-nodes': FaShareNodes,
@@ -64,16 +74,37 @@ const programToolIcons: Record<string, IconType> = {
   'fa-sitemap': FaSitemap,
   'fa-table-cells': FaTableCells,
   'fa-terminal': FaTerminal,
+  'fa-tags': FaTags,
   'fa-triangle-exclamation': FaTriangleExclamation,
   'fa-user-shield': FaUserShield,
   'fa-wand-magic-sparkles': FaWandMagicSparkles,
   'fa-wifi': FaWifi,
   'fa-windows': FaWindows,
   'fa-tree': FaTree,
+  'si-argo': SiArgo,
+  'si-anaconda': SiAnaconda,
   'si-burp-suite': SiBurpsuite,
+  'si-crewai': SiCrewai,
+  'si-docker': SiDocker,
+  'si-flux': SiFlux,
+  'si-facebook': SiFacebook,
   'si-git': SiGit,
+  'si-github-actions': SiGithubactions,
+  'si-grafana': SiGrafana,
+  'si-google': SiGoogle,
+  'si-google-ads': SiGoogleads,
+  'si-google-analytics': SiGoogleanalytics,
+  'si-google-search-console': SiGooglesearchconsole,
+  'si-google-cloud': SiGooglecloud,
+  'si-infracost': SiInfracost,
+  'si-instagram': SiInstagram,
+  'si-jenkins': SiJenkins,
+  'si-jupyter': SiJupyter,
   'si-kali-linux': SiKalilinux,
+  'si-kubernetes': SiKubernetes,
+  'si-langgraph': SiLanggraph,
   'si-linux': SiLinux,
+  'si-meta': SiMeta,
   'si-metasploit': SiMetasploit,
   'si-mongodb': SiMongodb,
   'si-mysql': SiMysql,
@@ -81,11 +112,20 @@ const programToolIcons: Record<string, IconType> = {
   'si-owasp': SiOwasp,
   'si-pandas': SiPandas,
   'si-postgresql': SiPostgresql,
+  'si-pulumi': SiPulumi,
   'si-pytorch': SiPytorch,
   'si-python': SiPython,
   'si-scikit-learn': SiScikitlearn,
   'si-tensorflow': SiTensorflow,
+  'si-terraform': SiTerraform,
+  'si-trivy': SiTrivy,
+  'si-vault': SiVault,
+  'si-vim': SiVim,
+  'si-vscode': VscVscode,
+  'si-whatsapp': SiWhatsapp,
   'si-wireshark': SiWireshark,
+  'si-youtube': SiYoutube,
+  'si-opentelemetry': SiOpentelemetry,
 }
 
 function Placeholder({ children = 'Details to be confirmed' }: { children?: string }) {
@@ -152,20 +192,23 @@ function ToolsAndDisciplines({ categories, curriculumDownload }: { categories: P
   const activeCategory = categories[selectedCategory]
   const isDataScienceStack = categories.some((category) => category.category === 'DEEP LEARNING & GENERATIVE AI')
   const isCyberSecurityStack = categories.some((category) => category.category === 'SECURITY FOUNDATIONS')
+  const isDevOpsStack = categories.some((category) => category.category === 'LINUX & AUTOMATION')
+  const isDigitalMarketingStack = categories.some((category) => category.category === 'SEO & SEARCH')
+  const isPythonProgrammingStack = categories.some((category) => category.category === 'PYTHON FUNDAMENTALS')
   const hasPlacementSupport = categories.some((category) => category.category === 'PLACEMENT SUPPORT')
 
   if (!categories.length) return null
 
   return (
-    <Section className={`program-detail-section program-detail-tools${isDataScienceStack || isCyberSecurityStack || hasPlacementSupport ? ' program-detail-tools-stack' : ''}${isDataScienceStack || isCyberSecurityStack ? ' program-detail-tools-compact' : ''}`}>
+    <Section className={`program-detail-section program-detail-tools${isDataScienceStack || isCyberSecurityStack || hasPlacementSupport ? ' program-detail-tools-stack' : ''}${isDataScienceStack || isCyberSecurityStack ? ' program-detail-tools-compact' : ''}${isDevOpsStack ? ' program-detail-tools-devops' : ''}${isDigitalMarketingStack ? ' program-detail-tools-marketing' : ''}${isPythonProgrammingStack ? ' program-detail-tools-python' : ''}`}>
       <Container>
-        <div className="program-detail-heading"><p className="section-marker">{isDataScienceStack ? '03 — TECHNOLOGY STACK' : '03 — TOOLS & DISCIPLINES'}</p><h2>{isDataScienceStack ? "Tools you'll learn to work with." : 'Learn the tools. Understand the stack.'}</h2><p>{isDataScienceStack ? 'The Data Science program brings together the languages, libraries, platforms, and AI tools used to analyse data, build models, and solve practical problems.' : isCyberSecurityStack ? 'Work with the technologies, platforms, tools, and security disciplines used throughout the learning journey.' : 'Work with the technologies, platforms, and disciplines used throughout the learning journey.'}</p></div>
+        <div className="program-detail-heading"><p className="section-marker">{isDataScienceStack ? '03 — TECHNOLOGY STACK' : '03 — TOOLS & DISCIPLINES'}</p><h2>{isDataScienceStack ? "Tools you'll learn to work with." : isPythonProgrammingStack ? 'Learn Python. Build real programming foundations.' : 'Learn the tools. Understand the stack.'}</h2>{!isDevOpsStack && <p>{isDataScienceStack ? 'The Data Science program brings together the languages, libraries, platforms, and AI tools used to analyse data, build models, and solve practical problems.' : isCyberSecurityStack ? 'Work with the technologies, platforms, tools, and security disciplines used throughout the learning journey.' : isDigitalMarketingStack ? 'Work across search, social media, advertising, analytics, content, and digital growth.' : isPythonProgrammingStack ? 'Build a strong Python programming foundation through practical coding, problem-solving, development workflows, and object-oriented programming.' : 'Work with the technologies, platforms, and disciplines used throughout the learning journey.'}</p>}</div>
         <div className="program-tools-explorer">
           <div className="program-tools-categories-wrap">
             <div className="program-tools-categories" role="tablist" aria-label="Tools and disciplines categories">
             {categories.map((category, index) => {
               const isSelected = index === selectedCategory
-              return <button className={`program-tools-category ${isSelected ? 'is-selected' : ''}`} type="button" role="tab" aria-selected={isSelected} aria-controls={`program-tools-panel-${index}`} id={`program-tools-tab-${index}`} key={category.category} onClick={() => setSelectedCategory(index)}><span aria-hidden="true">{isCyberSecurityStack ? String(index + 1).padStart(2, '0') : isSelected ? '●' : '○'}</span>{category.category}</button>
+              return <button className={`program-tools-category ${isSelected ? 'is-selected' : ''}`} type="button" role="tab" aria-selected={isSelected} aria-controls={`program-tools-panel-${index}`} id={`program-tools-tab-${index}`} key={category.category} onClick={() => setSelectedCategory(index)}><span aria-hidden="true">{isCyberSecurityStack || isDevOpsStack || isDigitalMarketingStack || isPythonProgrammingStack ? String(index + 1).padStart(2, '0') : isSelected ? '●' : '○'}</span>{category.category}</button>
             })}
             </div>
             {curriculumDownload ? <a className="program-tools-category-note" href={`${import.meta.env.BASE_URL}${curriculumDownload}`} download>Download curriculum <span aria-hidden="true">↓</span></a> : <p className="program-tools-category-note">Curriculum download coming soon.</p>}

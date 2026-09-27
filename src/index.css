@@ -1187,13 +1187,20 @@ p { line-height: 1.6; }
 .program-tools-panel-heading span { color: var(--color-yellow); font-size: 0.8rem; font-weight: 900; }
 .program-tools-panel-heading h3 { margin: 0; color: var(--color-white); font-size: clamp(1.5rem, 3vw, 2.5rem); letter-spacing: -0.04em; }
 .program-tools-panel-heading p { margin: var(--space-2) 0 0; color: #c1ccdc; font-size: 0.9rem; }
+.program-detail-tools-devops .program-tools-panel-heading p { display: none; }
 .program-tool { display: flex; align-items: flex-start; gap: var(--space-4); min-width: 0; padding: var(--space-5) 0; border-bottom: 1px solid #536883; }
 .program-tool-icon { display: grid; place-items: center; flex: 0 0 2.25rem; width: 2.25rem; height: 2.25rem; border: 1px solid var(--color-yellow); color: var(--color-yellow); font-size: 0.75rem; font-weight: 900; }
+.program-detail-tools-devops .program-tool-icon svg { display: block; width: 1.75rem; height: 1.75rem; max-width: 100%; max-height: 100%; object-fit: contain; }
+.program-detail-tools-python .program-tool-icon svg { display: block; width: 1.75rem; height: 1.75rem; max-width: 100%; max-height: 100%; object-fit: contain; }
+.program-detail-tools-marketing .program-tool-icon svg { display: block; width: 1.75rem; height: 1.75rem; max-width: 100%; max-height: 100%; object-fit: contain; }
 .program-tool strong { color: var(--color-white); font-size: 1.05rem; }
 .program-tool p { margin: var(--space-1) 0 0; color: #c1ccdc; font-size: 0.875rem; }
+.program-detail-tools-devops .program-tool p { display: none; }
 .program-tools-empty { max-width: 28rem; padding-top: var(--space-8); }
 .program-tools-empty strong { color: var(--color-white); }
 .program-tools-empty p { margin: var(--space-3) 0 0; color: #c1ccdc; }
+.program-detail-tools-devops .program-tools-panel-heading > div, .program-detail-tools-devops .program-tool > div { min-width: 0; }
+.program-detail-tools-marketing .program-tool > div { min-width: 0; }
 .program-tools-mobile { display: none; }
 .program-tools-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6) var(--space-8); }
 .program-detail-tools-stack .program-tools-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6) var(--space-8); padding-top: var(--space-8); }
@@ -1606,6 +1613,10 @@ p { line-height: 1.6; }
   .program-tools-mobile .program-tools-panel-heading { align-items: flex-start; }
   .program-tools-mobile .program-tools-panel-heading h3 { font-size: 1.35rem; }
   .program-tools-mobile .program-tools-panel-heading p { font-size: 0.85rem; }
+  .program-detail-tools-devops .program-tools-mobile .program-tools-panel-heading h3 { font-size: 1.2rem; }
+  .program-detail-tools-devops .program-tool strong { font-size: 0.95rem; line-height: 1.25; }
+  .program-detail-tools-marketing .program-tool strong { font-size: 0.95rem; line-height: 1.25; }
+  .program-detail-tools-python .program-tool strong { font-size: 0.95rem; line-height: 1.25; }
   .program-detail-tools-stack .program-tools-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
   .program-detail-tools-compact .program-tools-grid { grid-template-columns: minmax(0, 1fr); }
   .program-detail-tools-stack .program-tool { min-height: 7rem; }
