@@ -46,12 +46,14 @@ export function ProgramsPage() {
   return (
     <>
       <Section className="programs-page-hero">
+        <div className="programs-page-hero-media" aria-hidden="true">
+          <img src={`${import.meta.env.BASE_URL}media/programs-hero.png`} alt="" width="575" height="360" fetchPriority="high" />
+        </div>
         <Container className="programs-page-hero-layout">
           <div>
             <p className="section-marker section-marker-yellow">01 — PROGRAMS</p>
             <h1>Build skills that become capability.</h1>
           </div>
-          <p className="programs-page-intro">Practical technology programs designed to help learners understand concepts, work with modern tools, build real projects, and apply their skills with confidence.</p>
         </Container>
       </Section>
 
