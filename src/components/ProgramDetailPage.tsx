@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import { FaArrowsRotate, FaBookOpen, FaBoxArchive, FaBoxesStacked, FaBrain, FaBug, FaBullseye, FaCertificate, FaChartArea, FaChartColumn, FaChartLine, FaChartSimple, FaCircleNodes, FaCloud, FaCode, FaCodeBranch, FaComments, FaCompass, FaComputer, FaDatabase, FaDiagramProject, FaFileCode, FaFileCsv, FaFileLines, FaFileShield, FaFilter, FaFire, FaFingerprint, FaFlask, FaFolderOpen, FaGauge, FaGavel, FaGlobe, FaLayerGroup, FaLaptopCode, FaLightbulb, FaLink, FaList, FaListCheck, FaLock, FaMagnifyingGlass, FaMagnifyingGlassChart, FaNetworkWired, FaPeopleGroup, FaPersonChalkboard, FaRotate, FaScaleBalanced, FaServer, FaShareNodes, FaShield, FaShieldHalved, FaSitemap, FaTableCells, FaTerminal, FaTree, FaTriangleExclamation, FaUserShield, FaWandMagicSparkles, FaWifi, FaWindows } from 'react-icons/fa6'
+import { SiBurpsuite, SiGit, SiKalilinux, SiLinux, SiMetasploit, SiMongodb, SiMysql, SiNumpy, SiOwasp, SiPandas, SiPostgresql, SiPytorch, SiPython, SiScikitlearn, SiTensorflow, SiWireshark } from 'react-icons/si'
+import type { IconType } from 'react-icons'
 import { getRouteHref } from '../data/routes'
 import type { ProgramDetail, ProgramGalleryItem, ProgramToolCategory } from '../data/types'
 import { ButtonLink } from './Button'
@@ -6,13 +9,92 @@ import { Container, Section } from './Layout'
 
 const careerGuidanceUrl = 'https://lordsskillacademy.com/career-guidance/'
 
+const programToolIcons: Record<string, IconType> = {
+  'fa-arrows-rotate': FaArrowsRotate,
+  'fa-brain': FaBrain,
+  'fa-book-open': FaBookOpen,
+  'fa-box-archive': FaBoxArchive,
+  'fa-boxes-stacked': FaBoxesStacked,
+  'fa-bug': FaBug,
+  'fa-bullseye': FaBullseye,
+  'fa-certificate': FaCertificate,
+  'fa-chart-area': FaChartArea,
+  'fa-chart-column': FaChartColumn,
+  'fa-chart-line': FaChartLine,
+  'fa-chart-simple': FaChartSimple,
+  'fa-circle-nodes': FaCircleNodes,
+  'fa-cloud': FaCloud,
+  'fa-code': FaCode,
+  'fa-code-branch': FaCodeBranch,
+  'fa-comments': FaComments,
+  'fa-compass': FaCompass,
+  'fa-computer': FaComputer,
+  'fa-database': FaDatabase,
+  'fa-diagram-project': FaDiagramProject,
+  'fa-file-code': FaFileCode,
+  'fa-file-csv': FaFileCsv,
+  'fa-file-lines': FaFileLines,
+  'fa-file-shield': FaFileShield,
+  'fa-filter': FaFilter,
+  'fa-fire': FaFire,
+  'fa-fingerprint': FaFingerprint,
+  'fa-flask': FaFlask,
+  'fa-folder-open': FaFolderOpen,
+  'fa-gauge': FaGauge,
+  'fa-gavel': FaGavel,
+  'fa-globe': FaGlobe,
+  'fa-layer-group': FaLayerGroup,
+  'fa-laptop-code': FaLaptopCode,
+  'fa-lightbulb': FaLightbulb,
+  'fa-link': FaLink,
+  'fa-list': FaList,
+  'fa-lock': FaLock,
+  'fa-magnifying-glass': FaMagnifyingGlass,
+  'fa-magnifying-glass-chart': FaMagnifyingGlassChart,
+  'fa-network': FaNetworkWired,
+  'fa-list-check': FaListCheck,
+  'fa-people-group': FaPeopleGroup,
+  'fa-person-chalkboard': FaPersonChalkboard,
+  'fa-rotate': FaRotate,
+  'fa-scale-balanced': FaScaleBalanced,
+  'fa-server': FaServer,
+  'fa-share-nodes': FaShareNodes,
+  'fa-shield': FaShield,
+  'fa-shield-halved': FaShieldHalved,
+  'fa-sitemap': FaSitemap,
+  'fa-table-cells': FaTableCells,
+  'fa-terminal': FaTerminal,
+  'fa-triangle-exclamation': FaTriangleExclamation,
+  'fa-user-shield': FaUserShield,
+  'fa-wand-magic-sparkles': FaWandMagicSparkles,
+  'fa-wifi': FaWifi,
+  'fa-windows': FaWindows,
+  'fa-tree': FaTree,
+  'si-burp-suite': SiBurpsuite,
+  'si-git': SiGit,
+  'si-kali-linux': SiKalilinux,
+  'si-linux': SiLinux,
+  'si-metasploit': SiMetasploit,
+  'si-mongodb': SiMongodb,
+  'si-mysql': SiMysql,
+  'si-numpy': SiNumpy,
+  'si-owasp': SiOwasp,
+  'si-pandas': SiPandas,
+  'si-postgresql': SiPostgresql,
+  'si-pytorch': SiPytorch,
+  'si-python': SiPython,
+  'si-scikit-learn': SiScikitlearn,
+  'si-tensorflow': SiTensorflow,
+  'si-wireshark': SiWireshark,
+}
+
 function Placeholder({ children = 'Details to be confirmed' }: { children?: string }) {
   return <span className="program-detail-placeholder">{children}</span>
 }
 
 function ToolPanel({ category, index }: { category: ProgramToolCategory; index: number }) {
   const isPlacementSupport = category.category === 'PLACEMENT SUPPORT'
-  return <div className="program-tools-panel"><div className="program-tools-panel-content"><div className="program-tools-panel-heading"><span>{`0${index + 1}`}</span><div><h3>{category.category}</h3><p>{category.description}</p></div></div>{category.items.length ? <div className={`program-tools-grid${isPlacementSupport ? ' program-tools-placement-grid' : ''}`}>{category.items.map((tool, toolIndex) => <div className="program-tool" key={`${tool.name}-${toolIndex}`}><span className="program-tool-icon" aria-hidden="true">{tool.icon || '—'}</span><div><strong>{tool.name || <Placeholder>Tool name to be confirmed</Placeholder>}</strong>{tool.description && <p>{tool.description}</p>}</div></div>)}</div> : <div className="program-tools-empty"><strong>Verified tools to be confirmed.</strong><p>Specific technologies for this category will be added when the LSA curriculum is published.</p></div>}</div></div>
+  return <div className="program-tools-panel"><div className="program-tools-panel-content"><div className="program-tools-panel-heading"><span>{`0${index + 1}`}</span><div><h3>{category.category}</h3><p>{category.description}</p></div></div>{category.items.length ? <div className={`program-tools-grid${isPlacementSupport ? ' program-tools-placement-grid' : ''}`}>{category.items.map((tool, toolIndex) => { const Icon = tool.icon ? programToolIcons[tool.icon] : undefined; return <div className="program-tool" key={`${tool.name}-${toolIndex}`}><span className="program-tool-icon" aria-hidden="true">{Icon ? <Icon focusable="false" /> : tool.icon || '—'}</span><div><strong>{tool.name || <Placeholder>Tool name to be confirmed</Placeholder>}</strong>{tool.description && <p>{tool.description}</p>}</div></div> })}</div> : <div className="program-tools-empty"><strong>Verified tools to be confirmed.</strong><p>Specific technologies for this category will be added when the LSA curriculum is published.</p></div>}</div></div>
 }
 
 function QuickHighlights({ highlights }: { highlights: ProgramDetail['highlights'] }) {
@@ -41,7 +123,7 @@ function CareerDirection({ support }: { support?: ProgramDetail['careerSupport']
 
 function CertificationSection({ certification }: { certification?: ProgramDetail['certification'] }) {
   if (!certification) return null
-  const previewImage = certification.previewImage || { src: `${import.meta.env.BASE_URL}certificates/templates/java.png`, alt: 'LSA sample certificate preview', width: 4419, height: 6250 }
+  const previewImage = certification.previewImage || { src: `${import.meta.env.BASE_URL}media/sample-certificate/Orginal.png`, alt: 'LSA sample certificate preview', width: 707, height: 1000 }
 
   return <Section className="program-detail-section program-detail-certification"><Container><div className="program-detail-heading"><p className="section-marker">07 — CERTIFICATION</p><h2>Recognition for what you&apos;ve learned.</h2><p>Complete the program and receive an LSA completion certificate that documents your learning and the skills covered throughout the program.</p></div><div className="certification-layout"><div className="certification-preview"><h3>{certification.previewTitle}</h3><p>{certification.previewDescription}</p><div className="certification-placeholder"><img src={previewImage.src} alt={previewImage.alt} width={previewImage.width} height={previewImage.height} loading="lazy" decoding="async" /></div></div><ol className="certification-points">{certification.points.map((point, index) => <li key={point.title}><span>{`0${index + 1}`}</span><div><h3>{point.title}</h3><p>{point.description}</p></div></li>)}</ol></div></Container></Section>
 }
@@ -69,20 +151,21 @@ function ToolsAndDisciplines({ categories, curriculumDownload }: { categories: P
   const [selectedCategory, setSelectedCategory] = useState(0)
   const activeCategory = categories[selectedCategory]
   const isDataScienceStack = categories.some((category) => category.category === 'DEEP LEARNING & GENERATIVE AI')
+  const isCyberSecurityStack = categories.some((category) => category.category === 'SECURITY FOUNDATIONS')
   const hasPlacementSupport = categories.some((category) => category.category === 'PLACEMENT SUPPORT')
 
   if (!categories.length) return null
 
   return (
-    <Section className={`program-detail-section program-detail-tools${isDataScienceStack || hasPlacementSupport ? ' program-detail-tools-stack' : ''}`}>
+    <Section className={`program-detail-section program-detail-tools${isDataScienceStack || isCyberSecurityStack || hasPlacementSupport ? ' program-detail-tools-stack' : ''}${isDataScienceStack || isCyberSecurityStack ? ' program-detail-tools-compact' : ''}`}>
       <Container>
-        <div className="program-detail-heading"><p className="section-marker">{isDataScienceStack ? '03 — TECHNOLOGY STACK' : '03 — TOOLS & DISCIPLINES'}</p><h2>{isDataScienceStack ? "Tools you'll learn to work with." : 'Learn the tools. Understand the stack.'}</h2><p>{isDataScienceStack ? 'The Data Science program brings together the languages, libraries, platforms, and AI tools used to analyse data, build models, and solve practical problems.' : 'Work with the technologies, platforms, and disciplines used throughout the learning journey.'}</p></div>
+        <div className="program-detail-heading"><p className="section-marker">{isDataScienceStack ? '03 — TECHNOLOGY STACK' : '03 — TOOLS & DISCIPLINES'}</p><h2>{isDataScienceStack ? "Tools you'll learn to work with." : 'Learn the tools. Understand the stack.'}</h2><p>{isDataScienceStack ? 'The Data Science program brings together the languages, libraries, platforms, and AI tools used to analyse data, build models, and solve practical problems.' : isCyberSecurityStack ? 'Work with the technologies, platforms, tools, and security disciplines used throughout the learning journey.' : 'Work with the technologies, platforms, and disciplines used throughout the learning journey.'}</p></div>
         <div className="program-tools-explorer">
           <div className="program-tools-categories-wrap">
             <div className="program-tools-categories" role="tablist" aria-label="Tools and disciplines categories">
             {categories.map((category, index) => {
               const isSelected = index === selectedCategory
-              return <button className={`program-tools-category ${isSelected ? 'is-selected' : ''}`} type="button" role="tab" aria-selected={isSelected} aria-controls={`program-tools-panel-${index}`} id={`program-tools-tab-${index}`} key={category.category} onClick={() => setSelectedCategory(index)}><span aria-hidden="true">{isSelected ? '●' : '○'}</span>{category.category}</button>
+              return <button className={`program-tools-category ${isSelected ? 'is-selected' : ''}`} type="button" role="tab" aria-selected={isSelected} aria-controls={`program-tools-panel-${index}`} id={`program-tools-tab-${index}`} key={category.category} onClick={() => setSelectedCategory(index)}><span aria-hidden="true">{isCyberSecurityStack ? String(index + 1).padStart(2, '0') : isSelected ? '●' : '○'}</span>{category.category}</button>
             })}
             </div>
             {curriculumDownload ? <a className="program-tools-category-note" href={`${import.meta.env.BASE_URL}${curriculumDownload}`} download>Download curriculum <span aria-hidden="true">↓</span></a> : <p className="program-tools-category-note">Curriculum download coming soon.</p>}

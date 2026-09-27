@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { FaGithub, FaInstagram, FaLinkedinIn, FaWhatsapp, FaYoutube } from 'react-icons/fa6'
 import { homepageContent } from '../data/homepage'
 import { programs, testimonials, youtubeVideos } from '../data/content'
 import { getRouteHref } from '../data/routes'
@@ -12,13 +13,10 @@ import { ResponsiveImage, YouTubeFacade } from './Media'
 import { Container, Grid, Section } from './Layout'
 
 const homepageSocialLinks = [
-  { label: 'YouTube', icon: 'youtube', url: siteInfo.youtubeChannelUrl },
-  { label: 'Threads', icon: 'threads', url: 'https://www.threads.net/' },
-  { label: 'X', icon: 'x', url: 'https://x.com/' },
-  { label: 'GitHub', icon: 'github', url: 'https://github.com/' },
-  { label: 'Instagram', icon: 'instagram', url: 'https://www.instagram.com/' },
-  { label: 'LinkedIn', icon: 'linkedin', url: 'https://www.linkedin.com/company/lords-skill-academy' },
-  { label: 'Slack', icon: 'slack', url: 'https://slack.com/' },
+  { label: 'YouTube', icon: FaYoutube, url: siteInfo.youtubeChannelUrl },
+  { label: 'GitHub', icon: FaGithub, url: 'https://github.com/lordsskillacademy-hyd' },
+  { label: 'Instagram', icon: FaInstagram, url: 'https://instagram.com/lordsskillacademy_hyd' },
+  { label: 'LinkedIn', icon: FaLinkedinIn, url: 'https://www.linkedin.com/company/lords-skill-academy' },
 ]
 
 gsap.registerPlugin(ScrollTrigger)
@@ -500,8 +498,8 @@ export function HomePage() {
         <Container className="home-contact-grid">
           <div className="home-contact-block">
             <h2>Stay up to date</h2>
-            <p>Sign up for our newsletter and keep up to date with our news and events</p>
-            <a className="home-contact-primary" href={`mailto:${siteInfo.contact.email}?subject=LSA newsletter subscription`}>Subscribe <span aria-hidden="true">→</span></a>
+            <p>Follow LSA on WhatsApp for news, events, and updates.</p>
+            <a className="home-contact-primary" href="https://whatsapp.com/channel/0029Vb911A98kyyVQq4S982O" target="_blank" rel="noreferrer" aria-label="Subscribe to the LSA WhatsApp channel"><FaWhatsapp className="subscribe-whatsapp-icon" aria-hidden="true" focusable="false" />Subscribe <span aria-hidden="true">→</span></a>
           </div>
           <div className="home-contact-block">
             <h2>Contact us</h2>
@@ -511,7 +509,7 @@ export function HomePage() {
           <div className="home-contact-block home-contact-social">
             <h2>Social Links</h2>
             <ul>
-              {homepageSocialLinks.map((socialLink) => <li key={socialLink.label}><a href={socialLink.url} target="_blank" rel="noreferrer" aria-label={socialLink.label}><span className={`social-logo social-logo--${socialLink.icon}`} aria-hidden="true" /></a></li>)}
+              {homepageSocialLinks.map((socialLink) => { const Icon = socialLink.icon; return <li key={socialLink.label}><a href={socialLink.url} target="_blank" rel="noreferrer" aria-label={socialLink.label}><Icon className="social-logo" aria-hidden="true" focusable="false" /></a></li> })}
             </ul>
           </div>
         </Container>
