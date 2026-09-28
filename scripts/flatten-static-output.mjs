@@ -11,6 +11,10 @@ const { renderRoute } = await import(join(root, '.ssr', 'entry-server.js'))
 await cp(generatedOutput, output, { recursive: true, force: true })
 await rm(generatedOutput, { recursive: true, force: true })
 
+const notFoundFile = join(output, '404.html')
+const notFoundHtml = await readFile(notFoundFile, 'utf8')
+await writeFile(notFoundFile, notFoundHtml.replace('__BASE_PATH__', process.env.BASE_PATH || '/'))
+
 for (const route of routeMetadata) {
 	const outputPath = route.path === '/' ? 'index.html' : join(route.path.slice(1), 'index.html')
 	const filePath = join(output, outputPath)

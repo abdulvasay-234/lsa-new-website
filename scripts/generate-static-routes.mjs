@@ -13,11 +13,11 @@ const routeMetadata = JSON.parse(await readFile(join(root, 'content/routes.json'
 const blogSlugs = ['why-practical-learning-matters', 'from-workshop-to-project', 'what-campus-learning-looks-like']
 const eventSlugs = []
 
-const routes = [
+const routes = [...new Set([
   ...routeMetadata.map(({ path }) => path),
   ...blogSlugs.map((slug) => `/learning/blog/${slug}`),
   ...eventSlugs.map((slug) => `/campus/events/${slug}`),
-]
+])]
 
 const escapeHtml = (value) => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
 
@@ -35,6 +35,11 @@ const documentTemplate = (path) => {
     <meta name="description" content="${escapeHtml(metadata.description)}" />
     <link rel="canonical" href="${canonicalUrl}" />
     <link rel="icon" type="image/x-icon" href="%BASE_URL%media/favicon_io/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="%BASE_URL%media/favicon_io/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="%BASE_URL%media/favicon_io/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="%BASE_URL%media/favicon_io/apple-touch-icon.png" />
+    <link rel="manifest" href="%BASE_URL%media/favicon_io/site.webmanifest" />
+    <meta name="theme-color" content="#021a54" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Lords Skill Academy" />
     <meta property="og:title" content="${escapeHtml(metadata.title)}" />

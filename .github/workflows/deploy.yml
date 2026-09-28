@@ -31,8 +31,8 @@ jobs:
         run: npm ci
       - name: Build
         env:
-          BASE_PATH: /${{ github.event.repository.name }}/
-          SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+          BASE_PATH: /
+          SITE_URL: https://lordsskillacademy.com
           VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
         run: npm run build
       - name: Upload artifact
