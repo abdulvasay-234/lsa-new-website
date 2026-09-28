@@ -9,7 +9,7 @@ import { siteInfo } from '../data/site'
 import { organizationSchema } from '../lib/structured-data'
 import { ButtonLink } from './Button'
 import { Card } from './Card'
-import { ResponsiveImage, YouTubeFacade } from './Media'
+import { PhotoLocation, ResponsiveImage, YouTubeFacade } from './Media'
 import { Container, Grid, Section } from './Layout'
 
 const homepageSocialLinks = [
@@ -18,6 +18,13 @@ const homepageSocialLinks = [
   { label: 'Instagram', icon: FaInstagram, url: 'https://instagram.com/lordsskillacademy_hyd' },
   { label: 'LinkedIn', icon: FaLinkedinIn, url: 'https://www.linkedin.com/company/lords-skill-academy' },
 ]
+
+const numberStats = [
+  { value: 800, label: 'LEARNERS' },
+  { value: 300, label: 'INTERNSHIP & TRAINING PARTICIPANTS' },
+  { value: 10, label: 'INDUSTRY TRAINERS' },
+  { value: 10, label: 'TECHNOLOGY PROGRAMS' },
+] as const
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -178,6 +185,7 @@ function TestimonialEvidence() {
 
 export function HomePage() {
   const learningSectionRef = useRef<HTMLDivElement>(null)
+  const numbersSectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const hero = document.querySelector<HTMLElement>('.home-hero')
@@ -196,7 +204,6 @@ export function HomePage() {
       })
 
       timeline
-        .to('.hero-morph-network', { yPercent: -18, opacity: 1, ease: 'none' }, 0)
         .to('.hero-copy', { y: -72, opacity: 0, ease: 'power1.in' }, 0.12)
         .to('.hero-video', { opacity: 0.28, ease: 'none' }, 0.18)
 
@@ -272,6 +279,35 @@ export function HomePage() {
     return () => animationContext.revert()
   }, [])
 
+  useEffect(() => {
+    const section = numbersSectionRef.current
+    const metrics = section?.querySelector<HTMLElement>('.numbers-metrics')
+    if (!metrics || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const values = Array.from(metrics.querySelectorAll<HTMLElement>('[data-count]'))
+    const counter = { progress: 0 }
+    const animation = gsap.to(counter, {
+      progress: 1,
+      duration: 1.8,
+      ease: 'power2.out',
+      paused: true,
+      onStart: () => values.forEach((value) => { value.textContent = '0+' }),
+      onUpdate: () => values.forEach((value) => {
+        const target = Number(value.dataset.count)
+        value.textContent = `${Math.round(target * counter.progress)}+`
+      }),
+      onComplete: () => values.forEach((value) => { value.textContent = `${value.dataset.count}+` }),
+    })
+    const trigger = ScrollTrigger.create({
+      trigger: metrics,
+      start: 'top 82%',
+      once: true,
+      onEnter: () => animation.play(),
+    })
+
+    return () => { trigger.kill(); animation.kill() }
+  }, [])
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema()) }} />
@@ -290,14 +326,6 @@ export function HomePage() {
             </div>
           </Container>
           <div className="hero-morph" aria-hidden="true">
-            <svg className="hero-morph-network" viewBox="0 0 1440 520" preserveAspectRatio="none">
-              <path d="M-80 430 C260 165 515 515 815 270 S1240 95 1530 330" />
-              <path d="M-60 510 C260 310 440 170 735 385 S1180 570 1510 205" />
-              <path d="M120 560 C390 245 655 190 930 455 S1280 420 1510 510" />
-              <circle cx="255" cy="342" r="13" />
-              <circle cx="815" cy="270" r="11" />
-              <circle cx="1204" cy="182" r="9" />
-            </svg>
             <span className="hero-morph-orb" />
           </div>
         </Section>
@@ -343,7 +371,7 @@ export function HomePage() {
             </div>
           </div>
           <div className="editorial-media">
-            {homepageContent.about.media.map((asset) => <div className="editorial-media-card editorial-media-card-main" key={asset.src}><ResponsiveImage asset={asset} loading="eager" /></div>)}
+            {homepageContent.about.media.map((asset) => <div className="editorial-media-card editorial-media-card-main" key={asset.src}><ResponsiveImage asset={asset} loading="eager" /><PhotoLocation /></div>)}
           </div>
         </Container>
       </Section>
@@ -388,6 +416,7 @@ export function HomePage() {
           </div>
           <div className="campus-gallery">
             <ResponsiveImage asset={homepageContent.campus.campusSectionImage} />
+            <PhotoLocation />
           </div>
         </Container>
       </Section>
@@ -453,7 +482,7 @@ export function HomePage() {
         </Container>
       </Section>
 
-      <Section className="numbers-section" aria-labelledby="numbers-heading">
+      <section className="section numbers-section" aria-labelledby="numbers-heading" ref={numbersSectionRef}>
         <Container className="numbers-container">
           <div className="numbers-layout">
             <div className="numbers-intro">
@@ -465,26 +494,16 @@ export function HomePage() {
             </div>
 
             <div className="numbers-metrics" aria-label="LSA numbers overview">
-              <div className="numbers-stat">
-                <strong>800+</strong>
-                <span>LEARNERS</span>
-              </div>
-              <div className="numbers-stat">
-                <strong>300+</strong>
-                <span>INTERNSHIP &amp; TRAINING PARTICIPANTS</span>
-              </div>
-              <div className="numbers-stat">
-                <strong>10+</strong>
-                <span>INDUSTRY TRAINERS</span>
-              </div>
-              <div className="numbers-stat">
-                <strong>10+</strong>
-                <span>TECHNOLOGY PROGRAMS</span>
-              </div>
+              {numberStats.map(({ value, label }) => (
+                <div className="numbers-stat" key={label}>
+                  <strong aria-label={`${value}+`}><span data-count={value} aria-hidden="true">{value}+</span></strong>
+                  <span>{label}</span>
+                </div>
+              ))}
             </div>
           </div>
         </Container>
-      </Section>
+      </section>
 
       <Section className="home-contact-strip">
         <Container className="home-contact-grid">

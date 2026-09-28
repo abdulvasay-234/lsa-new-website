@@ -1,6 +1,7 @@
 import { getRouteHref } from '../data/routes'
 import { ButtonLink } from './Button'
 import { Container, Section } from './Layout'
+import { PhotoLocation } from './Media'
 
 const practiceAreas = [
   ['PROJECTS', 'Turn concepts into practical projects and create work you can learn from and showcase.'],
@@ -43,7 +44,7 @@ export function LearningPage() {
       <Section className="learning-practice-section">
         <Container>
           <div className="learning-page-heading"><p className="section-marker">04 — LEARNING IN PRACTICE</p><h2>Where learning becomes experience.</h2><p>LSA gives learners opportunities to <strong>apply concepts, work on real problems, build projects, and experience how technology is used beyond the classroom.</strong></p></div>
-          <div className="learning-practice-layout"><article className="learning-practice-feature"><img src={`${import.meta.env.BASE_URL}media/project.png`} alt="LSA students collaborating around a laptop on a practical project" width="575" height="360" loading="lazy" decoding="async" /><div className="learning-practice-feature-copy"><p className="card-kicker">01 — FEATURE</p><h3>PROJECTS</h3><p>Build things instead of only completing lessons.</p></div></article><div className="learning-practice-list">{practiceAreas.slice(1).map(([label, description], index) => <article key={label}><span>{`0${index + 2}`}</span><div><h3>{label}</h3><p>{description}</p></div></article>)}</div></div>
+          <div className="learning-practice-layout"><article className="learning-practice-feature"><img src={`${import.meta.env.BASE_URL}media/project.png`} alt="LSA students collaborating around a laptop on a practical project" width="575" height="360" loading="lazy" decoding="async" /><PhotoLocation /><div className="learning-practice-feature-copy"><p className="card-kicker">01 — FEATURE</p><h3>PROJECTS</h3><p>Build things instead of only completing lessons.</p></div></article><div className="learning-practice-list">{practiceAreas.slice(1).map(([label, description], index) => <article key={label}><span>{`0${index + 2}`}</span><div><h3>{label}</h3><p>{description}</p></div></article>)}</div></div>
         </Container>
       </Section>
 

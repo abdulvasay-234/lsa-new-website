@@ -5,6 +5,7 @@ import { programs } from '../data/content'
 import { getRouteHref } from '../data/routes'
 import { ButtonLink } from './Button'
 import { Container, Section } from './Layout'
+import { PhotoLocation } from './Media'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -49,6 +50,7 @@ export function ProgramsPage() {
         <div className="programs-page-hero-media" aria-hidden="true">
           <img src={`${import.meta.env.BASE_URL}media/programs-hero.png`} alt="" width="575" height="360" fetchPriority="high" />
         </div>
+        <PhotoLocation />
         <Container className="programs-page-hero-layout">
           <div>
             <p className="section-marker section-marker-yellow">01 — PROGRAMS</p>
@@ -115,7 +117,7 @@ export function ProgramsPage() {
         <Container className="programs-beyond-layout">
           <div className="programs-beyond-header"><p className="section-marker">04 — BEYOND THE SYLLABUS</p><h2>Learning should lead to doing.</h2><p>At LSA, learning is not limited to completing a syllabus. Our programs are designed to help learners <strong>understand concepts, practise with real tools, build projects, solve problems, and apply what they know.</strong></p></div>
           <div className="programs-beyond-panels">
-            <div className="programs-beyond-statement"><p className="card-kicker">LSA LEARNING PHILOSOPHY</p><h3>Learn it. Practise it. Build with it.</h3><div className="programs-beyond-statement-image"><img src={`${import.meta.env.BASE_URL}media/learn.png`} alt="LSA learners collaborating on a practical technology project" width="575" height="360" loading="lazy" decoding="async" /></div></div>
+            <div className="programs-beyond-statement"><p className="card-kicker">LSA LEARNING PHILOSOPHY</p><h3>Learn it. Practise it. Build with it.</h3><div className="programs-beyond-statement-image"><img src={`${import.meta.env.BASE_URL}media/learn.png`} alt="LSA learners collaborating on a practical technology project" width="575" height="360" loading="lazy" decoding="async" /><PhotoLocation /></div></div>
             <ol className="programs-beyond-list"><li><span>PRACTICE</span><strong>Turn concepts into skills through hands-on exercises and guided practice.</strong></li><li><span>BUILD</span><strong>Apply what you learn by creating practical projects and working with modern tools.</strong></li><li><span>PROBLEM-SOLVE</span><strong>Use your knowledge to approach practical challenges and find meaningful solutions.</strong></li><li><span>SHOWCASE</span><strong>Document and present your work so your skills can be seen, shared, and experienced.</strong></li></ol>
           </div>
         </Container>

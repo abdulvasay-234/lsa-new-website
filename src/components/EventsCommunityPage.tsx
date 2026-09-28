@@ -1,6 +1,7 @@
 import { getRouteHref } from '../data/routes'
 import { ButtonLink } from './Button'
 import { Container, Section } from './Layout'
+import { PhotoLocation } from './Media'
 
 const eventImages = [
   { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00752.jpg`, alt: 'LSA learners taking part in a hands-on technology session', label: 'LEARN TOGETHER' },
@@ -32,7 +33,7 @@ export function EventsCommunityPage() {
             <a className="events-community-text-link" href="#events-formats">Explore what happens here <span aria-hidden="true">↓</span></a>
           </div>
           <figure className="events-community-hero-image">
-            <div className="events-community-hero-frame"><img src={eventImages[0].src} alt={eventImages[0].alt} width="5146" height="3217" fetchPriority="high" /></div>
+            <div className="events-community-hero-frame"><img src={eventImages[0].src} alt={eventImages[0].alt} width="5146" height="3217" fetchPriority="high" /><PhotoLocation /></div>
             <figcaption><span>LSA LEARNING IN ACTION</span><b aria-hidden="true">01 / 04</b></figcaption>
           </figure>
         </Container>
@@ -78,9 +79,9 @@ export function EventsCommunityPage() {
             <p>Real moments from LSA learning spaces: people listening, sharing ideas, and working side by side.</p>
           </div>
           <div className="events-photo-editorial">
-            <figure className="events-photo-feature"><div><img src={eventImages[1].src} alt={eventImages[1].alt} width="5146" height="3217" loading="lazy" /></div><figcaption><span>02</span>{eventImages[1].label}</figcaption></figure>
+            <figure className="events-photo-feature"><div><img src={eventImages[1].src} alt={eventImages[1].alt} width="5146" height="3217" loading="lazy" /><PhotoLocation /></div><figcaption><span>02</span>{eventImages[1].label}</figcaption></figure>
             <div className="events-photo-side">
-              {eventImages.slice(2).map((image, index) => <figure key={image.src}><div><img src={image.src} alt={image.alt} width="5146" height="3217" loading="lazy" /></div><figcaption><span>{`0${index + 3}`}</span>{image.label}</figcaption></figure>)}
+              {eventImages.slice(2).map((image, index) => <figure key={image.src}><div><img src={image.src} alt={image.alt} width="5146" height="3217" loading="lazy" /><PhotoLocation /></div><figcaption><span>{`0${index + 3}`}</span>{image.label}</figcaption></figure>)}
             </div>
           </div>
         </Container>

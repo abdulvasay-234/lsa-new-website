@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { getRouteHref } from '../data/routes'
 import { ButtonLink } from './Button'
 import { Container, Section } from './Layout'
+import { PhotoLocation } from './Media'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -90,7 +91,7 @@ export function CampusPage() {
             <p>LSA works with educational institutions to create <strong>hands-on technology learning experiences that complement academic education.</strong> Through <strong>workshops, bootcamps, technology programs, internships, hackathons, and projects</strong>, students get opportunities to explore modern technologies, build practical skills, and apply what they learn beyond the classroom.</p>
             <div className="button-row"><ButtonLink href="#campus-offerings">Explore campus work →</ButtonLink><ButtonLink href={getRouteHref('/campus', '/contact')} variant="outline">Work with LSA →</ButtonLink></div>
           </div>
-          <figure className="campus-hero-image"><img src={campusImages[0].src} alt={campusImages[0].alt} width="5146" height="3217" loading="eager" decoding="async" /></figure>
+          <figure className="campus-hero-image"><img src={campusImages[0].src} alt={campusImages[0].alt} width="5146" height="3217" loading="eager" decoding="async" /><PhotoLocation /></figure>
         </Container>
       </Section>
 
@@ -105,8 +106,9 @@ export function CampusPage() {
         <div className="campus-motion-background" aria-hidden="true">
           {campusImages.slice(1, 4).map((image) => <img src={image.src} alt="" width="5146" height="3217" loading="lazy" key={image.src} />)}
         </div>
+        <PhotoLocation />
         <Container className="campus-motion-content">
-          <div className="campus-section-intro"><div><p className="section-marker">04 — LEARNING IN MOTION</p><h2>Learning happens wherever people build.</h2></div></div>
+          <div className="campus-section-intro"><div><p className="section-marker">04 — LEARNING IN MOTION</p><h2>Learning happens<br className="motion-heading-break" /> wherever people build.</h2></div></div>
         </Container>
       </Section>
 
