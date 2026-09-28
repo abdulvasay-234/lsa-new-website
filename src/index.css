@@ -652,7 +652,7 @@ p { line-height: 1.6; }
 .trainers-editorial-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); border: 0; }
 .trainer-profile { position: relative; display: grid; grid-template-columns: minmax(11rem, 0.76fr) minmax(0, 1.24fr); gap: 0; overflow: hidden; padding: 0; border: 1px solid rgba(2, 26, 84, 0.12); border-radius: 1rem; background: var(--color-white); box-shadow: 0 1rem 2.75rem rgba(16, 35, 63, 0.09); transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease; }
 .trainer-profile:hover { border-color: rgba(128, 0, 32, 0.34); box-shadow: 0 1.4rem 3.4rem rgba(16, 35, 63, 0.15); transform: translateY(-0.35rem); }
-.trainer-profile-index { position: absolute; right: var(--space-4); top: var(--space-4); z-index: 2; display: grid; width: 2.5rem; height: 2.5rem; place-items: center; border-radius: 50%; background: var(--color-red); color: var(--color-white); box-shadow: 0 0.45rem 1rem rgba(69, 12, 63, 0.2); }
+.trainer-profile-index { position: absolute; left: var(--space-4); top: var(--space-4); z-index: 2; display: grid; width: 2.5rem; height: 2.5rem; place-items: center; border-radius: 50%; background: var(--color-red); color: var(--color-white); box-shadow: 0 0.45rem 1rem rgba(69, 12, 63, 0.2); }
 .trainer-profile-image { max-width: none; min-height: 100%; aspect-ratio: auto; background: linear-gradient(155deg, var(--color-navy), #183a78); }
 .trainer-profile-image::before, .trainer-profile-image::after { position: absolute; border: 1px solid rgba(255, 255, 255, 0.13); border-radius: 50%; content: ''; }
 .trainer-profile-image::before { width: 12rem; height: 12rem; transform: translate(-35%, -45%); }
