@@ -17,7 +17,6 @@ export function SiteShell({ children, route }: PropsWithChildren<{ route: SiteRo
   const [isDarkHeader, setIsDarkHeader] = useState(false)
 
   useEffect(() => {
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const header = document.querySelector<HTMLElement>('.site-header')
     const hero = document.querySelector<HTMLElement>('#main-content .home-hero, #main-content .programs-page-hero, #main-content .learning-page-hero, #main-content .campus-page-hero, #main-content .certificates-page-hero, #main-content .trainers-page-hero, #main-content .about-page-hero, #main-content .contact-page-hero, #main-content .blog-page-hero, #main-content .blog-post-hero, #main-content .program-detail-hero')
     const darkSections = Array.from(document.querySelectorAll<HTMLElement>(darkHeaderSections))
@@ -42,11 +41,14 @@ export function SiteShell({ children, route }: PropsWithChildren<{ route: SiteRo
     handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
 
-    if (!reducedMotion) {
+    const media = gsap.matchMedia()
+    media.add({ isDesktop: '(min-width: 821px) and (prefers-reduced-motion: no-preference)', isMobile: '(max-width: 820px) and (prefers-reduced-motion: no-preference)' }, (context) => {
+      const isMobile = context.conditions?.isMobile
       const animationContext = gsap.context(() => {
         const revealTargets = gsap.utils.toArray<HTMLElement>('#main-content .section:not(.home-hero) .section-marker, #main-content .section:not(.home-hero) h2, #main-content .section:not(.home-hero) h3, #main-content .section:not(.home-hero) p, #main-content .section:not(.home-hero) .button, #main-content .section:not(.home-hero) img, #main-content .section:not(.home-hero) li')
 
         revealTargets.forEach((element) => {
+          if (element.closest('.learning-section, .programs-outcomes-section') || (isMobile && element.closest('.program-detail-gains'))) return
           gsap.from(element, {
             opacity: 0,
             y: 28,
@@ -60,15 +62,11 @@ export function SiteShell({ children, route }: PropsWithChildren<{ route: SiteRo
           })
         })
       })
-
-      return () => {
-        animationContext.revert()
-        window.cancelAnimationFrame(frame)
-        window.removeEventListener('scroll', handleScroll)
-      }
-    }
+      return () => animationContext.revert()
+    })
 
     return () => {
+      media.revert()
       window.cancelAnimationFrame(frame)
       window.removeEventListener('scroll', handleScroll)
     }
@@ -77,12 +75,12 @@ export function SiteShell({ children, route }: PropsWithChildren<{ route: SiteRo
   return (
     <>
       <a className="skip-link" href="#main-content">Skip to content</a>
-      <header className={`site-header${isScrolled ? ' is-scrolled' : ''}${isDarkHeader ? ' is-dark' : ''}`}>
+      <header className={`site-header${route.path === '/' ? ' is-home' : ''}${isScrolled ? ' is-scrolled' : ''}${isDarkHeader || (route.path === '/' && !isScrolled) ? ' is-dark' : ''}`}>
         <Container className="header-layout">
           <a className="brand header-brand" href={getRouteHref(route.path, '/')} aria-label="Lords Skill Academy home">
             <span className="brand-logo-holder">
               <img
-                src={isDarkHeader ? siteInfo.logos.lsaWhite.src : siteInfo.logos.lsa.src}
+                src={isDarkHeader || (route.path === '/' && !isScrolled) ? siteInfo.logos.lsaWhite.src : siteInfo.logos.lsa.src}
                 alt={siteInfo.logos.lsa.alt}
                 width={siteInfo.logos.lsa.width}
                 height={siteInfo.logos.lsa.height}

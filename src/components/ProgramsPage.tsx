@@ -16,32 +16,36 @@ export function ProgramsPage() {
   useEffect(() => {
     const heading = outcomesHeadingRef.current
     const section = heading?.closest('.programs-outcomes-section')
-    if (!section || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (!section) return
 
-    const animationContext = gsap.context(() => {
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 8%',
-          end: () => `+=${window.innerHeight * 2.4}`,
-          pin: true,
-          scrub: 0.6,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      })
-        .from('.programs-outcome-card', {
-          opacity: 0,
-          y: 96,
-          duration: 0.55,
-          ease: 'power2.out',
-          stagger: 0.55,
+    const media = gsap.matchMedia()
+    media.add('(min-width: 821px) and (prefers-reduced-motion: no-preference)', () => {
+      const animationContext = gsap.context(() => {
+        const timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 8%',
+            end: () => `+=${window.innerHeight * 2.4}`,
+            pin: true,
+            scrub: 0.6,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
         })
+          .from('.programs-outcome-card', {
+            opacity: 0,
+            y: 96,
+            duration: 0.55,
+            ease: 'power2.out',
+            stagger: 0.55,
+          })
 
-      return () => timeline.kill()
-    }, section)
+        return () => timeline.kill()
+      }, section)
+      return () => animationContext.revert()
+    })
 
-    return () => animationContext.revert()
+    return () => media.revert()
   }, [])
 
   return (

@@ -205,7 +205,7 @@ function ClassroomGallery({ gallery }: { gallery?: ProgramDetail['classroomGalle
   const imageGallery = gallery?.filter((item): item is ProgramGalleryItem & { src: string } => Boolean(item.src))
   if (!imageGallery?.length) return null
 
-  return <Section className="program-detail-section program-detail-gallery"><Container><div className="program-detail-heading"><p className="section-marker">12 — CLASSROOM GALLERY</p><h2>Classroom and learning moments.</h2></div><div className="program-gallery-grid">{imageGallery.map((item, index) => <figure key={`${item.caption}-${index}`}><img src={item.src} alt={item.alt} loading="lazy" /><PhotoLocation /><figcaption>{item.caption}</figcaption></figure>)}</div></Container></Section>
+  return <Section className="program-detail-section program-detail-gallery"><Container><div className="program-detail-heading"><p className="section-marker">12 — CLASSROOM GALLERY</p><h2>Classroom and learning moments.</h2></div><div className="program-gallery-grid">{imageGallery.map((item, index) => <figure key={`${item.caption}-${index}`}><div className="program-gallery-image"><img src={item.src} alt={item.alt} loading="lazy" /><PhotoLocation /></div><figcaption>{item.caption}</figcaption></figure>)}</div></Container></Section>
 }
 
 function ToolsAndDisciplines({ categories, curriculumDownload }: { categories: ProgramToolCategory[]; curriculumDownload?: string }) {

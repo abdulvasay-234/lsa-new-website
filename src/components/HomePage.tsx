@@ -257,26 +257,28 @@ export function HomePage() {
     const heading = learningSectionRef.current
     const section = heading?.closest('.learning-section')
     if (!section) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const media = gsap.matchMedia()
+    media.add('(min-width: 821px) and (prefers-reduced-motion: no-preference)', () => {
+      const animationContext = gsap.context(() => {
+        const timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 8%',
+            end: () => `+=${window.innerHeight * 2.4}`,
+            pin: true,
+            scrub: 0.6,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        })
+          .from('.learning-ecosystem-card', { opacity: 0, y: 96, duration: 0.55, ease: 'power2.out', stagger: 0.55 })
 
-    const animationContext = gsap.context(() => {
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 8%',
-          end: () => `+=${window.innerHeight * 2.4}`,
-          pin: true,
-          scrub: 0.6,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      })
-        .from('.learning-ecosystem-card', { opacity: 0, y: 96, duration: 0.55, ease: 'power2.out', stagger: 0.55 })
+        return () => timeline.kill()
+      }, section)
+      return () => animationContext.revert()
+    })
 
-      return () => timeline.kill()
-    }, section)
-
-    return () => animationContext.revert()
+    return () => media.revert()
   }, [])
 
   useEffect(() => {

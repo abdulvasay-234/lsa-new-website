@@ -5,13 +5,13 @@ export function ResponsiveImage({ asset, loading = 'lazy' }: { asset: MediaAsset
 }
 
 export function PhotoLocation() {
-  return <span className="photo-location">Location: [Add location]</span>
+  return <span className="photo-location">Location name</span>
 }
 
 export function YouTubeFacade({ title, thumbnail, url }: { title: string; thumbnail?: MediaAsset; url: string }) {
   return (
     <a className="video-facade" href={url} target="_blank" rel="noreferrer" aria-label={`Watch ${title} on YouTube`}>
-      {thumbnail && <><img src={thumbnail.src} alt="" width={thumbnail.width} height={thumbnail.height} loading="lazy" decoding="async" /><PhotoLocation /></>}
+      {thumbnail && <img src={thumbnail.src} alt="" width={thumbnail.width} height={thumbnail.height} loading="lazy" decoding="async" />}
       <span aria-hidden="true" />
     </a>
   )
