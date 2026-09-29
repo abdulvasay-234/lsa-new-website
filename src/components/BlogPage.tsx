@@ -4,6 +4,18 @@ import type { BlogPost } from '../data/types'
 import { blogPosts } from '../data/content'
 import { ButtonLink } from './Button'
 import { Container, Section } from './Layout'
+import { PhotoLocation } from './Media'
+
+const blogArtwork: Record<string, { file: string; alt: string }> = {
+  'why-practical-learning-matters': { file: 'industry-learning.png', alt: 'LSA learners discussing a practical technology project' },
+  'from-workshop-to-project': { file: 'project.png', alt: 'Students collaborating around a laptop during a project session' },
+  'what-campus-learning-looks-like': { file: 'campus-learning.png', alt: 'Students taking part in a technology learning session on campus' },
+}
+
+function BlogStoryImage({ post, className = '', loading = 'lazy' }: { post: BlogPost; className?: string; loading?: 'eager' | 'lazy' }) {
+  const artwork = blogArtwork[post.slug] ?? blogArtwork['why-practical-learning-matters']
+  return <div className={`blog-story-image ${className}`}><img src={`${import.meta.env.BASE_URL}media/${artwork.file}`} alt={artwork.alt} loading={loading} decoding="async" /><PhotoLocation /></div>
+}
 
 function formatDate(dateString: string) {
   return new Date(dateString).toLocaleDateString('en-IN', {
@@ -46,16 +58,18 @@ export function BlogPage() {
           <div>
             <p className="section-marker section-marker-yellow">01 — LSA BLOG</p>
             <h1>Technology learning, explained in context.</h1>
+            <p className="blog-page-hero-intro">
+              LSA&apos;s blog is a practical learning journal: technology ideas, campus learning, project thinking,
+              and the kinds of experiences that help students move from theory to capability.
+            </p>
           </div>
-          <p>
-            LSA&apos;s blog is a practical learning journal: technology ideas, campus learning, project thinking,
-            and the kinds of experiences that help students move from theory to capability.
-          </p>
+          <div className="blog-page-hero-note" aria-hidden="true"><span>LSA / JOURNAL</span><strong>{String(blogPosts.length).padStart(2, '0')}</strong><small>{categories.slice(1).join(' · ')}</small></div>
         </Container>
       </Section>
 
       <Section className="blog-page-feature-section">
         <Container className="blog-page-feature-layout">
+          <BlogStoryImage post={featuredPost} className="blog-page-feature-image" loading="eager" />
           <div className="blog-page-feature-copy">
             <p className="section-marker">02 — FEATURED STORY</p>
             <span className="blog-page-category">{featuredPost.category}</span>
@@ -68,21 +82,21 @@ export function BlogPage() {
             <div className="button-row">
               <ButtonLink href={getRouteHref('/learning/blog', `/learning/blog/${featuredPost.slug}`)}>Read article →</ButtonLink>
             </div>
+            <aside className="blog-page-feature-aside">
+              <p className="blog-page-aside-kicker">Why this matters</p>
+              <ul>
+                <li>Practical knowledge for students and curious learners</li>
+                <li>Workshops, projects, and campus learning in context</li>
+                <li>Clear thinking around technology, skills, and growth</li>
+              </ul>
+            </aside>
           </div>
-
-          <aside className="blog-page-feature-aside">
-            <p className="blog-page-aside-kicker">Why this matters</p>
-            <ul>
-              <li>Practical knowledge for students and curious learners</li>
-              <li>Workshops, projects, and campus learning in context</li>
-              <li>Clear thinking around technology, skills, and growth</li>
-            </ul>
-          </aside>
         </Container>
       </Section>
 
       <Section className="blog-page-library">
         <Container>
+          <div className="blog-page-library-heading"><div><p className="section-marker">03 — EXPLORE STORIES</p><h2>Ideas worth putting into practice.</h2></div><span>{String(filteredPosts.length).padStart(2, '0')} STORIES</span></div>
           <div className="blog-page-toolbar">
             <div className="blog-page-search">
               <label htmlFor="blog-search" className="sr-only">
@@ -125,18 +139,21 @@ export function BlogPage() {
             <div className="blog-page-list">
               {filteredPosts.map((post, index) => (
                 <article className="blog-page-card" key={post.slug}>
-                  <span className="blog-page-card-index">{`0${index + 1}`}</span>
-                  <div className="blog-page-card-header">
-                    <span className="blog-page-category">{post.category}</span>
-                    <time dateTime={post.publishDate}>{formatDate(post.publishDate)}</time>
-                  </div>
-                  <h3>{post.title}</h3>
-                  <p>{post.excerpt}</p>
-                  <div className="blog-page-card-footer">
-                    <span>{post.author}</span>
-                    <ButtonLink href={getRouteHref('/learning/blog', `/learning/blog/${post.slug}`)} variant="link">
-                      Read story
-                    </ButtonLink>
+                  <BlogStoryImage post={post} />
+                  <div className="blog-page-card-body">
+                    <span className="blog-page-card-index">{`0${index + 1}`}</span>
+                    <div className="blog-page-card-header">
+                      <span className="blog-page-category">{post.category}</span>
+                      <time dateTime={post.publishDate}>{formatDate(post.publishDate)}</time>
+                    </div>
+                    <h3>{post.title}</h3>
+                    <p>{post.excerpt}</p>
+                    <div className="blog-page-card-footer">
+                      <span>{post.author}</span>
+                      <ButtonLink href={getRouteHref('/learning/blog', `/learning/blog/${post.slug}`)} variant="link">
+                        Read story
+                      </ButtonLink>
+                    </div>
                   </div>
                 </article>
               ))}
@@ -148,7 +165,7 @@ export function BlogPage() {
       <Section className="blog-page-insight-section">
         <Container className="blog-page-insight-layout">
           <div>
-            <p className="section-marker">03 — KNOWLEDGE HUB</p>
+            <p className="section-marker section-marker-yellow">04 — KNOWLEDGE HUB</p>
             <h2>Learning stories with a practical lens.</h2>
           </div>
           <div className="blog-page-insight-list">
@@ -169,7 +186,7 @@ export function BlogPage() {
       <Section className="blog-page-cta">
         <Container className="blog-page-cta-layout">
           <div>
-            <p className="section-marker section-marker-yellow">04 — START LEARNING</p>
+            <p className="section-marker section-marker-yellow">05 — START LEARNING</p>
             <h2>Explore the experience behind the learning.</h2>
           </div>
           <div className="button-row">
@@ -198,6 +215,7 @@ export function BlogPostDetailPage({ post }: { post: BlogPost }) {
               <span>{formatDate(post.publishDate)}</span>
             </div>
           </div>
+          <BlogStoryImage post={post} className="blog-post-hero-image" loading="eager" />
         </Container>
       </Section>
 
