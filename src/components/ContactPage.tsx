@@ -39,6 +39,7 @@ function initialValues(): ContactValues {
 function ContactForm() {
   const [values, setValues] = useState<ContactValues>(initialValues)
   const [errors, setErrors] = useState<ContactErrors>({})
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const [dismissedSuccess, setDismissedSuccess] = useState(false)
   const returnedFromSubmission = useSyncExternalStore(
     () => () => {},
@@ -49,6 +50,7 @@ function ContactForm() {
   const update = (field: keyof ContactValues, value: string) => {
     setValues((current) => ({ ...current, [field]: value }))
     setErrors((current) => ({ ...current, [field]: undefined }))
+    setStatus('idle')
     setDismissedSuccess(true)
   }
 
@@ -63,11 +65,36 @@ function ContactForm() {
     return Object.keys(next).length === 0
   }
 
-  const submit = (event: FormEvent<HTMLFormElement>) => {
-    if (!validate()) event.preventDefault()
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (!validate()) return
+
+    const data = Object.fromEntries(new FormData(event.currentTarget).entries())
+    delete data._next
+    const controller = new AbortController()
+    const timeout = window.setTimeout(() => controller.abort(), 20000)
+    setStatus('sending')
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${enquiryEmail}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(data),
+        signal: controller.signal,
+      })
+      const result = await response.json() as { success?: boolean | string }
+      if (!response.ok || (result.success !== true && result.success !== 'true')) throw new Error('Submission failed')
+      setValues({ fullName: '', email: '', phone: '', interest: '', program: '', city: '', message: '' })
+      setStatus('success')
+    } catch {
+      setStatus('error')
+    } finally {
+      window.clearTimeout(timeout)
+    }
   }
 
   const fieldError = (field: keyof ContactValues) => errors[field] ? <small className="field-error" id={`contact-${field}-error`}>{errors[field]}</small> : null
+  const emailDraft = `mailto:${enquiryEmail}?subject=${encodeURIComponent('LSA website enquiry')}&body=${encodeURIComponent(`Name: ${values.fullName}\nEmail: ${values.email}\nPhone: ${values.phone}\nInterest: ${values.interest}\nProgram: ${values.program}\nCity: ${values.city}\n\n${values.message}`)}`
 
   return <form className="contact-page-form" action={`https://formsubmit.co/${enquiryEmail}`} method="POST" onSubmit={submit} noValidate>
     <input type="hidden" name="_subject" value="New LSA website enquiry" />
@@ -84,8 +111,9 @@ function ContactForm() {
       <label className="inquiry-field" htmlFor="contact-city"><span>City</span><input id="contact-city" name="city" value={values.city} onChange={(event) => update('city', event.target.value)} /></label>
       <label className="inquiry-field inquiry-field-wide" htmlFor="contact-message"><span>Message / Requirement *</span><textarea id="contact-message" name="message" placeholder="Tell us what you are looking for..." value={values.message} onChange={(event) => update('message', event.target.value)} aria-invalid={Boolean(errors.message)} aria-describedby={errors.message ? 'contact-message-error' : undefined} />{fieldError('message')}</label>
     </div>
-    {returnedFromSubmission && !dismissedSuccess && <p className="inquiry-status inquiry-status-success" role="status">Your enquiry has been submitted. Thank you for reaching out.</p>}
-    <button className="inquiry-submit" type="submit">Send enquiry <span aria-hidden="true">→</span></button>
+    {(status === 'success' || (returnedFromSubmission && !dismissedSuccess)) && <p className="inquiry-status inquiry-status-success" role="status">Your enquiry has been submitted. Thank you for reaching out.</p>}
+    {status === 'error' && <p className="inquiry-status inquiry-status-error" role="alert">We couldn&apos;t send your enquiry. Please try again or <a href={emailDraft}>open an email draft with your details</a>.</p>}
+    <button className="inquiry-submit" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send enquiry'} <span aria-hidden="true">→</span></button>
   </form>
 }
 
