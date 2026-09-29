@@ -938,16 +938,16 @@ p { line-height: 1.6; }
 .learning-ecosystem-head .section-marker { margin: 0 0 var(--space-4); color: var(--color-yellow); font-size: 0.78rem; letter-spacing: 0.2em; }
 .learning-ecosystem-head h2 { max-width: 16.5ch; margin: 0; color: var(--color-navy); font-size: clamp(4rem, 5vw, 8.5rem); line-height: 0.88; letter-spacing: -0.08em; }
 .learning-ecosystem-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(var(--space-4), 2vw, var(--space-6)); }
-.learning-ecosystem-card { display: flex; flex-direction: column; justify-content: space-between; min-height: 31rem; padding: clamp(var(--space-5), 2vw, var(--space-8)); border-radius: 1.5rem; text-decoration: none; color: var(--color-navy); will-change: transform, opacity; }
+.learning-ecosystem-card { display: flex; flex-direction: column; justify-content: flex-start; gap: clamp(1.25rem, 2vw, 2rem); min-height: 0; padding: clamp(var(--space-5), 2vw, var(--space-8)); border-radius: 1.5rem; text-decoration: none; color: var(--color-navy); will-change: transform, opacity; }
 .learning-ecosystem-card--mint { background: #dbe4f3; }
 .learning-ecosystem-card--peach { background: #f0b578; }
 .learning-ecosystem-card--lavender { background: #a7aee7; }
 .learning-ecosystem-card h3 { margin: 0; color: var(--color-navy); font-size: clamp(2.5rem, 3vw, 4rem); line-height: 0.95; letter-spacing: -0.06em; }
-.learning-ecosystem-card p { margin: 0; max-width: 18rem; color: var(--color-navy); font-size: clamp(1.1rem, 1.5vw, 1.85rem); line-height: 1.25; }
+.learning-ecosystem-card p { margin: 0.65rem 0 0; max-width: 18rem; color: var(--color-navy); font-size: clamp(1.1rem, 1.5vw, 1.85rem); line-height: 1.25; }
 .learning-ecosystem-card small { display: block; max-width: 20rem; color: rgba(16, 35, 63, 0.82); font-size: clamp(0.95rem, 1.1vw, 1.2rem); line-height: 1.5; }
 .card-arrow { display: grid; place-items: center; align-self: flex-end; width: 3rem; height: 3rem; border: 1.5px solid rgba(16, 35, 63, 0.8); border-radius: 50%; font-size: 1.5rem; line-height: 1; transition: transform 220ms ease, border-color 220ms ease, background-color 220ms ease; transform-origin: center; }
 .learning-ecosystem-card:hover .card-arrow, .learning-ecosystem-card:focus-visible .card-arrow { transform: rotate(45deg); border-color: rgba(16, 35, 63, 1); background: rgba(255, 255, 255, 0.12); }
-.learning-ecosystem-card .card-arrow { width: auto; height: auto; border: 0; border-radius: 0; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.learning-ecosystem-card .card-arrow { width: auto; height: auto; margin-top: auto; padding-top: 0.75rem; border: 0; border-radius: 0; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
 .learning-ecosystem-card:hover .card-arrow, .learning-ecosystem-card:focus-visible .card-arrow { transform: translateX(0.25rem); background: transparent; }
 :root {
   --brand-navy: #021a54;
@@ -1052,6 +1052,8 @@ p { line-height: 1.6; }
 .contact-page-form .inquiry-submit:focus-visible { outline: 3px solid var(--color-yellow); outline-offset: 3px; }
 .contact-page-form .inquiry-submit span { font-size: 1.25rem; }
 .contact-page-form .inquiry-status { position: relative; border-radius: 0.5rem; line-height: 1.5; }
+.contact-form-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
+.contact-direct-email { position: relative; margin-top: clamp(1.5rem, 3vw, 2.5rem); color: var(--color-red-dark); font-size: 0.875rem; font-weight: 700; text-underline-offset: 0.2em; }
 .contact-honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 
 .about-page-hero { padding-block: clamp(4rem, 9vw, 8rem); background: var(--color-navy-deep); color: var(--color-white); }
@@ -1514,10 +1516,7 @@ p { line-height: 1.6; }
 .blog-page-library-heading { display: flex; align-items: end; justify-content: space-between; gap: var(--space-8); margin-bottom: var(--space-8); }
 .blog-page-library-heading h2 { max-width: 17ch; margin: 0; color: var(--color-navy); font-size: clamp(2.7rem, 5vw, 4.7rem); letter-spacing: -0.055em; line-height: 1.02; }
 .blog-page-library-heading > span { flex: 0 0 auto; color: var(--color-red-dark); font-size: 0.8rem; font-weight: 900; letter-spacing: 0.12em; }
-.blog-page-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-5); margin-bottom: var(--space-8); padding: var(--space-4); border: 1px solid rgba(2, 26, 84, 0.11); border-radius: 1rem; background: rgba(255, 255, 255, 0.86); }
-.blog-page-search { flex: 1 1 20rem; }
-.blog-page-search input { width: 100%; min-height: 3rem; padding: 0.875rem 1rem; border: 1px solid rgba(2, 26, 84, 0.15); border-radius: 0.6rem; background: #f8f9fb; color: var(--color-foreground); }
-.blog-page-search input:focus { border-color: var(--color-red); outline: 3px solid rgba(128, 0, 32, 0.14); outline-offset: 1px; }
+.blog-page-toolbar { display: flex; align-items: center; margin-bottom: var(--space-8); padding: var(--space-3); border: 1px solid rgba(2, 26, 84, 0.11); border-radius: 1rem; background: rgba(255, 255, 255, 0.86); }
 .blog-page-filters { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 .blog-page-filters button { min-height: 3rem; padding: 0.625rem 1rem; border: 1px solid transparent; border-radius: 0.55rem; background: transparent; color: var(--color-muted-foreground); font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background-color 180ms ease, color 180ms ease; }
 .blog-page-filters button:hover, .blog-page-filters button:focus-visible { background: #eceef3; color: var(--color-navy); }
@@ -1578,7 +1577,6 @@ p { line-height: 1.6; }
 @media (max-width: 1024px) {
   .blog-page-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .blog-page-toolbar { align-items: stretch; }
-  .blog-page-search { flex-basis: 100%; }
 }
 
 @media (max-width: 820px) {

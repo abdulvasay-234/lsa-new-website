@@ -33,20 +33,12 @@ function renderBody(content: string) {
 
 export function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState('All')
-  const [searchTerm, setSearchTerm] = useState('')
 
   const categories = ['All', ...new Set(blogPosts.map((post) => post.category))]
 
   const filteredPosts = useMemo(() => {
-    const normalizedTerm = searchTerm.trim().toLowerCase()
-
-    return blogPosts.filter((post) => {
-      const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory
-      const haystack = `${post.title} ${post.excerpt} ${post.category} ${post.author}`.toLowerCase()
-      const matchesSearch = !normalizedTerm || haystack.includes(normalizedTerm)
-      return matchesCategory && matchesSearch
-    })
-  }, [searchTerm, selectedCategory])
+    return blogPosts.filter((post) => selectedCategory === 'All' || post.category === selectedCategory)
+  }, [selectedCategory])
 
   const featuredPost = filteredPosts[0] ?? blogPosts[0]
   const relatedPosts = filteredPosts.filter((post) => post.slug !== featuredPost.slug)
@@ -98,19 +90,6 @@ export function BlogPage() {
         <Container>
           <div className="blog-page-library-heading"><div><p className="section-marker">03 — EXPLORE STORIES</p><h2>Ideas worth putting into practice.</h2></div><span>{String(filteredPosts.length).padStart(2, '0')} STORIES</span></div>
           <div className="blog-page-toolbar">
-            <div className="blog-page-search">
-              <label htmlFor="blog-search" className="sr-only">
-                Search blog articles
-              </label>
-              <input
-                id="blog-search"
-                type="search"
-                value={searchTerm}
-                onChange={(event) => setSearchTerm(event.target.value)}
-                placeholder="Search articles"
-              />
-            </div>
-
             <div className="blog-page-filters" aria-label="Blog categories">
               {categories.map((category) => (
                 <button
@@ -125,40 +104,28 @@ export function BlogPage() {
             </div>
           </div>
 
-          {filteredPosts.length === 0 ? (
-            <div className="blog-page-empty">
-              <p>No articles match that search.</p>
-              <button type="button" className="button button-secondary" onClick={() => {
-                setSearchTerm('')
-                setSelectedCategory('All')
-              }}>
-                Reset filters
-              </button>
-            </div>
-          ) : (
-            <div className="blog-page-list">
-              {filteredPosts.map((post, index) => (
-                <article className="blog-page-card" key={post.slug}>
-                  <BlogStoryImage post={post} />
-                  <div className="blog-page-card-body">
-                    <span className="blog-page-card-index">{`0${index + 1}`}</span>
-                    <div className="blog-page-card-header">
-                      <span className="blog-page-category">{post.category}</span>
-                      <time dateTime={post.publishDate}>{formatDate(post.publishDate)}</time>
-                    </div>
-                    <h3>{post.title}</h3>
-                    <p>{post.excerpt}</p>
-                    <div className="blog-page-card-footer">
-                      <span>{post.author}</span>
-                      <ButtonLink href={getRouteHref('/learning/blog', `/learning/blog/${post.slug}`)} variant="link">
-                        Read story
-                      </ButtonLink>
-                    </div>
+          <div className="blog-page-list">
+            {filteredPosts.map((post, index) => (
+              <article className="blog-page-card" key={post.slug}>
+                <BlogStoryImage post={post} />
+                <div className="blog-page-card-body">
+                  <span className="blog-page-card-index">{`0${index + 1}`}</span>
+                  <div className="blog-page-card-header">
+                    <span className="blog-page-category">{post.category}</span>
+                    <time dateTime={post.publishDate}>{formatDate(post.publishDate)}</time>
                   </div>
-                </article>
-              ))}
-            </div>
-          )}
+                  <h3>{post.title}</h3>
+                  <p>{post.excerpt}</p>
+                  <div className="blog-page-card-footer">
+                    <span>{post.author}</span>
+                    <ButtonLink href={getRouteHref('/learning/blog', `/learning/blog/${post.slug}`)} variant="link">
+                      Read story
+                    </ButtonLink>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
         </Container>
       </Section>
 

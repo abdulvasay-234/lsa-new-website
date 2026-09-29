@@ -40,7 +40,6 @@ function initialValues(): ContactValues {
 function ContactForm() {
   const [values, setValues] = useState<ContactValues>(initialValues)
   const [errors, setErrors] = useState<ContactErrors>({})
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const [dismissedSuccess, setDismissedSuccess] = useState(false)
   const ready = useSyncExternalStore(subscribeToNothing, () => true, () => false)
   const returnedFromSubmission = useSyncExternalStore(
@@ -52,7 +51,6 @@ function ContactForm() {
   const update = (field: keyof ContactValues, value: string) => {
     setValues((current) => ({ ...current, [field]: value }))
     setErrors((current) => ({ ...current, [field]: undefined }))
-    setStatus('idle')
     setDismissedSuccess(true)
   }
 
@@ -67,32 +65,8 @@ function ContactForm() {
     return Object.keys(next).length === 0
   }
 
-  const submit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    if (!validate()) return
-
-    const data = Object.fromEntries(new FormData(event.currentTarget).entries())
-    delete data._next
-    const controller = new AbortController()
-    const timeout = window.setTimeout(() => controller.abort(), 20000)
-    setStatus('sending')
-
-    try {
-      const response = await fetch(`https://formsubmit.co/ajax/${enquiryEmail}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(data),
-        signal: controller.signal,
-      })
-      const result = await response.json() as { success?: boolean | string }
-      if (!response.ok || (result.success !== true && result.success !== 'true')) throw new Error('Submission failed')
-      setValues({ fullName: '', email: '', phone: '', interest: '', program: '', city: '', message: '' })
-      setStatus('success')
-    } catch {
-      setStatus('error')
-    } finally {
-      window.clearTimeout(timeout)
-    }
+  const submit = (event: FormEvent<HTMLFormElement>) => {
+    if (!validate()) event.preventDefault()
   }
 
   const fieldError = (field: keyof ContactValues) => errors[field] ? <small className="field-error" id={`contact-${field}-error`}>{errors[field]}</small> : null
@@ -102,7 +76,7 @@ function ContactForm() {
     <input type="hidden" name="_subject" value="New LSA website enquiry" />
     <input type="hidden" name="_template" value="table" />
     <input type="hidden" name="_url" value="https://lordsskillacademy.com/contact" />
-    <input type="hidden" name="_next" value="https://lordsskillacademy.com/contact?enquiry=sent#send-enquiry" />
+    <input type="hidden" name="_next" value="https://lordsskillacademy.com/contact/?enquiry=sent#send-enquiry" />
     <input className="contact-honeypot" type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" />
     <div className="contact-form-fields">
       <label className="inquiry-field" htmlFor="contact-fullName"><span>Full Name *</span><input id="contact-fullName" name="name" value={values.fullName} onChange={(event) => update('fullName', event.target.value)} aria-invalid={Boolean(errors.fullName)} aria-describedby={errors.fullName ? 'contact-fullName-error' : undefined} />{fieldError('fullName')}</label>
@@ -113,9 +87,8 @@ function ContactForm() {
       <label className="inquiry-field" htmlFor="contact-city"><span>City</span><input id="contact-city" name="city" value={values.city} onChange={(event) => update('city', event.target.value)} /></label>
       <label className="inquiry-field inquiry-field-wide" htmlFor="contact-message"><span>Message / Requirement *</span><textarea id="contact-message" name="message" placeholder="Tell us what you are looking for..." value={values.message} onChange={(event) => update('message', event.target.value)} aria-invalid={Boolean(errors.message)} aria-describedby={errors.message ? 'contact-message-error' : undefined} />{fieldError('message')}</label>
     </div>
-    {(status === 'success' || (returnedFromSubmission && !dismissedSuccess)) && <p className="inquiry-status inquiry-status-success" role="status">Your enquiry has been submitted. Thank you for reaching out.</p>}
-    {status === 'error' && <p className="inquiry-status inquiry-status-error" role="alert">We couldn&apos;t confirm delivery. Please try again or <a href={emailDraft}>open an email draft with your details</a>.</p>}
-    <button className="inquiry-submit" type="submit" disabled={!ready || status === 'sending'}>{!ready ? 'Loading form…' : status === 'sending' ? 'Sending…' : 'Send enquiry'} <span aria-hidden="true">→</span></button>
+    {returnedFromSubmission && !dismissedSuccess && <p className="inquiry-status inquiry-status-success" role="status">Your enquiry has been submitted. Thank you for reaching out.</p>}
+    <div className="contact-form-actions"><button className="inquiry-submit" type="submit" disabled={!ready}>{!ready ? 'Loading form…' : 'Send enquiry'} <span aria-hidden="true">→</span></button><a className="contact-direct-email" href={emailDraft}>Or email LSA directly</a></div>
   </form>
 }
 
