@@ -27,6 +27,7 @@ const interestOptions = [
 
 const programOptions = ['Data Science', 'Cyber Security', 'Digital Marketing', 'DevOps', 'Python Programming', 'Full Stack Java', 'Power BI', 'Other / Not Sure']
 const enquiryEmail = 'lordsskillacademy@gmail.com'
+const subscribeToNothing = () => () => {}
 
 function initialValues(): ContactValues {
   const params = new URLSearchParams(typeof window === 'undefined' ? '' : window.location.search)
@@ -41,6 +42,7 @@ function ContactForm() {
   const [errors, setErrors] = useState<ContactErrors>({})
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const [dismissedSuccess, setDismissedSuccess] = useState(false)
+  const ready = useSyncExternalStore(subscribeToNothing, () => true, () => false)
   const returnedFromSubmission = useSyncExternalStore(
     () => () => {},
     () => new URLSearchParams(window.location.search).get('enquiry') === 'sent',
@@ -112,8 +114,8 @@ function ContactForm() {
       <label className="inquiry-field inquiry-field-wide" htmlFor="contact-message"><span>Message / Requirement *</span><textarea id="contact-message" name="message" placeholder="Tell us what you are looking for..." value={values.message} onChange={(event) => update('message', event.target.value)} aria-invalid={Boolean(errors.message)} aria-describedby={errors.message ? 'contact-message-error' : undefined} />{fieldError('message')}</label>
     </div>
     {(status === 'success' || (returnedFromSubmission && !dismissedSuccess)) && <p className="inquiry-status inquiry-status-success" role="status">Your enquiry has been submitted. Thank you for reaching out.</p>}
-    {status === 'error' && <p className="inquiry-status inquiry-status-error" role="alert">We couldn&apos;t send your enquiry. Please try again or <a href={emailDraft}>open an email draft with your details</a>.</p>}
-    <button className="inquiry-submit" type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Send enquiry'} <span aria-hidden="true">→</span></button>
+    {status === 'error' && <p className="inquiry-status inquiry-status-error" role="alert">We couldn&apos;t confirm delivery. Please try again or <a href={emailDraft}>open an email draft with your details</a>.</p>}
+    <button className="inquiry-submit" type="submit" disabled={!ready || status === 'sending'}>{!ready ? 'Loading form…' : status === 'sending' ? 'Sending…' : 'Send enquiry'} <span aria-hidden="true">→</span></button>
   </form>
 }
 
