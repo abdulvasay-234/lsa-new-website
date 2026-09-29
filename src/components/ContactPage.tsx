@@ -1,4 +1,4 @@
-import { useState, useSyncExternalStore, type FormEvent } from 'react'
+import { useRef, useState, useSyncExternalStore, type FormEvent } from 'react'
 import { siteInfo } from '../data/site'
 import { Container, Section } from './Layout'
 
@@ -27,6 +27,7 @@ const interestOptions = [
 
 const programOptions = ['Data Science', 'Cyber Security', 'Digital Marketing', 'DevOps', 'Python Programming', 'Full Stack Java', 'Power BI', 'Other / Not Sure']
 const enquiryEmail = 'lordsskillacademy@gmail.com'
+const formAccessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY?.trim()
 const subscribeToNothing = () => () => {}
 
 function initialValues(): ContactValues {
@@ -40,18 +41,14 @@ function initialValues(): ContactValues {
 function ContactForm() {
   const [values, setValues] = useState<ContactValues>(initialValues)
   const [errors, setErrors] = useState<ContactErrors>({})
-  const [dismissedSuccess, setDismissedSuccess] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
+  const sending = useRef(false)
   const ready = useSyncExternalStore(subscribeToNothing, () => true, () => false)
-  const returnedFromSubmission = useSyncExternalStore(
-    () => () => {},
-    () => new URLSearchParams(window.location.search).get('enquiry') === 'sent',
-    () => false,
-  )
 
   const update = (field: keyof ContactValues, value: string) => {
     setValues((current) => ({ ...current, [field]: value }))
     setErrors((current) => ({ ...current, [field]: undefined }))
-    setDismissedSuccess(true)
+    if (status !== 'sending') setStatus('idle')
   }
 
   const validate = () => {
@@ -65,20 +62,54 @@ function ContactForm() {
     return Object.keys(next).length === 0
   }
 
-  const submit = (event: FormEvent<HTMLFormElement>) => {
-    if (!validate()) event.preventDefault()
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (sending.current || !validate()) return
+    if (!formAccessKey) {
+      setStatus('error')
+      return
+    }
+
+    sending.current = true
+    setStatus('sending')
+    const controller = new AbortController()
+    const timeout = window.setTimeout(() => controller.abort(), 20000)
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: formAccessKey,
+          subject: 'New LSA website enquiry',
+          name: values.fullName.trim(),
+          email: values.email.trim(),
+          phone: values.phone.trim(),
+          interest: values.interest,
+          program: values.program,
+          city: values.city.trim(),
+          message: values.message.trim(),
+        }),
+        signal: controller.signal,
+      })
+      const result = await response.json() as { success?: boolean }
+      if (!response.ok || result.success !== true) throw new Error('Enquiry was not accepted')
+      setValues({ fullName: '', email: '', phone: '', interest: '', program: '', city: '', message: '' })
+      setErrors({})
+      setStatus('success')
+    } catch {
+      setStatus('error')
+    } finally {
+      window.clearTimeout(timeout)
+      sending.current = false
+    }
   }
 
   const fieldError = (field: keyof ContactValues) => errors[field] ? <small className="field-error" id={`contact-${field}-error`}>{errors[field]}</small> : null
   const emailDraft = `mailto:${enquiryEmail}?subject=${encodeURIComponent('LSA website enquiry')}&body=${encodeURIComponent(`Name: ${values.fullName}\nEmail: ${values.email}\nPhone: ${values.phone}\nInterest: ${values.interest}\nProgram: ${values.program}\nCity: ${values.city}\n\n${values.message}`)}`
 
-  return <form className="contact-page-form" action={`https://formsubmit.co/${enquiryEmail}`} method="POST" onSubmit={submit} noValidate>
-    <input type="hidden" name="_subject" value="New LSA website enquiry" />
-    <input type="hidden" name="_template" value="table" />
-    <input type="hidden" name="_url" value="https://lordsskillacademy.com/contact" />
-    <input type="hidden" name="_next" value="https://lordsskillacademy.com/contact/?enquiry=sent#send-enquiry" />
-    <input className="contact-honeypot" type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" />
-    <div className="contact-form-fields">
+  return <form className="contact-page-form" onSubmit={submit} noValidate>
+    <fieldset className="contact-form-fields" disabled={status === 'sending'}>
       <label className="inquiry-field" htmlFor="contact-fullName"><span>Full Name *</span><input id="contact-fullName" name="name" value={values.fullName} onChange={(event) => update('fullName', event.target.value)} aria-invalid={Boolean(errors.fullName)} aria-describedby={errors.fullName ? 'contact-fullName-error' : undefined} />{fieldError('fullName')}</label>
       <label className="inquiry-field" htmlFor="contact-email"><span>Email Address *</span><input id="contact-email" name="email" type="email" placeholder="you@example.com" value={values.email} onChange={(event) => update('email', event.target.value)} aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? 'contact-email-error' : undefined} />{fieldError('email')}</label>
       <label className="inquiry-field" htmlFor="contact-phone"><span>Phone / WhatsApp *</span><input id="contact-phone" name="phone" type="tel" placeholder="+91..." value={values.phone} onChange={(event) => update('phone', event.target.value)} aria-invalid={Boolean(errors.phone)} aria-describedby={errors.phone ? 'contact-phone-error' : undefined} />{fieldError('phone')}</label>
@@ -86,9 +117,11 @@ function ContactForm() {
       <label className="inquiry-field" htmlFor="contact-program"><span>Program / Area of Interest</span><select id="contact-program" name="program" value={values.program} onChange={(event) => update('program', event.target.value)}><option value="">Select an option</option>{programOptions.map((program) => <option key={program}>{program}</option>)}</select></label>
       <label className="inquiry-field" htmlFor="contact-city"><span>City</span><input id="contact-city" name="city" value={values.city} onChange={(event) => update('city', event.target.value)} /></label>
       <label className="inquiry-field inquiry-field-wide" htmlFor="contact-message"><span>Message / Requirement *</span><textarea id="contact-message" name="message" placeholder="Tell us what you are looking for..." value={values.message} onChange={(event) => update('message', event.target.value)} aria-invalid={Boolean(errors.message)} aria-describedby={errors.message ? 'contact-message-error' : undefined} />{fieldError('message')}</label>
-    </div>
-    {returnedFromSubmission && !dismissedSuccess && <p className="inquiry-status inquiry-status-success" role="status">Your enquiry has been submitted. Thank you for reaching out.</p>}
-    <div className="contact-form-actions"><button className="inquiry-submit" type="submit" disabled={!ready}>{!ready ? 'Loading form…' : 'Send enquiry'} <span aria-hidden="true">→</span></button><a className="contact-direct-email" href={emailDraft}>Or email LSA directly</a></div>
+    </fieldset>
+    {!formAccessKey && <p className="inquiry-status inquiry-status-error" role="alert">Online enquiries are temporarily unavailable. Please <a href={emailDraft}>email LSA directly</a>.</p>}
+    {status === 'success' && <p className="inquiry-status inquiry-status-success" role="status">Message sent successfully. Thank you for reaching out. We&apos;ll get back to you soon.</p>}
+    {status === 'error' && <p className="inquiry-status inquiry-status-error" role="alert">We couldn&apos;t send your message. Your details are still here, so please try again or <a href={emailDraft}>email LSA directly</a>.</p>}
+    <div className="contact-form-actions"><button className="inquiry-submit" type="submit" disabled={!ready || status === 'sending' || !formAccessKey}>{!ready ? 'Loading form…' : status === 'sending' ? 'Sending…' : 'Send enquiry'} <span aria-hidden="true">→</span></button><a className="contact-direct-email" href={emailDraft}>Or email LSA directly</a></div>
   </form>
 }
 
