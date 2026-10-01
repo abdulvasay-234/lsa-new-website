@@ -1617,6 +1617,10 @@ p { line-height: 1.6; }
 
 @media (max-width: 900px) {
   h1 { font-size: 3rem; }
+  .blog-post-content-layout { grid-template-columns: minmax(0, 1fr); }
+  .blog-page-hero-layout, .blog-page-feature-layout, .blog-page-insight-layout { grid-template-columns: minmax(0, 1fr); gap: var(--space-8); }
+  .blog-page-hero-layout { min-height: 0; align-items: start; }
+  .blog-page-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .site-nav-list { gap: var(--space-4); }
   .footer-layout { grid-template-columns: 1fr; }
   .footer-identity { grid-column: 1 / -1; }
@@ -1861,6 +1865,10 @@ p { line-height: 1.6; }
 }
 
 @media (max-width: 560px) {
+  .blog-page-hero h1, .blog-post-hero h1 { font-size: clamp(2.25rem, 10vw, 3.25rem); }
+  .blog-page-list { grid-template-columns: minmax(0, 1fr); }
+  .blog-page-insight-layout h2 { font-size: clamp(2.25rem, 10vw, 3rem); }
+  .program-highlight h3 { font-size: 1.125rem; }
   .campus-hero-copy h1 { font-size: clamp(3rem, 14vw, 4.5rem); }
   .campus-hero-copy .button-row { align-items: stretch; flex-direction: column; }
   .campus-hero-copy .button-row .button, .campus-final-layout .button-row .button { width: 100%; }
