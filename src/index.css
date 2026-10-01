@@ -103,7 +103,7 @@ p { line-height: 1.6; }
 @media (prefers-reduced-motion: reduce) { .lsa-logo-reveal, .lsa-logo-burst, .lsa-logo-burst::before, .lsa-logo-burst::after { animation-duration: 0.01ms; animation-iteration-count: 1; } .lsa-intro { transition: none; } }
 
 .site-header { position: sticky; top: 0; z-index: 150; border-bottom: 1px solid var(--color-border); background: rgba(247, 247, 242, 0.92); color: var(--color-navy-deep); transition: background-color 420ms ease, border-color 420ms ease, color 420ms ease, backdrop-filter 420ms ease, box-shadow 420ms ease; }
-.site-header.is-scrolled { background: rgba(247, 247, 242, 0.72); border-bottom-color: rgba(16, 35, 63, 0.18); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: 0 0.5rem 1.5rem rgba(8, 22, 43, 0.08); }
+.site-header.is-scrolled { background: rgba(247, 247, 242, 0.72); border-bottom-color: rgba(16, 35, 63, 0.18); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 0.5rem 1.5rem rgba(8, 22, 43, 0.08); }
 .site-header.is-dark, .site-header.is-dark.is-scrolled { border-bottom-color: rgba(255, 255, 255, 0.18); background: rgba(2, 26, 84, 0.84); color: var(--color-white); box-shadow: 0 0.5rem 1.5rem rgba(1, 10, 30, 0.2); }
 .site-header.is-dark .site-nav-list > li:not(.site-nav-cta) > a { color: rgba(255, 255, 255, 0.78); }
 .site-header.is-dark .site-nav-list > li:not(.site-nav-cta) > a:hover, .site-header.is-dark .site-nav-list > li:not(.site-nav-cta) > a[aria-current='page'] { color: var(--color-white); }
@@ -111,7 +111,7 @@ p { line-height: 1.6; }
 .site-header.is-dark .menu-toggle { border-color: rgba(255, 255, 255, 0.25); background: transparent; color: var(--color-white); }
 .site-header.is-dark .menu-toggle-icon span { background: var(--color-white); }
 .site-header.is-home { position: fixed; inset: 0 0 auto; background: transparent; border-bottom-color: rgba(255, 255, 255, 0.16); }
-.site-header.is-home.is-dark:not(.is-scrolled) { background: rgba(2, 26, 84, 0.18); box-shadow: none; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); }
+.site-header.is-home.is-dark:not(.is-scrolled) { background: rgba(2, 26, 84, 0.18); box-shadow: none; -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); }
 .header-layout { display: flex; align-items: center; justify-content: space-between; gap: var(--space-8); min-height: 5rem; }
 .brand { display: inline-flex; align-items: center; color: var(--color-primary); text-decoration: none; }
 .brand img { display: block; width: 4.5rem; height: 4.5rem; object-fit: contain; }
