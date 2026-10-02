@@ -11,8 +11,6 @@ export function EventsCommunityPage() {
         <Container className="events-community-hero-layout">
           <div className="events-community-hero-copy">
             <h1>Learning doesn&apos;t stop at the classroom.</h1>
-            <p>LSA creates opportunities for learners to learn together, build together, compete, contribute, and experience technology beyond regular coursework.</p>
-            <p className="events-category-line">WORKSHOPS <span>·</span> HACKATHONS <span>·</span> COMPETITIONS <span>·</span> INDUSTRY VISITS <span>·</span> COMMUNITY <span>·</span> OPEN LEARNING</p>
           </div>
         </Container>
       </Section>
