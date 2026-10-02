@@ -1,7 +1,7 @@
 import { getRouteHref } from '../data/routes'
 import { ButtonLink } from './Button'
+import { HomeContactSection } from './HomeContactSection'
 import { Container, Section } from './Layout'
-import { PhotoLocation } from './Media'
 
 const practiceAreas = [
   ['PROJECTS', 'Turn concepts into practical projects and create work you can learn from and showcase.'],
@@ -18,7 +18,6 @@ export function LearningPage() {
       <Section className="learning-page-hero">
         <Container className="learning-page-hero-layout">
           <div><p className="section-marker section-marker-yellow">01 — LEARNING</p><h1>Learn by doing.<br />Build by solving.</h1></div>
-          <p>LSA combines structured learning with hands-on practice, projects, mentorship, and real-world experiences — helping learners turn what they learn into skills they can apply.</p>
         </Container>
       </Section>
 
@@ -44,11 +43,11 @@ export function LearningPage() {
       <Section className="learning-practice-section">
         <Container>
           <div className="learning-page-heading"><p className="section-marker">04 — LEARNING IN PRACTICE</p><h2>Where learning becomes experience.</h2><p>LSA gives learners opportunities to <strong>apply concepts, work on real problems, build projects, and experience how technology is used beyond the classroom.</strong></p></div>
-          <div className="learning-practice-layout"><article className="learning-practice-feature"><div className="learning-practice-feature-media"><img src={`${import.meta.env.BASE_URL}media/project.png`} alt="LSA students collaborating around a laptop on a practical project" width="575" height="360" loading="lazy" decoding="async" /><PhotoLocation /></div><div className="learning-practice-feature-copy"><p className="card-kicker">01 — FEATURE</p><h3>PROJECTS</h3><p>Build things instead of only completing lessons.</p></div></article><div className="learning-practice-list">{practiceAreas.slice(1).map(([label, description], index) => <article key={label}><span>{`0${index + 2}`}</span><div><h3>{label}</h3><p>{description}</p></div></article>)}</div></div>
+          <div className="learning-practice-layout"><article className="learning-practice-feature"><div className="learning-practice-feature-media"><img src={`${import.meta.env.BASE_URL}media/project.png`} alt="LSA students collaborating around a laptop on a practical project" width="575" height="360" loading="lazy" decoding="async" /><span className="photo-location" aria-hidden="true" /></div><div className="learning-practice-feature-copy"><h3>PROJECTS</h3><p>Turn what you learn into practical, working projects.</p></div></article><div className="learning-practice-list">{practiceAreas.slice(1).map(([label, description], index) => <article key={label}><span>{`0${index + 2}`}</span><div><h3>{label}</h3><p>{description}</p></div></article>)}</div></div>
         </Container>
       </Section>
 
-      <Section className="learning-page-cta"><Container className="learning-page-cta-layout"><div><p className="section-marker section-marker-yellow">05 — START LEARNING</p><h2>Don&apos;t just learn technology.<br />Learn to use it.</h2><p>Move from concepts to practice with hands-on programs, projects, and learning experiences designed around how technology is actually used.</p></div><div className="button-row"><ButtonLink href={getRouteHref('/learning', '/programs')}>Explore Programs →</ButtonLink><ButtonLink href={getRouteHref('/learning', '/contact')} variant="outline">Talk to LSA →</ButtonLink></div></Container></Section>
+      <HomeContactSection />
     </>
   )
 }

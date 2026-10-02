@@ -3,8 +3,8 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { getRouteHref } from '../data/routes'
 import { ButtonLink } from './Button'
+import { HomeContactSection } from './HomeContactSection'
 import { Container, Section } from './Layout'
-import { PhotoLocation } from './Media'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -88,16 +88,14 @@ export function CampusPage() {
           <div className="campus-hero-copy">
             <p className="section-marker section-marker-yellow">04 — CAMPUS</p>
             <h1>Where academic learning meets practical technology.</h1>
-            <p>LSA works with educational institutions to create <strong>hands-on technology learning experiences that complement academic education.</strong> Through <strong>workshops, bootcamps, technology programs, internships, hackathons, and projects</strong>, students get opportunities to explore modern technologies, build practical skills, and apply what they learn beyond the classroom.</p>
             <div className="button-row"><ButtonLink href="#campus-offerings">Explore campus work →</ButtonLink><ButtonLink href={getRouteHref('/campus', '/contact')} variant="outline">Work with LSA →</ButtonLink></div>
           </div>
-          <figure className="campus-hero-image"><img src={campusImages[0].src} alt={campusImages[0].alt} width="5146" height="3217" loading="eager" decoding="async" /><PhotoLocation /></figure>
         </Container>
       </Section>
 
       <Section className="campus-page-offerings" id="campus-offerings">
         <Container>
-          <div className="campus-section-intro"><div><p className="section-marker">02 — WHAT WE BRING TO CAMPUS</p><h2>More than a workshop.</h2></div><p>LSA works with institutions to create <strong>practical technology experiences that give students more opportunities to learn, practise, build, and collaborate beyond regular academic sessions.</strong></p></div>
+          <div className="campus-section-intro"><div><p className="section-marker">02 — WHAT WE BRING TO CAMPUS</p><h2>More than a workshop.</h2></div></div>
           <ol className="campus-editorial-list">{campusOffers.map(([title, description], index) => <li key={title}><span>{`0${index + 1}`}</span><h3>{title}</h3><p>{description}</p></li>)}</ol>
         </Container>
       </Section>
@@ -106,19 +104,19 @@ export function CampusPage() {
         <div className="campus-motion-background" aria-hidden="true">
           {campusImages.slice(1, 4).map((image) => <img src={image.src} alt="" width="5146" height="3217" loading="lazy" key={image.src} />)}
         </div>
-        <PhotoLocation />
+        <span className="photo-location" aria-hidden="true" />
         <Container className="campus-motion-content">
           <div className="campus-section-intro"><div><p className="section-marker">04 — LEARNING IN MOTION</p><h2>Learning happens<br className="motion-heading-break" /> wherever people build.</h2></div></div>
         </Container>
       </Section>
 
       <Section className="campus-page-beyond">
-        <Container className="campus-beyond-editorial"><div><p className="section-marker">05 — BEYOND THE CLASSROOM</p><h2>Learning changes when you get to use it.</h2></div><div><p className="campus-beyond-lead">Technology is easier to understand when students can <strong>experiment with it, build with it, solve problems, and learn alongside others.</strong> LSA creates opportunities to turn classroom concepts into practical experiences.</p><ol className="campus-principles-list">{beyondPrinciples.map(([title, description]) => <li key={title}><strong>{title}</strong><span>{description}</span></li>)}</ol></div></Container>
+        <Container className="campus-beyond-editorial"><div><p className="section-marker">05 — BEYOND THE CLASSROOM</p><h2>Learning changes when you get to use it.</h2></div><div><ol className="campus-principles-list">{beyondPrinciples.map(([title, description]) => <li key={title}><strong>{title}</strong><span>{description}</span></li>)}</ol></div></Container>
       </Section>
 
       <Section className="campus-page-experiences">
         <Container>
-          <div className="campus-section-intro"><div><p className="section-marker">06 — CAMPUS EXPERIENCES</p><h2>Real learning moments, close to the work.</h2></div><p>LSA brings practical technology learning to campus through <strong>workshops, build sessions, technology programs, student projects, internships, hackathons, and community events.</strong></p></div>
+          <div className="campus-section-intro"><div><p className="section-marker">06 — CAMPUS EXPERIENCES</p><h2>Real learning moments, close to the work.</h2></div></div>
           <div className="campus-slideshow" onMouseEnter={() => setIsSlideshowPaused(true)} onMouseLeave={() => setIsSlideshowPaused(false)} onFocus={() => setIsSlideshowPaused(true)} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setIsSlideshowPaused(false) }}>
             <div className="campus-slideshow-viewport" aria-live="polite">
               <figure key={campusImages[activeSlide].src}>
@@ -142,10 +140,10 @@ export function CampusPage() {
       </Section>
 
       <Section className="campus-page-institutions">
-        <Container className="campus-institution-layout"><div><p className="section-marker section-marker-yellow">07 — FOR INSTITUTIONS</p><h2>Build a stronger bridge between academics and industry.</h2><p>LSA partners with colleges and educational institutions to bring practical technology learning into the academic environment. From workshops and technology programs to hackathons, projects, and community initiatives, we help institutions create more opportunities for students to learn, build, and apply their skills.</p></div><ol className="campus-institution-list">{institutionOffers.map(([title, description], index) => <li key={title}><span>{`0${index + 1}`}</span><div><strong>{title}</strong><p>{description}</p></div></li>)}</ol></Container>
+        <Container className="campus-institution-layout"><div><p className="section-marker section-marker-yellow">07 — FOR INSTITUTIONS</p><h2>Build a stronger bridge between academics and industry.</h2></div><ol className="campus-institution-list">{institutionOffers.map(([title, description], index) => <li key={title}><span>{`0${index + 1}`}</span><div><strong>{title}</strong><p>{description}</p></div></li>)}</ol></Container>
       </Section>
 
-      <Section className="campus-page-final"><Container className="campus-final-layout"><div><p className="section-marker section-marker-yellow">08 — WORK WITH LSA</p><h2>Bring practical technology learning to your campus.</h2><p>Whether you are planning a workshop, technology program, internship initiative, hackathon, or larger campus engagement, start a conversation with LSA.</p></div><div className="button-row"><ButtonLink href={getRouteHref('/campus', '/contact')}>Work with LSA →</ButtonLink><ButtonLink href={getRouteHref('/campus', '/contact')} variant="outline">Contact LSA →</ButtonLink></div></Container></Section>
+      <HomeContactSection />
     </>
   )
 }

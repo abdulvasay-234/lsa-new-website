@@ -14,7 +14,7 @@ const routeInputs = Object.fromEntries(
 
 export default defineConfig({
   plugins: [react()],
-  base: process.env.BASE_PATH || './',
+  base: process.env.BASE_PATH || '/',
   define: {
     'import.meta.env.VITE_SITE_URL': JSON.stringify(process.env.SITE_URL || ''),
   },
