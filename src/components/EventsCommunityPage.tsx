@@ -1,25 +1,8 @@
 import { getRouteHref } from '../data/routes'
+import { eventArchive, eventCategories, eventPhotos, featuredEvents } from '../data/events'
 import { ButtonLink } from './Button'
 import { Container, Section } from './Layout'
-import { PhotoLocation } from './Media'
-
-const eventImages = [
-  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00752.jpg`, alt: 'LSA learners taking part in a hands-on technology session', label: 'LEARN TOGETHER' },
-  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00621%20(1).jpg`, alt: 'LSA students collaborating on practical work', label: 'BUILD TOGETHER' },
-  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00664.jpg`, alt: 'LSA learners discussing ideas during a class activity', label: 'SHARE IDEAS' },
-  { src: `${import.meta.env.BASE_URL}media/classroom-imgs/2SP00590%20(1).jpg`, alt: 'LSA students gathered for a shared learning experience', label: 'FIND YOUR PEOPLE' },
-] as const
-
-const eventFormats = [
-  ['01', 'WORKSHOPS', 'Focused, hands-on sessions that turn a new idea or tool into something participants can try.'],
-  ['02', 'MEETUPS', 'Time to exchange ideas, meet other learners, and stay curious about what is changing.'],
-  ['03', 'HACKATHONS', 'Collaborative challenges that bring people together to explore a problem and make a first solution.'],
-  ['04', 'BUILDATHONS', 'Shared build sessions focused on turning concepts, experiments, and rough ideas into working projects.'],
-  ['05', 'INDUSTRY SESSIONS', 'Conversations and practical perspectives from people working across technology.'],
-  ['06', 'COMMUNITY ACTIVITIES', 'Open, welcoming ways for students, builders, mentors, and trainers to learn from one another.'],
-] as const
-
-const communityMembers = ['STUDENTS', 'BUILDERS', 'MENTORS', 'TRAINERS', 'TECH ENTHUSIASTS'] as const
+import { EventArchive, EventCard, EventCategory, EventGallery } from './EventsPageSections'
 
 export function EventsCommunityPage() {
   return (
@@ -27,78 +10,93 @@ export function EventsCommunityPage() {
       <Section className="events-community-hero">
         <Container className="events-community-hero-layout">
           <div className="events-community-hero-copy">
-            <p className="section-marker section-marker-yellow">01 — EVENTS &amp; COMMUNITY</p>
-            <h1>Where learning meets community.</h1>
-            <p>LSA brings people together to learn, build, participate, and connect beyond regular classes. Workshops, shared projects, and community activities make space to explore technology alongside others.</p>
-            <a className="events-community-text-link" href="#events-formats">Explore what happens here <span aria-hidden="true">↓</span></a>
+            <h1>Learning doesn&apos;t stop at the classroom.</h1>
+            <p>LSA creates opportunities for learners to learn together, build together, compete, contribute, and experience technology beyond regular coursework.</p>
+            <p className="events-category-line">WORKSHOPS <span>·</span> HACKATHONS <span>·</span> COMPETITIONS <span>·</span> INDUSTRY VISITS <span>·</span> COMMUNITY <span>·</span> OPEN LEARNING</p>
           </div>
-          <figure className="events-community-hero-image">
-            <div className="events-community-hero-frame"><img src={eventImages[0].src} alt={eventImages[0].alt} width="5146" height="3217" fetchPriority="high" /><PhotoLocation /></div>
-            <figcaption><span>LSA LEARNING IN ACTION</span><b aria-hidden="true">01 / 04</b></figcaption>
-          </figure>
         </Container>
       </Section>
 
-      <Section className="events-community-formats" id="events-formats">
+      <Section className="events-what-we-do" id="events-categories">
         <Container>
-          <div className="events-community-intro">
-            <div><p className="section-marker">02 — MORE THAN A CLASSROOM</p><h2>Make room to learn by doing.</h2></div>
-            <p>Learning continues when people get together to ask questions, test ideas, build with others, and share what they discover.</p>
+          <div className="events-section-heading events-two-column-heading">
+            <div><h2>More than events. Experiences that bring people together.</h2></div>
           </div>
-          <ol className="events-format-list">
-            {eventFormats.map(([number, title, description]) => <li key={number}><span>{number}</span><h3>{title}</h3><p>{description}</p><b aria-hidden="true">↗</b></li>)}
+          <div className="events-category-grid">
+            {eventCategories.map((category) => <EventCategory key={category.number} category={category} />)}
+          </div>
+        </Container>
+      </Section>
+
+      <Section className="events-approach">
+        <Container>
+          <div className="events-approach-layout">
+            <div><h2>We create spaces where people can learn together.</h2></div>
+          </div>
+          <ol className="events-process-list" aria-label="How LSA learning experiences unfold">
+            {['LEARN', 'PARTICIPATE', 'BUILD', 'COLLABORATE', 'SHARE'].map((step, index) => <li key={step}><span>{`0${index + 1}`}</span>{step}</li>)}
           </ol>
         </Container>
       </Section>
 
-      <Section className="events-community-experiences">
-        <Container className="events-experiences-layout">
-          <div className="events-experiences-heading"><p className="section-marker">03 — WHAT HAPPENS HERE</p><h2>Different ways to take part.</h2></div>
-          <div className="events-experiences-copy">
-            <p>Some gatherings are about learning a new skill. Others are about building something together, meeting people with shared interests, or hearing a new perspective.</p>
-            <ol>
-              <li><span>LEARN</span><p>Join a workshop or industry session, ask questions, and get hands-on with an idea.</p></li>
-              <li><span>MAKE</span><p>Bring curiosity to a hackathon or buildathon and work with others toward a practical outcome.</p></li>
-              <li><span>CONNECT</span><p>Meet fellow learners and keep conversations, projects, and collaboration going beyond class.</p></li>
-            </ol>
-          </div>
-        </Container>
-      </Section>
-
-      <Section className="events-community-people">
-        <Container className="events-community-people-layout">
-          <div><p className="section-marker">04 — THE COMMUNITY</p><h2>Many paths. A shared curiosity.</h2></div>
-          <div><p className="events-community-people-lead">The LSA community is made up of people who want to keep learning and putting ideas into practice.</p><ul>{communityMembers.map((member, index) => <li key={member}><span>{`0${index + 1}`}</span>{member}</li>)}</ul></div>
-        </Container>
-      </Section>
-
-      <Section className="events-community-motion">
+      <Section className="events-featured" id="featured-events">
         <Container>
-          <div className="events-community-intro events-community-motion-intro">
-            <div><p className="section-marker">05 — EVENTS IN MOTION</p><h2>Good work happens together.</h2></div>
-            <p>Real moments from LSA learning spaces: people listening, sharing ideas, and working side by side.</p>
+          <div className="events-section-heading">
+            <h2>Experiences worth coming together for.</h2>
+            <p>Featured event details are published here when LSA has confirmed the record.</p>
           </div>
-          <div className="events-photo-editorial">
-            <figure className="events-photo-feature"><div><img src={eventImages[1].src} alt={eventImages[1].alt} width="5146" height="3217" loading="lazy" /><PhotoLocation /></div><figcaption><span>02</span>{eventImages[1].label}</figcaption></figure>
-            <div className="events-photo-side">
-              {eventImages.slice(2).map((image, index) => <figure key={image.src}><div><img src={image.src} alt={image.alt} width="5146" height="3217" loading="lazy" /><PhotoLocation /></div><figcaption><span>{`0${index + 3}`}</span>{image.label}</figcaption></figure>)}
+          {featuredEvents.length > 0 ? (
+            <div className="events-featured-list">{featuredEvents.map((event) => <EventCard key={event.id} event={event} />)}</div>
+          ) : (
+            <div className="events-featured-empty">
+              <span className="events-featured-index" aria-hidden="true">LSA</span>
+              <div><p className="events-featured-label">FEATURED EVENT RECORD</p><p>No verified event name, date, location, or event-specific image is available to feature yet.</p></div>
+              <span className="events-featured-status">DETAILS PENDING</span>
             </div>
+          )}
+        </Container>
+      </Section>
+
+      <Section className="events-archive-section" id="events-archive">
+        <Container>
+          <div className="events-section-heading events-two-column-heading">
+            <div><h2>Moments that have shaped the LSA community.</h2></div>
+            <p>Dates and event details are added to the archive only when they have been confirmed.</p>
+          </div>
+          <EventArchive periods={eventArchive} />
+        </Container>
+      </Section>
+
+      <Section className="events-impact">
+        <Container>
+          <div className="events-section-heading">
+            <div><h2>Learning can create impact beyond the learner.</h2></div>
+          </div>
+          <div className="events-impact-grid">
+            <article><span>01</span><h3>COMMUNITY SERVICE</h3><p>Using skills and resources to contribute beyond the classroom.</p></article>
+            <article><span>02</span><h3>KNOWLEDGE SHARING</h3><p>Creating opportunities for people to learn from one another.</p></article>
+            <article><span>03</span><h3>OPEN LEARNING SPACES</h3><p>Making room for learners, builders, educators, and technology enthusiasts to connect and experiment.</p></article>
           </div>
         </Container>
       </Section>
 
-      <Section className="events-community-philosophy">
+      <Section className="events-photo-journal" id="photo-journal">
         <Container>
-          <p className="section-marker section-marker-yellow">06 — LEARN. BUILD. CONNECT.</p>
-          <ol><li>LEARN</li><li>BUILD</li><li>CONNECT</li></ol>
-          <p className="events-community-philosophy-copy">Events and community are part of how LSA learning comes to life: learn something, put it to use, and connect with people who help you keep going.</p>
+          <div className="events-section-heading events-two-column-heading">
+            <div><h2>Moments from the LSA community.</h2></div>
+            <p>Documentary glimpses of learners sharing space, focusing, and working alongside one another.</p>
+          </div>
+          <EventGallery photos={eventPhotos} />
         </Container>
       </Section>
 
       <Section className="events-community-cta">
         <Container className="events-community-cta-layout">
-          <div><p className="section-marker section-marker-yellow">07 — JOIN THE COMMUNITY</p><h2>There’s always something to build.</h2><p>Follow LSA for community updates and take part in upcoming learning and build experiences.</p></div>
-          <div className="button-row"><ButtonLink href="https://whatsapp.com/channel/0029Vb911A98kyyVQq4S982O" target="_blank" rel="noreferrer">Join the LSA community →</ButtonLink><ButtonLink href={getRouteHref('/campus/events', '/contact')} variant="outline">Get in touch</ButtonLink></div>
+          <div><h2>There&apos;s always something happening.</h2><p>Explore upcoming learning experiences, events, workshops, and activities at Lords Skill Academy.</p></div>
+          <div className="button-row">
+            <ButtonLink href={getRouteHref('/campus/events', '/programs')}>Explore Programs <span aria-hidden="true">→</span></ButtonLink>
+            <ButtonLink href={getRouteHref('/campus/events', '/contact')} variant="outline">Contact LSA <span aria-hidden="true">→</span></ButtonLink>
+          </div>
         </Container>
       </Section>
     </>

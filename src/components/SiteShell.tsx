@@ -48,7 +48,7 @@ export function SiteShell({ children, route }: PropsWithChildren<{ route: SiteRo
         const revealTargets = gsap.utils.toArray<HTMLElement>('#main-content .section:not(.home-hero) .section-marker, #main-content .section:not(.home-hero) h2, #main-content .section:not(.home-hero) h3, #main-content .section:not(.home-hero) p, #main-content .section:not(.home-hero) .button, #main-content .section:not(.home-hero) img, #main-content .section:not(.home-hero) li')
 
         revealTargets.forEach((element) => {
-          if (element.closest('.learning-section, .programs-outcomes-section') || (isMobile && element.closest('.program-detail-gains'))) return
+          if (element.closest('.learning-section, .programs-outcomes-section, .events-community-hero') || (isMobile && element.closest('.program-detail-gains'))) return
           gsap.from(element, {
             opacity: 0,
             y: 28,
