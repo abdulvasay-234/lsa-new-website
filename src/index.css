@@ -523,7 +523,7 @@ p { line-height: 1.6; }
 .certificate-support-details dt { margin-bottom: var(--space-1); color: var(--color-muted-foreground); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
 .certificate-support-details dd { margin: 0; }
 .certificate-support-details a { color: var(--color-navy); font-weight: 700; text-decoration: none; overflow-wrap: anywhere; }
-.certificate-support-details a:hover { color: var(--color-red); }
+.certificate-support-details a:hover, .certificate-support-details a:focus-visible { margin-inline: -0.2em; border-radius: var(--radius-sm); padding-inline: 0.2em; background-color: var(--color-white); color: var(--color-primary); }
 .certificate-verification-link { display: inline-block; margin-top: var(--space-5); color: var(--color-red-dark); font-size: 0.875rem; font-weight: 800; text-decoration: none; text-transform: uppercase; }
 .certificate-verification-link:hover { text-decoration: underline; }
 .button.button-primary.certificate-generate-button { font-size: 0; }

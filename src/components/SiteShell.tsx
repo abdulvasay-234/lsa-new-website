@@ -45,7 +45,7 @@ export function SiteShell({ children, route }: PropsWithChildren<{ route: SiteRo
     media.add({ isDesktop: '(min-width: 821px) and (prefers-reduced-motion: no-preference)', isMobile: '(max-width: 820px) and (prefers-reduced-motion: no-preference)' }, (context) => {
       const isMobile = context.conditions?.isMobile
       const animationContext = gsap.context(() => {
-        const revealTargets = gsap.utils.toArray<HTMLElement>('#main-content .section:not(.home-hero) .section-marker, #main-content .section:not(.home-hero) h2, #main-content .section:not(.home-hero) h3, #main-content .section:not(.home-hero) p, #main-content .section:not(.home-hero) .button, #main-content .section:not(.home-hero) img, #main-content .section:not(.home-hero) li')
+        const revealTargets = gsap.utils.toArray<HTMLElement>('#main-content .section:not(.home-hero) .section-marker, #main-content .section:not(.home-hero) h2, #main-content .section:not(.home-hero) h3, #main-content .section:not(.home-hero) p, #main-content .section:not(.home-hero) .button:not(.certificate-generate-button), #main-content .section:not(.home-hero) img, #main-content .section:not(.home-hero) li')
 
         revealTargets.forEach((element) => {
           if (element.closest('.learning-section, .programs-outcomes-section, .events-community-hero') || (isMobile && element.closest('.program-detail-gains'))) return
