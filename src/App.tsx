@@ -16,6 +16,7 @@ import { getRoute } from './data/routes'
 import { blogPosts, programs } from './data/content'
 import { getProgramDetail } from './data/programs'
 import { siteInfo } from './data/site'
+import { CareerOpportunityPopup } from './components/CareerOpportunityPopup'
 
 function LsaIntroOverlay() {
   const [isVisible, setIsVisible] = useState(true)
@@ -179,6 +180,7 @@ export function App({ pathname = window.location.pathname }: { pathname?: string
     <>
       {route.path === '/' && <LsaIntroOverlay />}
       {renderPage()}
+      <CareerOpportunityPopup alwaysShow={route.path === '/'} />
     </>
   )
 }

@@ -1,0 +1,51 @@
+{
+  "popupEnabled": true,
+  "studentOutcomes": [
+    {
+      "studentName": "Syeda Mah Zehra Zaidi",
+      "role": "Data Scientist",
+      "package": "₹6.5 LPA",
+      "verified": true,
+      "publicConsent": true
+    }
+  ],
+  "opportunity": {
+    "id": "hitachi-r0150543",
+    "active": true,
+    "jobTitle": "Project Coordinator Associate",
+    "companyName": "Hitachi",
+    "companyLogo": "",
+    "poster": "",
+    "requisitionId": "R0150543",
+    "location": "Hyderabad, India",
+    "hiringType": "Fresher Hiring",
+    "employmentType": "",
+    "experience": "",
+    "salary": "",
+    "summary": "Hitachi is looking for FY 2025–26 BBA/MBA freshers to join its Services team as a Project Coordinator Associate.",
+    "description": "We are looking for enthusiastic FY 2025–26 BBA/MBA freshers to join our Services team.\n\nA Project Coordinator supports project managers by coordinating daily activities, tracking progress, maintaining documentation, and facilitating communication.",
+    "responsibilities": [
+      "Assist in project planning, scheduling, and administration.",
+      "Coordinate meetings, prepare minutes, and track action items.",
+      "Monitor tasks and update project timelines.",
+      "Maintain project documentation and status reports.",
+      "Communicate with team members, stakeholders, and clients.",
+      "Ensure required tools, access, and resources are available to the team."
+    ],
+    "skills": [],
+    "highlightedAreas": [
+      "Business Analytics",
+      "Project Coordination",
+      "Project Planning and Scheduling",
+      "Documentation and Reporting",
+      "Communication and Stakeholder Coordination",
+      "Task and Timeline Management"
+    ],
+    "qualifications": "FY 2025–26 BBA/MBA Freshers",
+    "recruiter": "Saranya Sasidharan",
+    "importantNote": "This is a specific fresher hiring requirement, and no employee referral bonus will be applicable for this position.",
+    "additionalDetails": "",
+    "postedDate": "26 November 2026",
+    "deadline": ""
+  }
+}

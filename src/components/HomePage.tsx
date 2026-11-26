@@ -9,6 +9,7 @@ import { organizationSchema } from '../lib/structured-data'
 import { ButtonLink } from './Button'
 import { Card } from './Card'
 import { HomeContactSection } from './HomeContactSection'
+import { CareerHighlights } from './CareerHighlights'
 import { ResponsiveImage, YouTubeFacade } from './Media'
 import { Container, Grid, Section } from './Layout'
 
@@ -438,6 +439,8 @@ export function HomePage() {
           <TestimonialEvidence />
         </Container>
       </Section>
+
+      <CareerHighlights />
 
       <Section className="learning-section">
         <Container>

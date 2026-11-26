@@ -117,8 +117,6 @@ p { line-height: 1.6; }
 .brand img { display: block; width: 4.5rem; height: 4.5rem; object-fit: contain; }
 .brand-logo-holder { display: block; width: 11rem; height: 4rem; overflow: hidden; }
 .header-brand .brand-logo-holder img { width: 11rem; height: 11rem; max-width: none; transform: translateY(-3.65rem); }
-.site-header.is-home .brand-logo-holder { width: 9rem; }
-.site-header.is-home .header-brand .brand-logo-holder img { width: 9rem; height: 9rem; transform: translateY(-3rem); }
 .site-navigation { display: block; }
 .site-nav-list, .site-subnav, .social-links, .footer-column ul { list-style: none; margin: 0; padding: 0; }
 .site-nav-list { display: flex; align-items: center; gap: var(--space-6); }
@@ -1684,8 +1682,6 @@ p { line-height: 1.6; }
   .header-brand { min-width: 0; flex: 1 1 auto; }
   .header-brand .brand-logo-holder { position: relative; width: min(10rem, calc(100vw - 9rem)); height: 4rem; overflow: hidden; }
   .header-brand .brand-logo-holder img { position: absolute; top: 50%; left: 0; width: 100%; height: auto; max-width: none; transform: translateY(-50%); object-fit: contain; object-position: center; }
-  .site-header.is-home .header-brand .brand-logo-holder { width: min(9rem, calc(100vw - 10rem)); }
-  .site-header.is-home .header-brand .brand-logo-holder img { width: 100%; height: auto; transform: translateY(-50%); }
   .menu-toggle { display: inline-flex; }
   .menu-toggle { flex: 0 0 auto; }
   .site-navigation { position: absolute; left: 0; right: 0; top: 100%; z-index: 10; display: none; padding: var(--space-3) 1rem var(--space-4); border-bottom: 1px solid var(--color-border); background: var(--color-surface); box-shadow: var(--shadow-sm); }

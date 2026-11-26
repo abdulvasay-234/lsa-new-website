@@ -44,6 +44,7 @@ export const siteInfo = {
   contact: {
     email: 'lordsskillacademy@gmail.com',
     phone: '062812 32916',
+    careerPhone: '8978654303',
     alternatePhone: '+91 9963051403',
     address: '3rd Floor, Pillar No 4, KFC Building, 10-3-76, Mehdipatnam Rd, Royal Colony, Humayun Nagar, Hyderabad, Telangana 500028',
     mapEmbedUrl: 'https://www.google.com/maps?q=3rd%20Floor%2C%20Pillar%20No%204%2C%20KFC%20Building%2C%2010-3-76%2C%20Mehdipatnam%20Rd%2C%20Royal%20Colony%2C%20Humayun%20Nagar%2C%20Hyderabad%2C%20Telangana%20500028&output=embed',
